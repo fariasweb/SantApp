@@ -1,0 +1,4 @@
+/*color del fondo de los links del contenido*/																		
+#demo-page .ui-content .ui-btn-inner{ background: #FFFFFF;}
+/*alineacion de la cabecera*/																		
+#demo-page .ui-header .ui-title{ text-align:left;margin-left: 3%;}

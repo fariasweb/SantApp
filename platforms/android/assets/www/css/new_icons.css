@@ -1,0 +1,30 @@
+/*
+ * 
+ * OJO CUIDAO: LINEA 766 COMENTADA DEL CSS DE JQUERY PRINCIPAL: ICONO POR DEFECTO DE JQUERY
+ * OJO CUIDAO: LINEA 1150 CAMBIADO DE 18 X 18 A 32 X 32: Tamaño general de todo lo q lleve de etiqueta ui-icon
+ * OJO CUIDAO: LINEA 2083 CAMBIADO MARGIN-TOP DE -9 A -17
+ * 
+ * **/
+
+.ui-icon-adminis {
+	background: url("../img/iconos/32/administratives.png") no-repeat transparent;
+}
+.ui-icon-aprin{
+	
+	background: url("../img/iconos/32/aprincipal.png") no-repeat transparent;
+}
+.ui-icon-config {
+	background: url("../img/iconos/32/configuracio.png") no-repeat transparent;
+}
+.ui-icon-acul {
+	background: url("../img/iconos/32/culturals.png") no-repeat transparent;
+}
+.ui-icon-esportives {
+	background: url("../img/iconos/32/esportives.png") no-repeat transparent;
+}
+.ui-icon-infr {
+	background: url("../img/iconos/32/infraestructura.png")no-repeat transparent;
+}
+.ui-icon-main {
+	background: url("../img/iconos/16/home.png")no-repeat transparent;
+}

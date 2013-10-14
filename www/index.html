@@ -2,12 +2,13 @@
 	<head>
 		<title>Santa Coloma App</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="css/appcoloma.min.css" />
+		<!--<link rel="stylesheet" href="css/appcoloma.min.css" />-->
 		<link rel="stylesheet" href="css/appcoloma.css" />
 		<link rel="stylesheet" href="css/new_icons.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.1.3.2.css" />
 		<link rel="stylesheet" href="css/panel.css" />
 		<link rel="stylesheet" href="css/header.css" />
+		<link rel="stylesheet" href="css/template_cnt_g.css" />
 		<script src="app/lib/jquery-1.9.1.min.js"></script>
 		<script src="app/lib/jquery.mobile-1.3.2.min.js"></script>
 		<script src="app/app.js"></script>
@@ -16,7 +17,7 @@
 		<div data-url="index" data-role="page" id="index">
 		    <div data-role="header" class='haprin'>
 		        <h1>AGENDA PRINCIPAL</h1>
-		       <a data-iconpos="notext" data-icon="main" href="#left-panel"></a>
+		       <a class='icon' data-iconpos="notext" data-theme=" " data-icon="main" href="#left-panel"></a>
 		    </div><!-- /header -->
 		    
 		    <!-------------------------MENU DE LA IZQUIERDA ----------------------------->
@@ -58,9 +59,15 @@
                 <li><a href="#app/views/t_cont.html">subcats</a></li>
               </ul>
             </div><!-- /collapsible -->
+             <div data-role="collapsible" data-expanded-icon='esportives' data-collapsed-icon='esportives' class='esportives'>
+              <h3>Activitats esportives</h3>
+              <ul data-role="listview" data-icon='false'>
+                <li><a href="#app/views/t_cont.html">subcats</a></li>
+              </ul>
+            </div><!-- /collapsible -->
       </div><!--collapsible set-->
           <ul data-role="listview" data-icon='false' class='lastul'>
-          	<li class="esportives"><a href="#app/views/t_cont.html"><img class='ui-li-icon' src='img/iconos/32/esportives.png'>Activitats esportives</a></li>
+          	<!--<li class="esportives"><a href="#app/views/t_cont.html"><img class='ui-li-icon' src='img/iconos/32/esportives.png'>Activitats esportives</a></li>-->
             <li data-role="list-divider">Opcions</li>
             <li class="config"><a href="#"><img class='ui-li-icon' src='img/iconos/32/configuracio.png'>Configuració</a></li>
             <!--<li data-icon="back"><a href="#demo-intro" data-rel="back">Demo intro</a></li>-->

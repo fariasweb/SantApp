@@ -525,6 +525,8 @@ a.ui-link-inherit {
 .content_act{
 	display: inline-block;
 	vertical-align:top;
+	margin-top: 6px;
+	margin-left: 8px;
 }
 
 
@@ -555,13 +557,31 @@ a.ui-link-inherit {
 	text-shadow: none;
 }
 
-.act_desc{
-	color: #333333;
+.desc{
+	color: #3c3c3b;
 	font-style:italic;
 }
 div.item_cnt{
 	padding-left: 5%;
 }
-.title{
-	margin-top: 5px;
+.avui{
+	margin-top: 4px;
+	margin-bottom: 20px;
+	text-shadow: none;
+	margin-left: 6px;
+}
+.setmn{
+	margin-top: 20px;
+	margin-bottom: 21px;
+	text-shadow: none;
+	margin-left: 6px;
+}
+
+#index .desc{
+	font-weight: normal;
+	margin-top: -12px;
+}
+
+#index .ui-content{
+	background-color: #D9D9D9;
 }

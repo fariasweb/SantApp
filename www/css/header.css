@@ -4,9 +4,10 @@
 #t_detail .ui-content .ui-btn-inner{ background: #F5F5F5;}
 
 /*alineacion de la cabecera*/																		
-#index .ui-header .ui-title{ text-align:left;margin-left: 40px; text-shadow: none;}
-#t_gen .ui-header .ui-title{ text-align:left;margin-left: 40px; text-shadow: none;}
-#t_detail .ui-header .ui-title{ text-align:left;margin-left: 40px; text-shadow: none;}
+#index .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
+#t_gen .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
+#t_detail .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
+#t_conf .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
 
 /*Fondo agenda principal*/
 .haprin{

@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="css/jquery.mobile.1.3.2.css" />
 		<link rel="stylesheet" href="css/panel.css" />
 		<link rel="stylesheet" href="css/header.css" />
-		<link rel="stylesheet" href="css/template_cnt_g.css" />
+		<link rel="stylesheet" href="css/details.css" />
 		<script src="app/lib/jquery-1.9.1.min.js"></script>
 		<script src="app/lib/jquery.mobile-1.3.2.min.js"></script>
 		<script src="app/app.js"></script>
@@ -32,16 +32,16 @@
             <div data-role="collapsible" data-expanded-icon='aprin' data-collapsed-icon='aprin' class='aprin'>
               <h3>Agenda principal</h3>
               <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_cont.html">Avui</a></li>
-                <li><a href="#app/views/t_cont.html">Aquesta setmana</a></li>
-                <li><a href="#app/views/t_cont.html">Aquest mes</a></li>
-                <li><a href="#app/views/t_cont.html">Totes</a></li>
+                <li><a href="#app/views/t_gen.html">Avui</a></li>
+                <li><a href="#app/views/t_gen.html">Aquesta setmana</a></li>
+                <li><a href="#app/views/t_gen.html">Aquest mes</a></li>
+                <li><a href="#app/views/t_gen.html">Totes</a></li>
               </ul>
             </div><!-- /collapsible -->
           </div><!-- /collapsible-set -->
           
         <ul data-role="listview" data-theme="d" data-icon='false' class='ful'>
-        	<li class='infr'><a class='infr' href="#app/views/t_cont.html"><img class='ui-li-icon' src='img/iconos/32/infraestructura.png'>Infraestructures</a></li>
+        	<li class='infr'><a class='infr' href="#app/views/t_gen.html"><img class='ui-li-icon' src='img/iconos/32/infraestructura.png'>Infraestructures</a></li>
             <li data-role="list-divider">Categories</li>
             <!--<li data-icon="back"><a href="#demo-intro" data-rel="back">Demo intro</a></li>-->
         </ul>
@@ -50,24 +50,24 @@
             <div data-role="collapsible" data-collapsed-icon='adminis' data-expanded-icon='adminis' class='admin'>
               <h3>Activitats administratives</h3>
               <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_cont.html">subcats</a></li>
+                <li><a href="#app/views/t_gen.html">subcats</a></li>
               </ul>
             </div><!-- /collapsible -->
             <div data-role="collapsible" data-expanded-icon='acul' data-collapsed-icon='acul' class='acul'>
               <h3>Activitats cultural</h3>
               <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_cont.html">subcats</a></li>
+                <li><a href="#app/views/t_gen.html">subcats</a></li>
               </ul>
             </div><!-- /collapsible -->
              <div data-role="collapsible" data-expanded-icon='esportives' data-collapsed-icon='esportives' class='esportives'>
               <h3>Activitats esportives</h3>
               <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_cont.html">subcats</a></li>
+                <li><a href="#app/views/t_gen.html">subcats</a></li>
               </ul>
             </div><!-- /collapsible -->
       </div><!--collapsible set-->
           <ul data-role="listview" data-icon='false' class='lastul'>
-          	<!--<li class="esportives"><a href="#app/views/t_cont.html"><img class='ui-li-icon' src='img/iconos/32/esportives.png'>Activitats esportives</a></li>-->
+          	<!--<li class="esportives"><a href="#app/views/t_gen.html"><img class='ui-li-icon' src='img/iconos/32/esportives.png'>Activitats esportives</a></li>-->
             <li data-role="list-divider">Opcions</li>
             <li class="config"><a href="#"><img class='ui-li-icon' src='img/iconos/32/configuracio.png'>Configuració</a></li>
             <!--<li data-icon="back"><a href="#demo-intro" data-rel="back">Demo intro</a></li>-->
@@ -84,7 +84,7 @@
 		            <h3 class='avui'>Avui</h3>
 		            <ul data-role='listview'  data-icon='false'>
 		            	
-		            	<li><a href='#'>
+		            	<li><a href='#app/views/t_detail.html'>
 		            		<div class='acul'>
 		            			<div class='ico_act'>
 		            				<img src="img/iconos/64/cultural.png">
@@ -97,7 +97,7 @@
 		            		</div>
 		            		</a></li><!--Fin ctividad-->
 		            		
-		            	<li><a href='#'>
+		            	<li><a href='#app/views/t_detail.html'>
 		            		<div class='esportives'>
 		            			<div class='ico_act'>
 		            				<img src="img/iconos/64/esportives.png">
@@ -110,7 +110,7 @@
 		            		</div>
 		            	</a></li><!--Fin ctividad-->
 		            	
-		            	<li><a href='#'>
+		            	<li><a href='#app/views/t_detail.html'>
 							<div class='admin'>
 		            			<div class='ico_act'>
 		            				<img src="img/iconos/64/administratives.png">
@@ -129,7 +129,7 @@
 		        
 		            <h3 class='setmn'>Aquesta setmana</h3>
 		            <ul data-role='listview' data-icon='false'>
-		            	<li><a href='#'>
+		            	<li><a href='#app/views/t_detail.html'>
 		            		<div class='acul'>
 		            			<div class='ico_act'>
 		            				<img src="img/iconos/64/cultural.png">
@@ -142,7 +142,7 @@
 		            		</div>
 		           		</a></li> <!--Fin ctividad-->
 		           		
-		           		<li><a href='#'>
+		           		<li><a href='#app/views/t_detail.html'>
 		            		<div class='acul'>
 		            			<div class='ico_act'>
 		            				<img src="img/iconos/64/cultural.png">
@@ -155,7 +155,7 @@
 		            		</div>
 		           		</a></li> <!--Fin ctividad-->
 		           		
-		           		<li><a href='#'>
+		           		<li><a href='#app/views/t_detail.html'>
 		            		<div class='esportives'>
 		            			<div class='ico_act'>
 		            				<img src="img/iconos/64/esportives.png">

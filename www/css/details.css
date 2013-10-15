@@ -1,0 +1,43 @@
+/*Div general de contenido*/
+#t_detail .ui-content{
+	padding-left: 5%;
+	background-color: white;
+}
+
+/*Cabecera del contenido: categoria y subcategoria si la tubeira*/
+#t_detail .ui-content .h_detail{
+	text-shadow: none;
+	border-color: white;
+	padding-top: 1%;
+}
+
+#t_detail .cat{
+	font-size: 20px;
+	font-weight: 900;
+}
+#t_detail .subcat{
+	margin-top:-20px;
+	font-size: 14px;
+}
+
+
+
+/*Lista dia, horari, preu, infr*/
+#t_detail .ui-content .ui-listview{
+	margin-top: 20px;
+	
+}
+
+
+#t_detail .ui-content .ui-listview .ui-li-static{
+	text-shadow: none;
+	border-color: white;
+	background-color: white;
+	font-weight: normal;
+}
+
+
+/*Descripcion*/
+#t_detail .ui-content .desc_detail {
+	margin-top: 40px;
+}

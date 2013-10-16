@@ -17,7 +17,7 @@
 	background: url("../img/iconos/32/configuracio.png") no-repeat transparent;
 }
 .ui-icon-acul {
-	background: url("../img/iconos/32/culturals.png") no-repeat transparent;
+	background: url("../img/iconos/32/cultural.png") no-repeat transparent;
 }
 .ui-icon-esportives {
 	background: url("../img/iconos/32/esportives.png") no-repeat transparent;
@@ -26,5 +26,8 @@
 	background: url("../img/iconos/32/infraestructura.png")no-repeat transparent;
 }
 .ui-icon-main {
-	background: url("../img/iconos/16/home.png")no-repeat transparent;
+	background: url("../img/iconos/24/home.png")no-repeat transparent;
+}
+.ui-icon-aback{
+	background: url("../img/iconos/24/atras.png")no-repeat transparent;
 }

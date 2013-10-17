@@ -1,0 +1,11 @@
+# Android files   #
+###################
+platforms/android/assets/www
+platforms/android/assets/www/*
+platforms/android/bin/
+platforms/android/bin/*
+platforms/android/gen/
+
+# Apatana Files #
+#################
+www/.project

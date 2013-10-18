@@ -10,3 +10,7 @@
 #t_conf .ui-radio-off{
 	font-weight: normal;
 }
+
+#t_conf .ui-content .conf_cont{
+	padding-left: 20px;
+}

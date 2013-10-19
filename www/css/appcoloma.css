@@ -533,20 +533,18 @@ a.ui-link-inherit {
 	color: #3c3c3b;
 	font-style:italic;
 }
-div.item_cnt{
-	padding-left: 5%;
-}
+
 .avui{
 	margin-top: 4px;
 	margin-bottom: 20px;
 	text-shadow: none;
-	margin-left: 6px;
+	margin-left: 21px;
 }
 .setmn{
 	margin-top: 20px;
 	margin-bottom: 21px;
 	text-shadow: none;
-	margin-left: 6px;
+	margin-left: 21px;
 }
 
 #index .desc{
@@ -558,12 +556,25 @@ div.item_cnt{
 	background-color: #D9D9D9;
 }
 
+/*Lista de actividades*/
+#index .ui-content .ui-listview .ui-btn-inner{
+	padding-left: 17px;
+}
+#t_gen .ui-content .ui-listview .ui-btn-inner{
+	padding-left: 17px;
+}
+
+#t_gen .ui-content .ui-listview{
+	background-color: white;
+	margin-top: -1px;
+}
+
 #t_gen .ui-content .all_act .more_txt{
 	font-size: 10px;
 }
 
-#t_gen .ui-content .all_act .more_icon{
-
+#t_gen .ui-content .all_act .more{
+	margin-left: 45%;
 }
 
 

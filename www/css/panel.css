@@ -44,7 +44,6 @@ Narrow the scope of the selectors to prevent other panels being affected by the 
 																		font-size: 12px;
 																		height: 20px;
 																		text-shadow: none;
-																		background-color: #FFFFFF;
 																		color: #333333;
 																		border-color: #D9D9D9;}
 																		
@@ -163,28 +162,88 @@ as the panel before opening the panel. */
     }
 }
 
+
+
+
+
+
+
 /*Color agenda principal - cabecera y subcategorias*/
-#left-panel .ui-collapsible-set .aprin .ui-collapsible-heading .ui-btn-inner {color: #0066CC; height: 26px; width: 150px; background: #ECECEC;}
-#left-panel .aprin .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{color: #0066CC; height: 21px; padding-bottom: 0; padding-top: 7px;  background: #F5F5F5;}
+#left-panel .ui-collapsible-set .aprin .ui-collapsible-heading .ui-btn-inner {
+	color: #0066CC;
+	height: 25px;
+	width: 160px;
+	background: #ECECEC;}
+#left-panel .aprin .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
+	color: #0066CC;
+	height: 20px;
+	padding-bottom: 0;
+	padding-top: 0px; 
+	background: #F5F5F5;}
+	
 /*.ui-btn-text*/
 /*Color de infraestructures*/
 #left-panel .ful .infr .ui-link-inherit{color: #99CC00; background: #ECECEC;}
 
 
 /*Color administracio*/
-#left-panel .ui-collapsible-set .admin .ui-collapsible-heading .ui-btn-inner{color: #FF6666; width: 157px; height: 26px; background: #ECECEC;}
-#left-panel .admin .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{color: #FF6666; background: #F5F5F5;}
+#left-panel .ui-collapsible-set .admin .ui-collapsible-heading .ui-btn-inner{
+	color: #FF6666;
+	width: 160px;
+	height: 25px;
+	background: #ECECEC;}
+#left-panel .admin .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
+	color: #FF6666;
+	background: #F5F5F5;
+	height: 20px;
+	padding-bottom: 0;
+	padding-top: 0px; }
 
 /*Color agenda cultural*/
-#left-panel .ui-collapsible-set .acul .ui-collapsible-heading .ui-btn-inner{color: #996699; height: 23px; background: #ECECEC;}
-#left-panel .acul .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{color: #996699; height: 21px; padding-bottom: 0; padding-top: 7px; background: #F5F5F5;}
+#left-panel .ui-collapsible-set .acul .ui-collapsible-heading .ui-btn-inner{
+	color: #996699;
+	height: 25px;
+	background: #ECECEC;}
+#left-panel .acul .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
+	color: #996699;
+	height: 20px;
+	padding-bottom: 0;
+	padding-top: 0px; 
+	background: #F5F5F5;}
 
 /*Color esportives - La primera linea comentada, se usa si es un elemento de lista*/
 /*#left-panel .lastul .esportives .ui-link-inherit{color: #FF6633;height: 26px; background: #ECECEC;}*/
-#left-panel .ui-collapsible-set .esportives .ui-collapsible-heading .ui-btn-inner{color: #FF6633; height: 26px; background: #ECECEC;}
-#left-panel .esportives .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{color: #FF6633; height: 21px; padding-bottom: 0; padding-top: 7px; background: #F5F5F5;}
+#left-panel .ui-collapsible-set .esportives .ui-collapsible-heading .ui-btn-inner{
+	color: #FF6633;
+	height: 25px;
+	background: #ECECEC;}
+#left-panel .esportives .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
+	color: #FF6633;
+	height: 20px;
+	padding-bottom: 0;
+	padding-top: 0px; 
+	background: #F5F5F5;}
 
 
 /*Color config*/
-#left-panel .lastul .config .ui-link-inherit{color: #666666;height: 26px; height: 21px; padding-bottom: 0; padding-top: 7px; background: #ECECEC;}
+#left-panel .lastul .config .ui-link-inherit{
+	color: #666666;
+	height: 20px;
+	padding-bottom: 0;
+	padding-top: 0px; 
+	background: #ECECEC;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,31 +1,49 @@
-$(document).bind("mobileinit", function () {
+/**
+ * APP START
+ * 
+ * Create the principal variables to the app
+ */
+
+var app = {
+	router: {},
+	controllers: {}
+};
+
+
+// START AFTER LOAD
+// TODO: Controlar cuando todo esta cargado para quitar la 
+
+//SOLO FUNCIONA EN MOBIL!!!
+$( document ).bind("mobileinit", function() {
 	$.mobile.ajaxEnabled = false;
-    $.mobile.linkBindingEnabled = false;
-    $.mobile.hashListeningEnabled = false;
-    $.mobile.pushStateEnabled = false;
+	$.mobile.linkBindingEnabled = false;
+	$.mobile.hashListeningEnabled = false;
+	$.mobile.pushStateEnabled = false;
+	$.mobile.changePage.defaults.changeHash = false;
 });
 
+//PARA TODOS
+$( document ).on("pageinit", function() {
+	$.mobile.ajaxEnabled = false;
+	$.mobile.linkBindingEnabled = false;
+	$.mobile.hashListeningEnabled = false;
+	$.mobile.pushStateEnabled = false;
+	$.mobile.changePage.defaults.changeHash = false;
+});
 
+//INICIO DE LA PAGINA PRINCIPAL
 $( document ).on("pageinit", "#index", function() {
 	
-		$.mobile.ajaxEnabled = false;
-		$.mobile.linkBindingEnabled = false;
-		$.mobile.hashListeningEnabled = false;
-		$.mobile.pushStateEnabled = false;
-		$.mobile.changePage.defaults.changeHash = false;
-
+	//NOTE: Conseguir variables
+	//console.log(app.constants.get("MAX_NEWS"));
 	
-	$(document).on("pagechange", function(a, b) {
-		console.log("PAGECHANGE", a,b);
-		return false;
-	});
-	
-	$( window ).on( "navigate", function( event, data ) {
-  		console.log("NAVEIGATE", data );
-	});
+	//CONTROL DE RUTAS
+	var router = new app.router();
+	Backbone.history.start();
 	
 	
-    $( document ).on( "swipeleft swiperight", "#index", function( e ) {
+	//EVENTOS AL CARGAR
+	$( document ).on( "swipeleft swiperight", "#index", function( e ) {
         // We check if there is no open panel on the page because otherwise
         // a swipe to close the left panel would also open the right panel (and v.v.).
         // We do this by checking the data that the framework stores on the page element (panel: open).
@@ -36,52 +54,13 @@ $( document ).on("pageinit", "#index", function() {
         }
     });
 
+	/*$(document).on("pagechange", function(a, b) {
+		console.log("PAGECHANGE", a,b);
+		return false;
+	});
+	
+	$( window ).on( "navigate", function( event, data ) {
+  		console.log("NAVEIGATE", data );
+	});*/
 });
 
-$(document).ready(function(){
-
-    //TODO: Pendiente obtener las categorías y pintarlas mediante templates.
-    // Las categorías tendrán una clase específica para identificarlas, las fichas otra
-
-    // TODO: Selector que identifica Categorías
-    $('a').on("click", function(e){
-        e.preventDefault();
-
-        // Navegamos a la ruta y guardamos información del href
-        $.mobile.navigate($(this).attr('href'), {info: $(this).attr('href')});
-
-        // Obtener categorías mediante id categoría
-        getCardsByCategory($(this).attr('href'));
-    });
-
-
-    // TODO: Selector que identifica Fichas
-    $('a').on("click", function(e){
-        e.preventDefault();
-
-        // Navegamos a la ruta y guardamos información del href
-        $.mobile.navigate($(this).attr('href'), {info: $(this).attr('href')});
-
-        // Obtener categorías mediante id categoría
-        getCard($(this).attr('href'));
-    });
-
-    // Información que obtenemos del método navigate
-    $( window ).on( "navigate", function( event, data ) {
-      console.log(data.state);
-
-    });
-
-});
-
-
-// Esto estaría en un controlador aparte
-function getCardsByCategory(category){
-    // Obtenemos fichas de la categoría recibida y compilamos template
-
-}
-
-// Esto estaría en un controlador aparte
-function getCard(card){
-    // Obtenemos información de la ficha y compilamos template
-}

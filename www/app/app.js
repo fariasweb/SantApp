@@ -6,7 +6,8 @@
 
 var app = {
 	router: {},
-	controllers: {}
+	controllers: {},
+	views: {}
 };
 
 

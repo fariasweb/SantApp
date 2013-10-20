@@ -7,7 +7,8 @@
 var app = {
 	router: {},
 	controllers: {},
-	views: {}
+	views: {},
+	service: {}
 };
 
 
@@ -63,5 +64,28 @@ $( document ).on("pageinit", "#index", function() {
 	$( window ).on( "navigate", function( event, data ) {
   		console.log("NAVEIGATE", data );
 	});*/
+});
+
+
+$(document).ready(function() {
+	//TEST API
+	//==================================================================
+	console.log("VAMOS");
+	app.service.get("idiomesFitxa", {}, 
+		function(status, data){
+			
+			var response = $.parseXML( data );
+			
+			$("#stage").append("<b>LISTO:" + $(data).find("intTotalResultats").text()+"</b><br><br>");
+			$(data).find("Idioma").each(function(){
+				$("#stage").append($(this).find("strIdioma").text()+" - "+$(this).find("intIdioma").text());
+				$("#stage").append("<hr>");
+			});
+		},
+		
+		function(a,b,c){
+			$("#stage").append("ERROR");
+		}
+	);
 });
 

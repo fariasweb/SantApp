@@ -46,10 +46,11 @@
 
 .news{
 	margin-top: 4px;
-	margin-bottom: 20px;
+	margin-bottom: 4px;
 	text-shadow: none;
 	margin-left: 21px;
 	color: #3C3C3B;
+	border-bottom-color: black;
 }
 .setmn{
 	margin-top: 20px;
@@ -81,17 +82,22 @@
 }
 
 #index .ui-content .update{
-	margin-left: 45%;
+	margin-left: -15px;
+	padding-left: 45%;
+	background-color: #F5F5F5;
 }
 
 
 #t_gen .ui-content .update{
 	margin-left: 45%;
-	
+	background-color: white;
 }
 
 
-
+#index .ui-content .ui-listview, .ui-panel-inner > .ui-listview {
+	margin-left: -15px;
+	margin-top: 0;
+}
 
 
 

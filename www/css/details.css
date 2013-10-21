@@ -1,6 +1,5 @@
 /*Div general de contenido*/
 #t_detail .ui-content{
-	padding-left: 5%;
 	background-color: white;
 }
 
@@ -63,3 +62,5 @@
 	font-size: 12px;
 }
 
+#t_detail .ui-content .content_detail{margin-left:17px;}
+#t_detail .ui-content .content_detail .card{margin-left:5px;}

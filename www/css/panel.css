@@ -57,7 +57,6 @@ Narrow the scope of the selectors to prevent other panels being affected by the 
 
 #left-panel .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
 	border-color: #D9D9D9;
-    font-size: 12px;
     height: 6px;
     padding-left: 50px;
     padding-top: 12px;
@@ -172,8 +171,9 @@ as the panel before opening the panel. */
 #left-panel .ui-collapsible-set .aprin .ui-collapsible-heading .ui-btn-inner {
 	color: #0066CC;
 	height: 25px;
-	width: 160px;
-	background: #ECECEC;}
+	width: 180px;
+	background: #ECECEC;
+	font-size: 15px;}
 #left-panel .aprin .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
 	color: #0066CC;
 	height: 20px;
@@ -183,15 +183,16 @@ as the panel before opening the panel. */
 	
 /*.ui-btn-text*/
 /*Color de infraestructures*/
-#left-panel .ful .infr .ui-link-inherit{color: #99CC00; background: #ECECEC;}
+#left-panel .ful .infr .ui-link-inherit{color: #99CC00; background: #ECECEC;font-size: 15px;width: 180px;}
 
 
 /*Color administracio*/
 #left-panel .ui-collapsible-set .admin .ui-collapsible-heading .ui-btn-inner{
 	color: #FF6666;
-	width: 160px;
+	width: 180px;
 	height: 25px;
-	background: #ECECEC;}
+	background: #ECECEC;
+	font-size: 15px;}
 #left-panel .admin .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
 	color: #FF6666;
 	background: #F5F5F5;
@@ -203,7 +204,9 @@ as the panel before opening the panel. */
 #left-panel .ui-collapsible-set .acul .ui-collapsible-heading .ui-btn-inner{
 	color: #996699;
 	height: 25px;
-	background: #ECECEC;}
+	background: #ECECEC;
+	font-size:15px;
+	width: 180px;}
 #left-panel .acul .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
 	color: #996699;
 	height: 20px;
@@ -216,7 +219,9 @@ as the panel before opening the panel. */
 #left-panel .ui-collapsible-set .esportives .ui-collapsible-heading .ui-btn-inner{
 	color: #FF6633;
 	height: 25px;
-	background: #ECECEC;}
+	width: 180px;
+	background: #ECECEC;
+	font-size: 15px;}
 #left-panel .esportives .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
 	color: #FF6633;
 	height: 20px;
@@ -229,9 +234,11 @@ as the panel before opening the panel. */
 #left-panel .lastul .config .ui-link-inherit{
 	color: #666666;
 	height: 20px;
+	width: 180px;
 	padding-bottom: 0;
 	padding-top: 0px; 
-	background: #ECECEC;}
+	background: #ECECEC;
+	font-size: 15px;}
 
 
 

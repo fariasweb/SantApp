@@ -1,3 +1,9 @@
+$.mobile.ajaxEnabled = false;
+$.mobile.linkBindingEnabled = false; 
+$.mobile.hashListeningEnabled = false; 
+$.mobile.pushStateEnabled = false; 
+$.mobile.changePage.defaults.changeHash = false;
+
 /**
  * APP START
  * 
@@ -25,13 +31,13 @@ $( document ).bind("mobileinit", function() {
 });
 
 //PARA TODOS
-$( document ).on("pageinit", function() {
-	$.mobile.ajaxEnabled = false;
-	$.mobile.linkBindingEnabled = false;
-	$.mobile.hashListeningEnabled = false;
-	$.mobile.pushStateEnabled = false;
-	$.mobile.changePage.defaults.changeHash = false;
-});
+// $( document ).on("pageinit", function() {
+// 	$.mobile.ajaxEnabled = false;
+// 	$.mobile.linkBindingEnabled = false;
+// 	$.mobile.hashListeningEnabled = false;
+// 	$.mobile.pushStateEnabled = false;
+// 	$.mobile.changePage.defaults.changeHash = false;
+// });
 
 //INICIO DE LA PAGINA PRINCIPAL
 $( document ).on("pageinit", "#index", function() {

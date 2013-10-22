@@ -63,7 +63,11 @@
 	font-weight: normal;
 	margin-top: -12px;
 }
-
+#t_gen .desc{
+	font-weight: normal;
+	margin-top: -12px;
+	font-size:16px;
+}
 #index .ui-content{
 	background-color: #D9D9D9;
 }
@@ -76,7 +80,7 @@
 	padding-left: 17px;
 }
 #t_gen .ui-content{
-	
+	padding: 0;
 }
 
 
@@ -93,7 +97,7 @@
 
 
 #t_gen .ui-content .update{
-	margin-left: 45%;
+	padding-left: 45%;
 	background-color: white;
 }
 

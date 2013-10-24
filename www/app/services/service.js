@@ -1,0 +1,81 @@
+
+app.service = {
+	
+	//CONSTANTS
+	_url: "http://195.235.66.115:10001/WSApp/WSApp/AppColoma.asmx?op=", 
+	_request: {
+		"head": '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>',
+		"action": {
+			"open": '<%action% xmlns="http://www.gramene.net/appcoloma/" />',
+			"close": '</%action%>',
+		},
+		"foot": '</soap:Body></soap:Envelope>'
+	},
+	
+	
+	//FUNCTIONS
+	
+	/**
+	 * Get
+	 * 
+	 */
+	get: function(action, param, success, error) {
+		
+		//Action is correct
+		
+		//Ajax
+		$.ajax({
+        	type: "POST",
+            url: this._url+action,
+            contentType: "text/xml; charset=\"utf-8\"",
+            dataType: "xml",
+            processData: false,
+            data: this._make_soaprequest(action, param),
+            beforeSend: function () { },
+            success: function (data, textStatus, jqXHR) {
+				//Crear un objeto con el estado de la peticion + resultados
+				var status = {
+					code: $(jqXHR.responseXML).find("intCodiEstat").text(),
+					desc: $(jqXHR.responseXML).find("strDescripcioEstat").text(),
+					total: $(jqXHR.responseXML).find("intTotalResultats").text()
+				};
+				
+				//Mirar si el code no es correcto
+				//En caso de no serlo se envia a la funcion error
+						
+				//Procesar los resultados
+				var data = jqXHR.responseXML;
+						
+				success(status, data);
+						
+	         },
+	         error: function(a,b,c) {
+	            //Gestionar el error
+	         	if (typeof error == "function") error(a,b,c);
+	         }
+         });
+	},
+	
+	/**
+	 * _make_soaprequest
+	 */
+	
+	_make_soaprequest: function(action, param) {
+		
+		var str = "";
+		
+		str  = this._request.head;
+		str += this._request.action.open.replace("%action%", action);
+		
+		if (param.length > 0) {
+			_.each(param, function(element) {
+				str += "<"+element.name+">"+element.value+"</"+element.name+">";
+			});
+		}
+		//str += this._request.action.close.replace("%action%", action);
+		str += this._request.foot;
+		
+		return str;
+	}
+	
+}

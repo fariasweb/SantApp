@@ -4,10 +4,25 @@
 #t_detail .ui-content .ui-btn-inner{ background: #F5F5F5;}
 
 /*alineacion de la cabecera*/																		
-#index .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
-#t_gen .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
-#t_detail .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
-#t_conf .ui-header .ui-title{ text-align:left;margin-left: 42px; text-shadow: none;}
+#index .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
+#t_gen .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
+#t_detail .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
+#t_conf .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
+
+/*Icono menu*/
+/*La imagen del dibujo*/
+#index .ui-btn-icon-notext .ui-btn-inner {
+    height: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 0;
+}
+/*La posicion del enlace*/
+#index .ui-footer > .ui-btn-icon-notext, .ui-header > .ui-btn-icon-notext, .ui-header-fixed.ui-fixed-hidden > .ui-btn-icon-notext {
+    /*border: 1px solid #000000;*/
+    left: 32px;
+    top: 18px;
+}
 
 /*Fondo agenda principal*/
 .haprin{

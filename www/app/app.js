@@ -17,6 +17,12 @@ var app = {
 	service: {}
 };
 
+//CONTROL DE RUTAS
+$(function(){
+	var router = new app.router();
+	Backbone.history.start();
+});
+
 
 // START AFTER LOAD
 // TODO: Controlar cuando todo esta cargado para quitar la 
@@ -44,11 +50,6 @@ $( document ).on("pageinit", "#index", function() {
 	
 	//NOTE: Conseguir variables
 	//console.log(app.constants.get("MAX_NEWS"));
-	
-	//CONTROL DE RUTAS
-	var router = new app.router();
-	Backbone.history.start();
-	
 	
 	//EVENTOS AL CARGAR
 	$( document ).on( "swipeleft swiperight", "#index", function( e ) {

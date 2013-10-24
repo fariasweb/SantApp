@@ -9,3 +9,5 @@ platforms/android/gen/
 # Apatana Files #
 #################
 www/.project
+.DS_Store
+www/.DS_Store

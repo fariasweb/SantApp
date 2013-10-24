@@ -7,10 +7,20 @@
 var app = {
 	router: {},
 	controllers: {},
+	models: {},
+	collections: {},
 	views: {},
 	service: {}
 };
 
+
+//DEBUG
+
+var logger = {
+	log : function(text) {
+		$("#stage").append(text+"<br>");
+	}
+}
 
 // START AFTER LOAD
 // TODO: Controlar cuando todo esta cargado para quitar la 
@@ -70,8 +80,16 @@ $( document ).on("pageinit", "#index", function() {
 $(document).ready(function() {
 	//TEST API
 	//==================================================================
-	console.log("VAMOS");
-	app.service.get("idiomesFitxa", {}, 
+	
+	app.collections.idiomes.request_all({}, function(status, data)
+	{
+		logger.log("OK")
+	},
+	function(){
+		loggerlog("FAIL");
+	});
+	
+	/*app.service.get("idiomesFitxa", {}, 
 		function(status, data){
 			
 			var response = $.parseXML( data );
@@ -86,6 +104,6 @@ $(document).ready(function() {
 		function(a,b,c){
 			$("#stage").append("ERROR");
 		}
-	);
+	);*/
 });
 

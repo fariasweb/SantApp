@@ -32,23 +32,26 @@ app.service = {
             processData: false,
             data: this._make_soaprequest(action, param),
             beforeSend: function () { },
-            success: function (response, textStatus, c) {
-				//Mirar que los datos sean correctos
-						
+            success: function (data, textStatus, jqXHR) {
 				//Crear un objeto con el estado de la peticion + resultados
-				var status = {};
+				var status = {
+					code: $(jqXHR.responseXML).find("intCodiEstat").text(),
+					desc: $(jqXHR.responseXML).find("strDescripcioEstat").text(),
+					total: $(jqXHR.responseXML).find("intTotalResultats").text()
+				};
+				
+				//Mirar si el code no es correcto
+				//En caso de no serlo se envia a la funcion error
 						
 				//Procesar los resultados
-				var data = {};
-				//DEBUG
-				var data = c.responseXML
+				var data = jqXHR.responseXML;
 						
 				success(status, data);
 						
 	         },
 	         error: function(a,b,c) {
 	            //Gestionar el error
-	         	error(a,b,c);
+	         	if (typeof error == "function") error(a,b,c);
 	         }
          });
 	},
@@ -64,10 +67,11 @@ app.service = {
 		str  = this._request.head;
 		str += this._request.action.open.replace("%action%", action);
 		
-		_.each(param, function(element) {
-			str += "<"+element.name+">"+element.value+"</"+element.name+">";
-		});
-		
+		if (param.length > 0) {
+			_.each(param, function(element) {
+				str += "<"+element.name+">"+element.value+"</"+element.name+">";
+			});
+		}
 		//str += this._request.action.close.replace("%action%", action);
 		str += this._request.foot;
 		

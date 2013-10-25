@@ -1,3 +1,7 @@
+/**
+ * Service
+ * 
+ */
 
 app.service = {
 	
@@ -12,6 +16,7 @@ app.service = {
 		"foot": '</soap:Body></soap:Envelope>'
 	},
 	
+	_last_request: {},
 	
 	//FUNCTIONS
 	
@@ -19,7 +24,7 @@ app.service = {
 	 * Get
 	 * 
 	 */
-	get: function(action, param, success, error) {
+	get: function(action, class_name, param, success, error) {
 		
 		//Action is correct
 		
@@ -33,8 +38,9 @@ app.service = {
             data: this._make_soaprequest(action, param),
             beforeSend: function () { },
             success: function (data, textStatus, jqXHR) {
+                
 				//Crear un objeto con el estado de la peticion + resultados
-				var status = {
+				app.service._last_request = {
 					code: $(jqXHR.responseXML).find("intCodiEstat").text(),
 					desc: $(jqXHR.responseXML).find("strDescripcioEstat").text(),
 					total: $(jqXHR.responseXML).find("intTotalResultats").text()
@@ -43,11 +49,14 @@ app.service = {
 				//Mirar si el code no es correcto
 				//En caso de no serlo se envia a la funcion error
 						
-				//Procesar los resultados
-				var data = jqXHR.responseXML;
-						
-				success(status, data);
-						
+				//Procesar los resultados y devolver
+				if (typeof success == "function") {
+    				success(app.service._last_request, 
+    				        app.service._parseXML_toclass(class_name, jqXHR.responseXML)
+    				       );
+				} else {
+				   // return app.service._parseXML_toclass(class_name, jqXHR.responseXML);
+				}		
 	         },
 	         error: function(a,b,c) {
 	            //Gestionar el error
@@ -76,6 +85,24 @@ app.service = {
 		str += this._request.foot;
 		
 		return str;
+	},
+	
+	/**
+	 * _parseXML_toclass
+     *  @param string class_name
+	 */
+	_parseXML_toclass: function(class_name, data) {
+	    var data_ = [];
+        var r = data.getElementsByTagName(class_name);
+            
+        for (i = 0; i < r.length; i++) {
+            data_[i] = {};
+            for (j = 0; j < r[i].childNodes.length; j++) {
+                data_[i][r[i].childNodes[j].nodeName] = r[i].childNodes[j].childNodes[0].nodeValue;
+            }
+        }
+
+        return data_;
 	}
 	
 }

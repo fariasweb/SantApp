@@ -14,14 +14,6 @@ var app = {
 };
 
 
-//DEBUG
-
-var logger = {
-	log : function(text) {
-		$("#stage").append(text+"<br>");
-	}
-}
-
 // START AFTER LOAD
 // TODO: Controlar cuando todo esta cargado para quitar la 
 
@@ -89,6 +81,7 @@ $(document).ready(function() {
 		loggerlog("FAIL");
 	});
 	
+	
 	/*app.service.get("idiomesFitxa", {}, 
 		function(status, data){
 			
@@ -106,4 +99,3 @@ $(document).ready(function() {
 		}
 	);*/
 });
-

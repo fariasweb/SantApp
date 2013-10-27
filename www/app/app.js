@@ -77,7 +77,6 @@ $( document ).on("pageinit", "#index", function() {
 $(document).ready(function() {
 	//TEST API
 	//==================================================================
-	console.log("VAMOS");
 	app.service.get("idiomesFitxa", {}, 
 		function(status, data){
 			

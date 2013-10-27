@@ -40,11 +40,11 @@ app.service = {
             success: function (data, textStatus, jqXHR) {
                 
 				//Crear un objeto con el estado de la peticion + resultados
-				app.service._last_request = {
-					code: $(jqXHR.responseXML).find("intCodiEstat").text(),
-					desc: $(jqXHR.responseXML).find("strDescripcioEstat").text(),
-					total: $(jqXHR.responseXML).find("intTotalResultats").text()
-				};
+				app.service._last_request = new app.models.response({
+					intCodiEstat: $(jqXHR.responseXML).find("intCodiEstat").text(),
+					strDescripcioEstat: $(jqXHR.responseXML).find("strDescripcioEstat").text(),
+					intTotalResultats: $(jqXHR.responseXML).find("intTotalResultats").text()
+				});
 				
 				//Mirar si el code no es correcto
 				//En caso de no serlo se envia a la funcion error
@@ -58,9 +58,9 @@ app.service = {
 				   // return app.service._parseXML_toclass(class_name, jqXHR.responseXML);
 				}		
 	         },
-	         error: function(a,b,c) {
+	         error: function(jqXHR, textStatus, errorThrown) {
 	            //Gestionar el error
-	         	if (typeof error == "function") error(a,b,c);
+	         	if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
 	         }
          });
 	},

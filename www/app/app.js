@@ -72,15 +72,16 @@ $( document ).on("pageinit", "#index", function() {
 $(document).ready(function() {
 	//TEST API
 	//==================================================================
-	
-	app.collections.idiomes.request_all({}, function(status, data)
-	{
-		logger.log("OK")
-	},
-	function(){
-		loggerlog("FAIL");
-	});
-	
+	for(var i = 0; i < 2; i++) {
+		app.collections.idiomes.request_all({}, function(status, data)
+		{
+			logger.log("OK")
+			var_dump(data);
+		},
+		function(){
+			logger.log("FAIL");
+		});
+	}
 	
 	/*app.service.get("idiomesFitxa", {}, 
 		function(status, data){

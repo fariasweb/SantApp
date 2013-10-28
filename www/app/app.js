@@ -10,7 +10,8 @@ var app = {
 	models: {},
 	collections: {},
 	views: {},
-	service: {}
+	service: {},
+	user: ""
 };
 
 
@@ -45,6 +46,8 @@ $( document ).on("pageinit", "#index", function() {
 	var router = new app.router();
 	Backbone.history.start();
 	
+	//USUARIO
+	app.user = new app.models.user();
 	
 	//EVENTOS AL CARGAR
 	$( document ).on( "swipeleft swiperight", "#index", function( e ) {
@@ -70,17 +73,37 @@ $( document ).on("pageinit", "#index", function() {
 
 
 $(document).ready(function() {
+    
+    //SET LANG
+    app.user = new app.models.user();
+    app.user.set({"intIdioma": 1});
+    
 	//TEST API
 	//==================================================================
-	for(var i = 0; i < 2; i++) {
-		app.collections.idiomes.request_all({}, function(status, data)
-		{
-			logger.log("OK")
-			var_dump(data);
-		},
-		function(){
-			logger.log("FAIL");
-		});
+	for(var i = 0; i < 1; i++) {
+		app.collections.equipaments.request_all({}, 
+    		function(status, data){
+
+    		    //var_dump(status.toJSON());
+    			//var_dump(data.length);
+    			/*_.each(data, function(element) {
+    			    echo(element.intIdFitxa+", \n");
+    			});*/
+    			
+    			app.collections.equipaments.get(23).request_info({},
+    			    function (status, data){
+                        var_dump(status.toJSON());
+                        var_dump(data.length);
+                    },
+                    function (jqXHR, textStatus, errorThrown) {
+                        echo("FAIL");
+                    });
+    		},
+    		function(){
+    		    echo("FAIL");
+    			logger.log("FAIL");
+    		}
+    	);
 	}
 	
 	/*app.service.get("idiomesFitxa", {}, 

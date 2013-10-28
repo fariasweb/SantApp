@@ -8,6 +8,9 @@ var _constants = function () {
 		
 		//News
 		MAX_NEWS: 10,
+		
+		//EXIT AND ERRORS
+		SUCCESS_REQUEST: 0
 	}
 	
 	return {

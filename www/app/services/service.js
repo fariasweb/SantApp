@@ -10,7 +10,7 @@ app.service = {
 	_request: {
 		"head": '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>',
 		"action": {
-			"open": '<%action% xmlns="http://www.gramene.net/appcoloma/" />',
+			"open": '<%action% xmlns="http://www.gramene.net/appcoloma/" >',
 			"close": '</%action%>',
 		},
 		"foot": '</soap:Body></soap:Envelope>'
@@ -46,7 +46,7 @@ app.service = {
 					intTotalResultats: $(jqXHR.responseXML).find("intTotalResultats").text()
 				});
 				
-				//Mirar si el code no es correcto
+				//TODO: Mirar si el code no es correcto
 				//En caso de no serlo se envia a la funcion error
 						
 				//Procesar los resultados y devolver
@@ -75,13 +75,14 @@ app.service = {
 		
 		str  = this._request.head;
 		str += this._request.action.open.replace("%action%", action);
+
+        //Parametros
+		_.each(param, function(element, index) {
+		  str += "<"+index+">"+element+"</"+index+">";
+		});
 		
-		if (param.length > 0) {
-			_.each(param, function(element) {
-				str += "<"+element.name+">"+element.value+"</"+element.name+">";
-			});
-		}
-		//str += this._request.action.close.replace("%action%", action);
+        //str += "<idioma>1</idioma>";
+		str += this._request.action.close.replace("%action%", action);
 		str += this._request.foot;
 		
 		return str;
@@ -94,12 +95,14 @@ app.service = {
 	_parseXML_toclass: function(class_name, data) {
 	    var data_ = [];
         var r = data.getElementsByTagName(class_name);
-            
+        
         for (i = 0; i < r.length; i++) {
-            data_[i] = {};
+            data_[i] = {}; 
+            
             for (j = 0; j < r[i].childNodes.length; j++) {
-                data_[i][r[i].childNodes[j].nodeName] = r[i].childNodes[j].childNodes[0].nodeValue;
+                data_[i][r[i].childNodes[j].nodeName] = (r[i].childNodes[j].childNodes.length)? r[i].childNodes[j].childNodes[0].nodeValue : "";
             }
+            
         }
 
         return data_;

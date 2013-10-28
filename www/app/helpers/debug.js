@@ -151,14 +151,16 @@ function var_dump() {
     if (d.body) {
         this.echo(output);
     } else {
-        try {
+        this.echo(output);
+       /* try {
             d = XULDocument;
             // We're in XUL, so appending as plain text won't work
-            this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>');
+            //this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>');
+            
         } catch (e) {
             this.echo(output);
             // Outputting as plain text may work in some plain XML
-        }
+        }*/
     }
 }
 

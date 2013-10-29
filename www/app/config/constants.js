@@ -4,7 +4,9 @@ var _constants = function () {
 		VERSION: 3600,
 		
 		//Time
-		TIME_UPDATE: 3600,
+		TIME_UPDATE_LOW: 3600 * 1000,
+		TIME_UPDATE_MIDDLE: 3600 * 12 * 1000,
+		TIME_UPDATE_HIGHT: 3600 * 24 * 1000,
 		
 		//News
 		MAX_NEWS: 10,

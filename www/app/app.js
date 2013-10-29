@@ -11,7 +11,8 @@ var app = {
 	collections: {},
 	views: {},
 	service: {},
-	user: ""
+	user: "",
+	timer: {}
 };
 
 
@@ -85,15 +86,18 @@ $(document).ready(function() {
     		function(status, data){
 
     		    //var_dump(status.toJSON());
-    			//var_dump(data.length);
-    			/*_.each(data, function(element) {
+    			var_dump(data.length);
+    			_.each(data, function(element) {
     			    echo(element.intIdFitxa+", \n");
-    			});*/
+    			});
     			
     			app.collections.equipaments.get(23).request_info({},
     			    function (status, data){
-                        var_dump(status.toJSON());
-                        var_dump(data.length);
+    			    	echo ("OK");
+    			    	//var_dump(app.collections.equipaments.get(23).toJSON());
+    			    	echo (app.collections.equipaments.get(23).get("strDescripcio"));
+    			    	echo (" - ");
+    			    	echo (app.collections.equipaments.get(23).get("strBarri"));
                     },
                     function (jqXHR, textStatus, errorThrown) {
                         echo("FAIL");

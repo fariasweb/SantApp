@@ -45,6 +45,9 @@ app.router = Backbone.Router.extend({
 
 		// Lo actualizamos para la página actual
 		$('#home').trigger('pagecreate');
+
+		// Control del botón atrás
+		$('.back').click(function(){ console.log("back"); window.history.back(); });
 	},
 	home: app.controllers.home,
 	category: app.controllers.category,

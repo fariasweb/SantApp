@@ -5,7 +5,8 @@
 app.controllers.category = function(cat, subcat) {
 	console.log("I am going to category...",cat, subcat);
 	$.mobile.changePage($('#category'), {changeHash:false});
-	// Obtenemos datos del menú
+	
+	// Obtenemos datos
 	var aListData = {
 		"headerClass": "hacul",
 		"headerName": "Categoría X",
@@ -29,9 +30,26 @@ app.controllers.category = function(cat, subcat) {
 		}]
 	};
 
+	// Generamos template
 	var aListTemplate = app.views.activityList;
 	var renderedTemplate = Mustache.render(aListTemplate, aListData);
-	$("#category").html(renderedTemplate);
-	$('#category').trigger('pagecreate');
+
+	// DOM Update
+	var category = $('#category'),
+		categoryHeader = $("#category").find('[data-role=header]'),
+		categoryContent = $("#category").find('[data-role=content]');
+
+	// Header, H1
+	categoryHeader.attr('class',aListData.headerClass);
+	categoryHeader.find('h1').html(aListData.headerName);
+	
+	// Content
+	categoryContent.html(renderedTemplate);
+
+	// Page create
+	category.trigger('pagecreate');
+
+	// Close panel
+	category.find('.left-panel').panel('close');
 	
 }

@@ -34,6 +34,11 @@ $( document ).bind("mobileinit", function() {
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.pushStateEnabled = false;
 	$.mobile.changePage.defaults.changeHash = false;
+
+	$.mobile.loader.prototype.options.text = "Cargando";
+  	$.mobile.loader.prototype.options.textVisible = false;
+  	$.mobile.loader.prototype.options.theme = "a";
+  	$.mobile.loader.prototype.options.html = "";
 });
 
 //PARA TODOS

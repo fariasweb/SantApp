@@ -47,7 +47,7 @@ app.router = Backbone.Router.extend({
 		$('#home').trigger('pagecreate');
 
 		// Control del botón atrás
-		$('.back').click(function(){ console.log("back"); window.history.back(); });
+		$('.back').click(function(e){ e.preventDefault(); window.history.back(); });
 	},
 	home: app.controllers.home,
 	category: app.controllers.category,

@@ -21,6 +21,8 @@ var app = {
 $(function(){
 	var router = new app.router();
 	Backbone.history.start();
+
+	
 });
 
 

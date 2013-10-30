@@ -25,7 +25,12 @@ app.models.equipament = Backbone.Model.extend({
         "strCodiPostal": "",
         "strNomResponsable": "",
         "strCognomsResponsable": "",
-        "strCentre": ""
+        "strCentre": "",
+        "strTelefonA": "",
+        "strTelefonB": "",
+        "strTelefonC": "",
+        "strFax": "",
+        "strUrl": ""
     },
     
     

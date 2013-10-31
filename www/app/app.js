@@ -78,38 +78,58 @@ $(document).ready(function() {
     //SET LANG
     app.user = new app.models.user();
     app.user.set({"intIdioma": 1});
-    
-	//TEST API
+
+
+    //TEST: Agenda por fechas
 	//==================================================================
-	for(var i = 0; i < 1; i++) {
+	var i = 0;
+	app.collections.agenda.reset_pags();
+	var test = function() {
+	    app.collections.agenda.request_all({},
+	    	function(status, data, last){
+	    		echo("<hr>");
+	    		i++;
+				echo(i);
+				
+	    		if (!last) test();
+	    	},
+	    	function (jqXHR, textStatus, errorThrown) {
+	    		
+	    	});
+	}
+
+	test();
+
+	//TEST: Equipaciones + info
+	//==================================================================
+	/*for(var i = 0; i < 1; i++) {
 		app.collections.equipaments.request_all({}, 
     		function(status, data){
 
     		    //var_dump(status.toJSON());
     			var_dump(data.length);
     			_.each(data, function(element) {
-    			    echo(element.intIdFitxa+", \n");
+	    			echo(element.intIdFitxa+", \n");
+
+	    			app.collections.equipaments.get(element.intIdFitxa).request_info({},
+	    			    function (status, data){
+	    			    	
+	    			    	var_dump(data);
+	                    },
+	                    function (jqXHR, textStatus, errorThrown) {
+	                        echo("FAIL");
+	                    });
     			});
-    			
-    			app.collections.equipaments.get(23).request_info({},
-    			    function (status, data){
-    			    	echo ("OK");
-    			    	//var_dump(app.collections.equipaments.get(23).toJSON());
-    			    	echo (app.collections.equipaments.get(23).get("strDescripcio"));
-    			    	echo (" - ");
-    			    	echo (app.collections.equipaments.get(23).get("strBarri"));
-                    },
-                    function (jqXHR, textStatus, errorThrown) {
-                        echo("FAIL");
-                    });
     		},
     		function(){
     		    echo("FAIL");
     			logger.log("FAIL");
     		}
     	);
-	}
-	
+	}*/
+
+	//TEST: Idiomas
+	//==================================================================
 	/*app.service.get("idiomesFitxa", {}, 
 		function(status, data){
 			

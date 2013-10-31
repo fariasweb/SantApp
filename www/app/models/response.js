@@ -16,5 +16,13 @@ app.models.response = Backbone.Model.extend({
   	
   	setTotalResults: function(results) {
   		this.set({intTotalResultats: results});
-  	}
+  	},
+
+  	getStatus: function() {
+  		return parseInt(this.get("intCodiEstat"));
+  	},
+
+    getResults: function() {
+      return parseInt(this.get("intTotalResultats"));
+    }
 });

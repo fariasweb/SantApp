@@ -19,6 +19,7 @@ app.collections._collection = Backbone.Collection.extend({
                  
              for (element in newElement) {
                  var id = newElement[element][this.index];
+                 
                  if (id && !this.get(id)) {
                      Backbone.Collection.prototype.add.call(this, newElement[element]);
                  }

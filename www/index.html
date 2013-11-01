@@ -11,77 +11,51 @@
 		<link rel="stylesheet" href="css/config.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/infr.css" />
+		
+		
+		<!-- JS BASICO -->
 		<script src="app/lib/jquery-1.9.1.min.js"></script>
 		<script src="app/lib/jquery.mobile-1.3.2.min.js"></script>
+		<script src="app/lib/underscore.js"></script>
+		<script src="app/lib/mustache.js"></script>
+		<script src="app/lib/backbone.js"></script>
+		
+		<!-- JS APP -->
 		<script src="app/app.js"></script>
+		<script src="app/config/constants.js"></script>
+		
+		<!-- JS VIEWS -->
+		<script src="app/views/menu.js"></script>
+		<script src="app/views/activity_list.js"></script>
+		<script src="app/views/activity.js"></script>
+		<script src="app/views/conf.js"></script>
+		
+		<!-- JS CONTROLLERS -->
+		<script src="app/controllers/home.js"></script>
+		<script src="app/controllers/category.js"></script>
+		<script src="app/controllers/configuration.js"></script>
+		<script src="app/controllers/activity.js"></script>
+		<script src="app/controllers/diary.js"></script>
+		<script src="app/controllers/equipment.js"></script>
+		
+		<script src="app/router/router_app.js"></script>
 		</head>
 	<body>
-		<div data-url="index" data-role="page" id="index">
+		<div id="index">
+		<div data-url="home" data-role="page" id="home">
 		    <div data-role="header" class='haprin'>
 		        <h1 class='h_title'>AGENDA PRINCIPAL</h1>
 		       <a class='icon' data-iconpos="notext" data-theme=" " data-icon="main" href="#left-panel"></a>
 		    </div><!-- /header -->
 		    
-		    <!-------------------------MENU DE LA IZQUIERDA ----------------------------->
-
-   <div data-role="panel" id="left-panel">
-        <div class='p_logo'>
-       	 <img src="img/iconos/logo_ayu.png">
-        </div>
-         <ul data-role="listview">
-            <li data-role="list-divider">Búsqueda</li>
-        </ul>
-        
-      <div data-role="collapsible-set" data-inset="false" data-iconpos="left">
-            <div data-role="collapsible" data-expanded-icon='aprin' data-collapsed-icon='aprin' class='aprin'>
-              <h3>Agenda principal</h3>
-              <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_gen.html">Avui</a></li>
-                <li><a href="#app/views/t_gen.html">Aquesta setmana</a></li>
-                <li><a href="#app/views/t_gen.html">Aquest mes</a></li>
-                <li><a href="#app/views/t_gen.html">Totes</a></li>
-              </ul>
-            </div><!-- /collapsible -->
-          </div><!-- /collapsible-set -->
-          
-        <ul data-role="listview" data-theme="d" data-icon='false' class='ful'>
-        	<li class='infr'><a class='infr' href="#app/views/t_infr.html"><img class='ui-li-icon' src='img/iconos/Infraestructura/32/infraestructura.png'>Infraestructures</a></li>
-            <li data-role="list-divider">Agenda</li>
-            <!--<li data-icon="back"><a href="#demo-intro" data-rel="back">Demo intro</a></li>-->
-        </ul>
-        
-      <div data-role="collapsible-set" data-inset="false" data-iconpos='left' >
-            <div data-role="collapsible" data-collapsed-icon='adminis' data-expanded-icon='adminis' class='admin'>
-              <h3>Administrativa</h3>
-              <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_gen.html">subcats</a></li>
-              </ul>
-            </div><!-- /collapsible -->
-            <div data-role="collapsible" data-expanded-icon='acul' data-collapsed-icon='acul' class='acul'>
-              <h3>Cultural</h3>
-              <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_gen.html">subcats</a></li>
-              </ul>
-            </div><!-- /collapsible -->
-             <div data-role="collapsible" data-expanded-icon='esportives' data-collapsed-icon='esportives' class='esportives'>
-              <h3>Esportiva</h3>
-              <ul data-role="listview" data-icon='false'>
-                <li><a href="#app/views/t_gen.html">subcats</a></li>
-              </ul>
-            </div><!-- /collapsible -->
-      </div><!--collapsible set-->
-          <ul data-role="listview" data-icon='false' class='lastul'>
-          	<!--<li class="esportives"><a href="#app/views/t_gen.html"><img class='ui-li-icon' src='img/iconos/32/esportives.png'>Activitats esportives</a></li>-->
-            <li data-role="list-divider">Opcions</li>
-            <li class="config"><a href="#app/views/t_conf.html"><img class='ui-li-icon' src='img/iconos/Navegacion/32/configuracio.png'>Configuració</a></li>
-            <!--<li data-icon="back"><a href="#demo-intro" data-rel="back">Demo intro</a></li>-->
-        </ul>
-    </div><!-- /panel -->
+		    <!-- PANEL -->
+			<div data-role='panel' id='left-panel' class='left-panel'></div>
 		    
 		    
-		    <!-------------------------ACTIVIDADES DE LA AGENDA PRINCIPAL ----------------------------->
+		    <!-- ACTIVIDADES DE LA AGENDA PRINCIPAL -->
 		    
 		    <div data-role="content">
+		        
 		        <!--Activitats d'avui -->
 		        
 		            <h3 class='news'>Novetats</h3>
@@ -89,7 +63,7 @@
 		            	<img src='img/iconos/GIF/refresh.gif'>
 		            </div>
 		            <ul data-role='listview'  data-icon='false'>
-		            	<li><a href='#app/views/t_detail.html'>
+		            	<li><a href='#activity/1'>
 		            		<div class='acul'>
 		            			<div class='ico_act'>
 		            				<img src="img/iconos/Culturals/64/cultural.png">
@@ -171,7 +145,115 @@
 		            	<img src='img/iconos/Navegacion/32/vermasc.png'>
 		            </div>
 		   </div><!-- /content -->
-		    
+	</div>    
+
+	<!-- Agenda principal  -->
+	<div data-url="diary" data-role="page" id="diary">
+		    <div data-role="header" class='haprin'>
+		        <h1 class="h_title">Actividades de X</h1>
+		        <a class='icon' data-iconpos="notext" data-theme=" " data-icon="main" href="#left-panel"></a>
+		    </div>
+		    <div data-role='panel' id='left-panel' class='left-panel'></div>
+		    <div data-role="content">
+		   
+		   </div><!-- /content -->
+	</div>
+
+	<!-- Infraestructuras  -->
+	<div data-url="equipment" data-role="page" id="equipment">
+		    <div data-role="header" class='haprin'>
+		        <h1 class="h_title">INFRAESTRUCTURAS</h1>
+		        <a class='icon' data-iconpos="notext" data-theme=" " data-icon="main" href="#left-panel"></a>
+		    </div>
+		    <div data-role='panel' id='left-panel' class='left-panel'></div>
+		    <div data-role="content">
+		   
+		   </div><!-- /content -->
+	</div>
+
+	<!-- category  -->
+	<div data-url="category" data-role="page" id="category">
+		<div data-role='header'>
+			<h1></h1>
+			<a data-theme='' data-iconshadow='false' data-shadow='false' data-iconpos='notext' data-icon='main' href='index.html#left-panel'>Menu</a>
+		</div>
+		<div data-role='panel' id='left-panel' class='left-panel'></div>
+		<div data-role='content'></div>
+	</div>	
+
+	<!-- Configuration  -->
+	<div data-url="config" data-role="page" id="config">
+		    <div data-role="header" class='haprin'>
+		        <h1>CONFIGURATION</h1>
+		        <a class='icon' data-iconpos="notext" data-theme=" " data-icon="main" href="#left-panel"></a>
+		    </div>
+		    <div data-role='panel' id='left-panel' class='left-panel'></div>
+		    <div data-role='content'>
+		    	<div class='conf_cont'>
+		    	<h4>Idioma</h4>
+					<form>
+				      <fieldset data-role="controlgroup" data-type="horizontal">
+				        <input type="radio" name="radio-choice" id="radio-choice-1" value="CAT" checked="checked"/>
+				        <label for="radio-choice-1">CAT</label>
+				 
+				        <input type="radio" name="radio-choice" id="radio-choice-2" value="ESP"/>
+				        <label for="radio-choice-2">ESP</label>
+				      </fieldset> 
+				    </form>
+			    	<h4>Sincronització de comptes</h4>
+		    	</div>
+		    </div>
+	</div>
+
+	<!-- Activity  -->
+	<div data-url="activity" data-role="page" id="activity">
+		    <div data-role="header" class='hacul'>
+		        <h1 class="h_title">ACTIVIDAD X</h1>
+		        <a data-theme=" " data-iconshadow="false" data-shadow="false" data-iconpos="notext" data-icon="aback" href="#back" class="back">Back</a>
+		    </div>
+		    <div data-role='panel' id='left-panel' class='left-panel'></div>
+		    <div data-role="content">
+		   		<div class='content_detail'>
+		    	<div class='h_detail'>
+		    		<h5 class='acul cat'>Nom de la activitat</h5>
+		    		<p class='acul subcat'>Subcategoria si existeix</p>
+		    	</div>
+		    	
+		    	<div class='card'>
+		    		<ul data-role='listview' >
+		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/dia.png'> Dia: </li>
+		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/hora.png'> Horari: </li>
+		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/euro.png'> Preu:	</li>
+		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/sitio.png'> Equipament </li>
+		            </ul>
+	            </div>
+	            
+		        <div>
+		        	<p class='desc_detail'>
+		        		Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.
+		        	</p>
+		        </div>
+		        <div>
+		        	<!--
+		        	<div class='share_icons'>
+						<div class='fb'>
+							<img src='img/iconos/32/fb.png'>
+						</div>
+						<div class='tw'>
+							<img src='img/iconos/32/twitter.png'>
+						</div>
+					</div>
+					<div class='share_text'>
+						<label>Comparteix-ho!</label>
+					</div>
+		        </div>
+		        -->
+		       </div>
+		    </div><!--content-->
+		   </div><!-- /content -->
+	</div>
+
+</div>
 
 	</body>
 </html>

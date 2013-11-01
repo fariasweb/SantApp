@@ -90,17 +90,29 @@
 }
 
 #index .ui-content .update{
+	padding-top: 5px;
+	margin-left: -15px;
+	padding-left: 45%;
+	background-color: #F5F5F5;
+}
+#index .ui-content .vermas{
+	padding-top: 5px;
+	padding-bottom: 5px;
 	margin-left: -15px;
 	padding-left: 45%;
 	background-color: #F5F5F5;
 }
 
-
 #t_gen .ui-content .update{
+	padding-top: 5px;
 	padding-left: 45%;
 	background-color: white;
 }
-
+#t_gen .ui-content .vermas{
+	padding-top: 0px;
+	padding-left: 45%;
+	background-color: white;
+}
 
 #index .ui-content .ui-listview, .ui-panel-inner > .ui-listview {
 	margin-left: -15px;

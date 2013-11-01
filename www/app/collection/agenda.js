@@ -3,9 +3,9 @@
  *
     - Organiza fitxas por fechas: hoy, esta semana, el mes proximo y todas
     -- TODAS -> request_all
-    -- MES PROX ->
-    -- SEMANA ->
-    -- HOY ->
+    -- MES PROX -> request_month
+    -- SEMANA -> request_week
+    -- HOY -> request_today
  */
 
 app.collections.agenda = app.collections._collection.extend({
@@ -25,6 +25,9 @@ app.collections.agenda = app.collections._collection.extend({
         } else {
             this.pags = {
                 "request_all": 0,
+                "request_today": 0,
+                "request_week": 0,
+                "request_month": 0
             }
         }
 
@@ -77,16 +80,53 @@ app.collections.agenda = app.collections._collection.extend({
 
     //Todas las noticias de hoy en adelante
     //En caso de recivir en status.intCodiEstat = 0 y status.intTotalResultats < app.constants.get("MAX_NEWS") == ULTIMA PAGINA
-    //TODO
     request_today: function(param, success, error) {
 
         //Añado el parametro de idioma
         param.idioma = app.user.getLang();
-        param.firstRow = (this.pags['request_all'] * app.constants.get("MAX_NEWS")) + 1;
-        param.lastRow = ((this.pags['request_all'] + 1) * app.constants.get("MAX_NEWS"));
+        param.firstRow = (this.pags['request_today'] * app.constants.get("MAX_NEWS")) + 1;
+        param.lastRow = ((this.pags['request_today'] + 1) * app.constants.get("MAX_NEWS"));
+        
+        param.dataInici = app.timer.getDateYYYYMMDD(app.timer.getTime());
+        param.dataFi = app.timer.getDateYYYYMMDD(app.timer.getTime());
 
-        app.service.get("agendaPaginada", "FitxaActivitat", param, 
+        this._request("agendaPaginadaDates", "request_today", param, success, error);
+
+    },
+
+    //Todas las noticias de hoy en adelante
+    //En caso de recivir en status.intCodiEstat = 0 y status.intTotalResultats < app.constants.get("MAX_NEWS") == ULTIMA PAGINA
+    request_week: function(param, success, error) {
+
+        //Añado el parametro de idioma
+        param.idioma = app.user.getLang();
+        param.firstRow = (this.pags['request_week'] * app.constants.get("MAX_NEWS")) + 1;
+        param.lastRow = ((this.pags['request_week'] + 1) * app.constants.get("MAX_NEWS"));
+        
+        param.dataInici = app.timer.getDateYYYYMMDD(app.timer.getTimeWeek());
+        param.dataFi = app.timer.getDateYYYYMMDD(app.timer.getTimeWeek());
+
+        this._request("agendaPaginadaDates", "request_week", param, success, error);
+    },
+
+    request_month: function(param, success, error) {
+
+        //Añado el parametro de idioma
+        param.idioma = app.user.getLang();
+        param.firstRow = (this.pags['request_month'] * app.constants.get("MAX_NEWS")) + 1;
+        param.lastRow = ((this.pags['request_month'] + 1) * app.constants.get("MAX_NEWS"));
+        
+        param.dataInici = app.timer.getDateYYYYMMDD(app.timer.getTimeMonth());
+        param.dataFi = app.timer.getDateYYYYMMDD(app.timer.getTimeMonth());
+
+        this._request("agendaPaginadaDates", "request_month", param, success, error);
+    },
+
+    _request: function(action, function_name, param, success, error) {
+
+        app.service.get(action, "FitxaActivitat", param, 
             function (status, data){
+                //DEBUG
                 var_dump(status.toJSON());
                 var_dump(data[0]);
 
@@ -96,7 +136,7 @@ app.collections.agenda = app.collections._collection.extend({
                 //Aumentamos la paginas si no es la ultima
                 var last = true;
                 if (status.getStatus() == 0 && status.getResults() >= app.constants.get("MAX_NEWS")) {
-                     app.collections.agenda.pags['request_all']++;
+                     app.collections.agenda.pags[function_name]++;
                      last = false;
                 }
 
@@ -105,8 +145,9 @@ app.collections.agenda = app.collections._collection.extend({
             },
             function (jqXHR, textStatus, errorThrown) {
                 if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
-            });
-    },
+            }
+        );
+    }
 });
 
 app.collections.agenda = new app.collections.agenda();

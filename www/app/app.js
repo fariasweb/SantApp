@@ -80,17 +80,15 @@ $(document).ready(function() {
     app.user.set({"intIdioma": 1});
 
 
-    //TEST: Agenda por fechas
+    //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================
-	var i = 0;
 	app.collections.agenda.reset_pags();
 	var test = function() {
-	    app.collections.agenda.request_all({},
+	    app.collections.agenda.request_today({},
 	    	function(status, data, last){
 	    		echo("<hr>");
-	    		i++;
-				echo(i);
-				
+
+	    		//SI no es la ultima, continuamos otra vez...
 	    		if (!last) test();
 	    	},
 	    	function (jqXHR, textStatus, errorThrown) {

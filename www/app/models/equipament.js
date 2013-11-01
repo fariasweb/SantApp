@@ -74,7 +74,7 @@ app.models.equipament = Backbone.Model.extend({
        }
     },
 
-    request_activitats: function(param, success, error) {
+    request_all_activitats: function(param, success, error) {
         if (app.timer.isUpdateMiddle(this.flags.request_info)) {
         
             //Añado el parametro de idioma

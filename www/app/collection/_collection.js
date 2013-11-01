@@ -16,10 +16,10 @@ app.collections._collection = Backbone.Collection.extend({
              //Listado de arryas
              var data = [],
                  i = 0;    
-                 
+   
              for (element in newElement) {
                  var id = newElement[element][this.index];
-                 
+
                  if (id && !this.get(id)) {
                      Backbone.Collection.prototype.add.call(this, newElement[element]);
                  }

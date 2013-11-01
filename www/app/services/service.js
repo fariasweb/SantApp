@@ -38,14 +38,13 @@ app.service = {
             data: this._make_soaprequest(action, param),
             beforeSend: function () { },
             success: function (data, textStatus, jqXHR) {
-                
 				//Crear un objeto con el estado de la peticion + resultados
 				app.service._last_request = new app.models.response({
 					intCodiEstat: $(jqXHR.responseXML).find("intCodiEstat").text(),
 					strDescripcioEstat: $(jqXHR.responseXML).find("strDescripcioEstat").text(),
 					intTotalResultats: $(jqXHR.responseXML).find("intTotalResultats").text()
 				});
-				
+
 				//TODO: Mirar si el code no es correcto
 				//En caso de no serlo se envia a la funcion error
 						
@@ -96,14 +95,18 @@ app.service = {
 	    var data_ = [];
         var r = data.getElementsByTagName(class_name);
         
+  		//echo ("LONG: "+r.length)
         for (i = 0; i < r.length; i++) {
             data_[i] = {}; 
             
             for (j = 0; j < r[i].childNodes.length; j++) {
+            	//var_dump(r[i].childNodes[j].nodeName,r[i].childNodes[j].childNodes.length);
                 data_[i][r[i].childNodes[j].nodeName] = (r[i].childNodes[j].childNodes.length)? r[i].childNodes[j].childNodes[0].nodeValue : "";
             }
             
         }
+
+        //var_dump(data_)
 
         return data_;
 	}

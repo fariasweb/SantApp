@@ -57,8 +57,6 @@ app.collections.agenda = app.collections._collection.extend({
 
         app.service.get("agendaPaginada", "FitxaActivitat", param, 
             function (status, data){
-                var_dump(status.toJSON());
-                var_dump(data[0]);
 
                 //Save in collection - si existe -> no guarda, else -> guarda
                 if (_.size(data)) app.collections.activitats.add(data);
@@ -71,11 +69,11 @@ app.collections.agenda = app.collections._collection.extend({
                 }
 
                 if (typeof success == "function") success(status, data, last);
-
             },
             function (jqXHR, textStatus, errorThrown) {
                 if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
-            });
+            }
+        );
     },
 
     //Todas las noticias de hoy en adelante
@@ -126,9 +124,6 @@ app.collections.agenda = app.collections._collection.extend({
 
         app.service.get(action, "FitxaActivitat", param, 
             function (status, data){
-                //DEBUG
-                var_dump(status.toJSON());
-                var_dump(data[0]);
 
                 //Save in collection - si existe -> no guarda, else -> guarda
                 if (_.size(data)) app.collections.activitats.add(data);

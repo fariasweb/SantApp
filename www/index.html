@@ -24,11 +24,12 @@
 		<script src="app/app.js"></script>
 		<script src="app/config/constants.js"></script>
 		
+		<!-- JS HELPERS -->
+		<script src="app/helpers/debug.js"></script>
+		<script src="app/helpers/timer.js"></script>
+		
 		<!-- JS VIEWS -->
-		<script src="app/views/menu.js"></script>
-		<script src="app/views/activity_list.js"></script>
-		<script src="app/views/activity.js"></script>
-		<script src="app/views/conf.js"></script>
+		<script src="app/views/templates.js"></script>
 		
 		<!-- JS CONTROLLERS -->
 		<script src="app/controllers/home.js"></script>
@@ -38,7 +39,22 @@
 		<script src="app/controllers/diary.js"></script>
 		<script src="app/controllers/equipment.js"></script>
 		
+		<!-- JS MODELS -->
+		<script src="app/models/user.js"></script>
+		<script src="app/models/response.js"></script>
+		<script src="app/models/idioma.js"></script>
+		<script src="app/models/activitat.js"></script>
+		<script src="app/models/equipament.js"></script>
+		
+		<!-- JS COLLECTIONS -->
+		<script src="app/collection/_collection.js"></script>
+		<script src="app/collection/idiomes.js"></script>
+		<script src="app/collection/activitats.js"></script>
+		<script src="app/collection/agenda.js"></script>
+		<script src="app/collection/equipaments.js"></script>
+		
 		<script src="app/router/router_app.js"></script>
+		<script src="app/services/service.js"></script>
 		</head>
 	<body>
 		<div id="index">
@@ -59,14 +75,11 @@
 		        <!--Activitats d'avui -->
 		        
 		            <h3 class='news'>Novetats</h3>
-		            <div class='update'>
-		            	<img src='img/iconos/GIF/refresh.gif'>
-		            </div>
 		            <ul data-role='listview'  data-icon='false'>
 		            	<li><a href='#activity/1'>
 		            		<div class='acul'>
 		            			<div class='ico_act'>
-		            				<img src="img/iconos/Culturals/64/cultural.png">
+		            				<img src="img/iconos/culturals/64/culturals.png">
 		            			</div>
 		            			<div class='content_act'>
 		            				<h5>Activitat cultural</h5>
@@ -105,7 +118,7 @@
 		            	<li><a href='#app/views/t_detail.html'>
 		            		<div class='acul'>
 		            			<div class='ico_act'>
-		            				<img src="img/iconos/Culturals/64/cultural.png">
+		            				<img src="img/iconos/culturals/64/culturals.png">
 		            			</div>
 		            			<div class='content_act'>
 		            				<h5>Activitat cultural</h5>
@@ -118,7 +131,7 @@
 		           		<li><a href='#app/views/t_detail.html'>
 		            		<div class='acul'>
 		            			<div class='ico_act'>
-		            				<img src="img/iconos/Culturals/64/cultural.png">
+		            				<img src="img/iconos/culturals/64/culturals.png">
 		            			</div>
 		            			<div class='content_act'>
 		            				<h5>Activitat cultural</h5>
@@ -155,8 +168,11 @@
 		    </div>
 		    <div data-role='panel' id='left-panel' class='left-panel'></div>
 		    <div data-role="content">
-		   
+			   <div class='vermas'>
+					<img src='img/iconos/Navegacion/32/vermasc.png'>
+				</div>
 		   </div><!-- /content -->
+			
 	</div>
 
 	<!-- Infraestructuras  -->
@@ -221,10 +237,10 @@
 		    	
 		    	<div class='card'>
 		    		<ul data-role='listview' >
-		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/dia.png'> Dia: </li>
-		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/hora.png'> Horari: </li>
-		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/euro.png'> Preu:	</li>
-		            	<li><img class='ui-li-icon' src='img/iconos/Culturals/16/sitio.png'> Equipament </li>
+		            	<li><img class='ui-li-icon' src='img/iconos/culturals/16/dia.png'> Dia: </li>
+		            	<li><img class='ui-li-icon' src='img/iconos/culturals/16/hora.png'> Horari: </li>
+		            	<li><img class='ui-li-icon' src='img/iconos/culturals/16/euro.png'> Preu:	</li>
+		            	<li><img class='ui-li-icon' src='img/iconos/culturals/16/sitio.png'> Equipament </li>
 		            </ul>
 	            </div>
 	            

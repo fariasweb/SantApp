@@ -10,6 +10,16 @@ app.router = Backbone.Router.extend({
 	},
 	
 	initialize: function(){
+		
+		history = [];
+		this.listenTo(this, 'route', function (name, args) {
+		  history.push({
+		    name : name,
+		    args : args,
+		    fragment : Backbone.history.fragment
+		  });
+		});
+		
 		$.mobile.changePage($('#home'));
 
 		// Obtenemos datos del menú
@@ -45,9 +55,24 @@ app.router = Backbone.Router.extend({
 
 		// Lo actualizamos para la página actual
 		$('#home').trigger('pagecreate');
-
-		// Control del botón atrás
-		$('.back').click(function(e){ e.preventDefault(); window.history.back(); });
+		
+	},
+	back: function(){
+		// Información de la página anterior
+		var backPage = history[history.length-2];
+		
+		// Guardamos la información de la página a la que nos moveremos en el historial
+		history.push({
+			name : backPage.name,
+		    args : backPage.args,
+		    fragment : backPage.fragment
+		});
+		
+		// Cambiamos la vista
+		$.mobile.changePage($('#'+backPage.name), {changeHash:false});
+		
+		// Cambiamos Hash
+		this.navigate(backPage.fragment, {trigger: false});
 	},
 	home: app.controllers.home,
 	category: app.controllers.category,

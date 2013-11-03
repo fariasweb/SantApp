@@ -14,7 +14,24 @@ app.views.activityList =
 	</ul>\
 </div>";
 
-
+app.views.activityListIcon = 
+"<ul data-role='listview' data-icon='false'>\
+	{{#activities}}\
+	<li>\
+		<a href='#activity/{{activityId}}'>\
+			<div class='{{activityClass}}'>\
+				<div class='ico_act'>\
+		        	<img src='img/iconos/{{activityType}}/64/{{activityType}}.png'>\
+				</div>\
+				<div class='content_act'>\
+					<h5>{{activityName}}</h5>\
+		    		<h6 class='desc'>{{description}}</h6>\
+				</div>\
+			</div>\
+		</a>\
+	</li>\
+	{{/activities}}\
+</ul>";
 
 
 

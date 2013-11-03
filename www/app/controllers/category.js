@@ -36,8 +36,8 @@ app.controllers.category = function(cat, subcat) {
 
 	// DOM Update
 	var category = $('#category'),
-		categoryHeader = $("#category").find('[data-role=header]'),
-		categoryContent = $("#category").find('[data-role=content]');
+		categoryHeader = category.find('[data-role=header]'),
+		categoryContent = category.find('[data-role=content]');
 
 	// Header, H1
 	categoryHeader.attr('class',aListData.headerClass);
@@ -52,4 +52,4 @@ app.controllers.category = function(cat, subcat) {
 	// Close panel
 	category.find('.left-panel').panel('close');
 	
-}
+};

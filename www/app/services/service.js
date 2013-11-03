@@ -1,3 +1,7 @@
+/**
+ * Service
+ * 
+ */
 
 app.service = {
 	
@@ -6,12 +10,13 @@ app.service = {
 	_request: {
 		"head": '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>',
 		"action": {
-			"open": '<%action% xmlns="http://www.gramene.net/appcoloma/" />',
+			"open": '<%action% xmlns="http://www.gramene.net/appcoloma/" >',
 			"close": '</%action%>',
 		},
 		"foot": '</soap:Body></soap:Envelope>'
 	},
 	
+	_last_request: {},
 	
 	//FUNCTIONS
 	
@@ -19,7 +24,7 @@ app.service = {
 	 * Get
 	 * 
 	 */
-	get: function(action, param, success, error) {
+	get: function(action, class_name, param, success, error) {
 		
 		//Action is correct
 		
@@ -32,23 +37,30 @@ app.service = {
             processData: false,
             data: this._make_soaprequest(action, param),
             beforeSend: function () { },
-            success: function (response, textStatus, c) {
-				//Mirar que los datos sean correctos
-						
+            success: function (data, textStatus, jqXHR) {
+                
 				//Crear un objeto con el estado de la peticion + resultados
-				var status = {};
+				app.service._last_request = new app.models.response({
+					intCodiEstat: $(jqXHR.responseXML).find("intCodiEstat").text(),
+					strDescripcioEstat: $(jqXHR.responseXML).find("strDescripcioEstat").text(),
+					intTotalResultats: $(jqXHR.responseXML).find("intTotalResultats").text()
+				});
+				
+				//TODO: Mirar si el code no es correcto
+				//En caso de no serlo se envia a la funcion error
 						
-				//Procesar los resultados
-				var data = {};
-				//DEBUG
-				var data = c.responseXML
-						
-				success(status, data);
-						
+				//Procesar los resultados y devolver
+				if (typeof success == "function") {
+    				success(app.service._last_request, 
+    				        app.service._parseXML_toclass(class_name, jqXHR.responseXML)
+    				       );
+				} else {
+				   // return app.service._parseXML_toclass(class_name, jqXHR.responseXML);
+				}		
 	         },
-	         error: function(a,b,c) {
+	         error: function(jqXHR, textStatus, errorThrown) {
 	            //Gestionar el error
-	         	error(a,b,c);
+	         	if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
 	         }
          });
 	},
@@ -63,15 +75,37 @@ app.service = {
 		
 		str  = this._request.head;
 		str += this._request.action.open.replace("%action%", action);
-		
-		_.each(param, function(element) {
-			str += "<"+element.name+">"+element.value+"</"+element.name+">";
+
+        //Parametros
+		_.each(param, function(element, index) {
+		  str += "<"+index+">"+element+"</"+index+">";
 		});
 		
-		//str += this._request.action.close.replace("%action%", action);
+        //str += "<idioma>1</idioma>";
+		str += this._request.action.close.replace("%action%", action);
 		str += this._request.foot;
 		
 		return str;
+	},
+	
+	/**
+	 * _parseXML_toclass
+     *  @param string class_name
+	 */
+	_parseXML_toclass: function(class_name, data) {
+	    var data_ = [];
+        var r = data.getElementsByTagName(class_name);
+        
+        for (i = 0; i < r.length; i++) {
+            data_[i] = {}; 
+            
+            for (j = 0; j < r[i].childNodes.length; j++) {
+                data_[i][r[i].childNodes[j].nodeName] = (r[i].childNodes[j].childNodes.length)? r[i].childNodes[j].childNodes[0].nodeValue : "";
+            }
+            
+        }
+
+        return data_;
 	}
 	
 }

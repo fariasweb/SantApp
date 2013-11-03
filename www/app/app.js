@@ -13,16 +13,24 @@ $.mobile.changePage.defaults.changeHash = false;
 var app = {
 	router: {},
 	controllers: {},
+	models: {},
+	collections: {},
 	views: {},
-	service: {}
+	service: {},
+	user: "",
+	timer: {}
 };
 
 //CONTROL DE RUTAS
 $(function(){
 	var router = new app.router();
 	Backbone.history.start();
-
 	
+	// Control del botón atrás
+	$('.back').click(function(e){ e.preventDefault(); router.back(); });
+	
+	//USUARIO
+	app.user = new app.models.user();
 });
 
 
@@ -82,9 +90,60 @@ $( document ).on("pageinit", "#index", function() {
 
 
 $(document).ready(function() {
-	//TEST API
+    
+    //SET LANG
+    app.user = new app.models.user();
+    app.user.set({"intIdioma": 1});
+
+    //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================
-	app.service.get("idiomesFitxa", {}, 
+	// app.collections.agenda.reset_pags();
+	// var test = function() {
+	    // app.collections.agenda.request_today({},
+	    	// function(status, data, last){
+	    		// echo("<hr>");
+// 
+	    		// //SI no es la ultima, continuamos otra vez...
+	    		// if (!last) test();
+	    	// },
+	    	// function (jqXHR, textStatus, errorThrown) {
+// 	    		
+	    	// });
+	// }
+// 
+	// test();
+
+	//TEST: Equipaciones + info
+	//==================================================================
+	/*for(var i = 0; i < 1; i++) {
+		app.collections.equipaments.request_all({}, 
+    		function(status, data){
+
+    		    //var_dump(status.toJSON());
+    			var_dump(data.length);
+    			_.each(data, function(element) {
+	    			echo(element.intIdFitxa+", \n");
+
+	    			app.collections.equipaments.get(element.intIdFitxa).request_info({},
+	    			    function (status, data){
+	    			    	
+	    			    	var_dump(data);
+	                    },
+	                    function (jqXHR, textStatus, errorThrown) {
+	                        echo("FAIL");
+	                    });
+    			});
+    		},
+    		function(){
+    		    echo("FAIL");
+    			logger.log("FAIL");
+    		}
+    	);
+	}*/
+
+	//TEST: Idiomas
+	//==================================================================
+	/*app.service.get("idiomesFitxa", {}, 
 		function(status, data){
 			
 			var response = $.parseXML( data );
@@ -99,5 +158,5 @@ $(document).ready(function() {
 		function(a,b,c){
 			$("#stage").append("ERROR");
 		}
-	);
+	);*/
 });

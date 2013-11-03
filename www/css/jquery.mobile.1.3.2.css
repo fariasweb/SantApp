@@ -3245,7 +3245,7 @@ div.ui-slider-switch.ui-mini {
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
 .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal,
 .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
-	left: 0;
+	left: -50px;
 	right: 0;
 	-webkit-transform: translate3d(17em,0,0);
 	-moz-transform: translate3d(17em,0,0);

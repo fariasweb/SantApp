@@ -6,11 +6,12 @@ app.router = Backbone.Router.extend({
 		"config": "configuration",
 		"activity/:id": "activity",
 		"diary/:cat": "diary",
-		"equipment": "equipment"
+		"equipment(/:equipmentId)": "equipment",
 	},
 	
 	initialize: function(){
 		
+		// Guardamos información de las páginas
 		history = [];
 		this.listenTo(this, 'route', function (name, args) {
 		  history.push({
@@ -22,7 +23,7 @@ app.router = Backbone.Router.extend({
 		
 		$.mobile.changePage($('#home'));
 
-		// Obtenemos datos del menú
+		// Obtenemos datos del menú (HARDCODEADO)
 		var menuData = {
 			"diary": [
 			{

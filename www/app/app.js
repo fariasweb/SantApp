@@ -79,10 +79,48 @@ $(document).ready(function() {
     app.user = new app.models.user();
     app.user.set({"intIdioma": 1});
 
+
+    //TEST: Detalles de fitxa (Horario, Equipacion, Doc, Imagen)
+	//==================================================================
+	app.collections.agenda.reset_pags();
+	var test = function() {
+	    app.collections.agenda.request_today({},
+	    	function(status, data, last){
+	    		echo("<hr>");
+
+	    		//_.each(data, function(element){
+	    			//var_dump(element);
+	    			var id = data[0].intIdFitxa;
+	    			echo(id," ");
+	    			
+					app.collections.activitats.get(id).request_schedule({},
+	    				function(status, data){
+	    					echo("DONE");
+
+	    					if (!last) test();
+	    				},
+	    				function(){
+	    					echo("ERROR");
+	    				})
+
+	    			echo("<hr>");
+	    		//});
+
+	    		//SI no es la ultima, continuamos otra vez...
+	    		//if (!last) test();
+	    	},
+	    	function (jqXHR, textStatus, errorThrown) {
+	    		
+	    	});
+	}
+
+	test();
+	//app.collections.activitats.add({"intIdFitxa": 8815})
+	
     //TEST: Subagendas
 	//==================================================================
 	
-	app.collections.subagendes.request_all({}, 
+	/*app.collections.subagendes.request_all({}, 
 		function(status, data){
 			echo ("Subagenda 0");
 			echo("<br>");
@@ -132,7 +170,7 @@ $(document).ready(function() {
 		function (jqXHR, textStatus, errorThrown) {
 			echo("ERRORRRRRRRR");
 		}
-	);
+	);*/
 
     //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================

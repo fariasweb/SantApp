@@ -27,7 +27,7 @@ app.service = {
 	get: function(action, class_name, param, success, error) {
 		
 		//Action is correct
-		
+
 		//Ajax
 		$.ajax({
         	type: "POST",
@@ -83,7 +83,8 @@ app.service = {
         //str += "<idioma>1</idioma>";
 		str += this._request.action.close.replace("%action%", action);
 		str += this._request.foot;
-		
+
+
 		return str;
 	},
 	

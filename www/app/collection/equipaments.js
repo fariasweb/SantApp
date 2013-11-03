@@ -6,14 +6,14 @@
 app.collections.equipaments = app.collections._collection.extend({
     
     model: app.models.equipament,
-
-    flags: {
-        "request_all": 0
-    },
     
     initialize: function(){
     	this.index = "intIdFitxa";
         this.comparator = "strDescripcio"; 
+
+        this.flags =  {
+            "request_all": 0
+        }
     },
     
     request_all: function(param, success, error) {

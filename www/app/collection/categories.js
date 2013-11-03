@@ -6,14 +6,14 @@
 app.collections.categories = app.collections._collection.extend({
     
     model: app.models.categoria,
-
-    flags: {
-        "request_all": 0
-    },
     
     initialize: function(){
         this.index = "intIdNivell";
         this.comparator = "strNivell"; 
+
+        this.flags = {
+            "request_all": 0,
+        }
     },
     
     request_all: function(param, success, error) {

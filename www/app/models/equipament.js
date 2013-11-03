@@ -7,11 +7,6 @@ app.models.equipament = Backbone.Model.extend({
     
     idAttribute: "intIdFitxa",
     
-    flags: {
-    	"request_info": 0,
-        "request_activitats" : 0
-    },
-    
     defaults: {
         "intIdFitxa": 0,
         "strDescripcio": "",
@@ -32,6 +27,14 @@ app.models.equipament = Backbone.Model.extend({
         "strTelefonC": "",
         "strFax": "",
         "strUrl": ""
+    },
+
+    initialize: function(){
+
+        this.flags = {
+            "request_info": 0,
+            "request_activitats": 0
+        }
     },
     
     

@@ -15,9 +15,17 @@
 app.models.activitat = Backbone.Model.extend({
     
     idAttribute: "intIdFitxa",
-    
-    flags: {
-    	"request_info": 0
+
+    initialize: function(){
+
+        //Horario
+        this.schedule = new app.collections.horaris();
+
+        //Flags
+        this.flags = {
+            "request_info": 0,
+            "request_schedule": 0
+        }
     },
     
     defaults: {
@@ -25,7 +33,7 @@ app.models.activitat = Backbone.Model.extend({
         "intIdioma": 0,
         "strDescripcio": "",
         "strObservacions": "",
-        "strImport": 0
+        "strImport": 0,
     },
     
     
@@ -68,6 +76,100 @@ app.models.activitat = Backbone.Model.extend({
        }
     },
 
-    //TODO: Request_schedule, request_doc, request_img, request_equipament
+    request_schedule: function(param, success, error) {
+        
+        if (app.timer.isUpdateHight(this.flags.request_schedule)) {
+        
+            //Añado el parametro de idioma
+            param.idFitxa = parseInt(this.get(this.idAttribute));
+            param.idioma = app.user.getLang();
+            
+            var t = this;
+            echo ("A");
+            //No existen datos y voy a la api a por ellos
+            app.service.get("horarisFitxa", "FitxaHorari", param, 
+                    function (status, data){
+                        //Save data in array
+                        if (status.getResults() > 0) {
+                            t.schedule.add(data);
+                            var_dump(t.schedule.toJSON());
+                        }
+                        
+                        //Update flag
+                        t.flags.request_schedule = app.timer.getTime();
 
+                        //Return
+                        if (typeof success == "function") success(status, data);
+                    },
+                    function (jqXHR, textStatus, errorThrown) {
+                        if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
+                    }
+            );
+        
+       } else {
+            //TODO
+            //Return the save date
+            if (typeof success == "function") {
+
+                //Create manual status response
+                var status =  new app.models.response(); 
+                status.setTotalResults(this.schedule.length);
+                
+                //Return
+                success(status, this.schedule.toJSON());
+            }
+       }
+    },
+
+    //TODO: request_doc, request_img, request_equipament
+
+    request_doc: function(param, success, error) {
+        
+        if (app.timer.isUpdateHight(this.flags.request_doc)) {
+        
+            //Añado el parametro de idioma
+            param.idFitxa = parseInt(this.get(this.idAttribute));
+            param.idioma = app.user.getLang();
+            
+            var t = this;
+
+            //No existen datos y voy a la api a por ellos
+            app.service.get("docsFitxa", "DocImg", param, 
+                    function (status, data){
+                        //Save data in array
+
+                        var_dump(status.toJSON(), ">>>");
+                        if (status.getResults() > 0) {
+
+                            t.schedule.add(element)
+                            var_dump(t.schedule.toJSON());
+                        }
+
+                        var_dump(t.schedule.length);
+                        
+                        //Update flag
+                        t.flags.request_schedule = app.timer.getTime();
+
+                        //Return
+                        if (typeof success == "function") success(status, data);
+                    },
+                    function (jqXHR, textStatus, errorThrown) {
+                        if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
+                    }
+            );
+        
+       } else {
+            //TODO
+            //Return the save date
+            if (typeof success == "function") {
+
+                //Create manual status response
+                var status =  new app.models.response(); 
+                status.setTotalResults(1);
+                
+                //Return
+                success(status, this.toJSON());
+            }
+       }
+    },
 });

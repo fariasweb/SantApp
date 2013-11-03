@@ -14,6 +14,10 @@ app.collections.subagendes = app.collections._collection.extend({
     initialize: function(){
     	this.index = "intIdNivell";
         this.comparator = "strNivell"; 
+
+        this.flags = {
+            "request_all": 0
+        }
     },
     
     request_all: function(param, success, error) {

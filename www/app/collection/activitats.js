@@ -13,7 +13,7 @@ app.collections.activitats = app.collections._collection.extend({
     
     initialize: function(){
     	this.index = "intIdFitxa";
-        this.comparator = "intIdFitxa"; 
+        //this.comparator = "intIdFitxa"; 
     },
     
     request_all: function(param, success, error) {

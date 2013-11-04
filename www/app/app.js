@@ -81,22 +81,24 @@ $(document).ready(function() {
     app.user.set({"intIdioma": 1});
 
 
-    echo(app.lang.line("AAB"));
+    //echo(app.lang.line("AAB"));
 
-    app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
+    //app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
 
     //TEST: Detalles de fitxa (Horario, Equipacion, Doc, Imagen)
 	//==================================================================
 	app.collections.agenda.reset_pags();
+
 	var test = function() {
-	    app.collections.agenda.request_today({},
+	    app.collections.agenda.request_all({},
 	    	function(status, data, last){
+	    		var_dump(status.toJSON());
 	    		echo("<hr>");
 
-	    		//_.each(data, function(element){
+	    		_.each(data, function(element){
 	    			//var_dump(element);
-	    			var id = data[0].intIdFitxa;
-	    			echo(id," ");
+	    			var id = element.strDescripcio;
+	    			echo(id, ", ");
 	    			
 	    			//SCHEDULE
 					/*app.collections.activitats.get(id).request_schedule({},
@@ -111,7 +113,7 @@ $(document).ready(function() {
 					*/
 
 					//DOC: request_doc
-					app.collections.activitats.get(id).request_doc({},
+					/*app.collections.activitats.get(id).request_doc({},
 	    				function(status, data){
 	    					echo("DONE");
 	    					var_dump(data);
@@ -120,15 +122,16 @@ $(document).ready(function() {
 	    				function(){
 	    					echo("ERROR");
 	    				});
-
+					*/
 					/*app.collections.activitats.get(id).request_doc({},
 
 						app.collections.activitats.get(id).request_doc({},
 	    			echo("<hr>");*/
-	    		//});
-
+	    			//});
+	    		});
+	    		
 	    		//SI no es la ultima, continuamos otra vez...
-	    		//if (!last) test();
+	    		if (!last) test();
 	    	},
 	    	function (jqXHR, textStatus, errorThrown) {
 	    		
@@ -140,10 +143,9 @@ $(document).ready(function() {
 	
     //TEST: Subagendas
 	//==================================================================
-	
-	/*app.collections.subagendes.request_all({}, 
+	app.collections.subagendes.request_all({}, 
 		function(status, data){
-			echo ("Subagenda 0");
+			echo("Subagenda 0");
 			echo("<br>");
 			var_dump(data[0]);
 
@@ -153,6 +155,23 @@ $(document).ready(function() {
 			//Conseguir las categorias de una subagenda
 			var subagenda_id = data[0]['intIdNivell'];
 
+			//Sacar actividades de una subagenda paginadas
+			var testII = function (){
+				app.collections.subagendes.get(subagenda_id).request_all_activitats({},
+					function(status, data, last) {
+						var_dump(status.toJSON());
+						echo ("<hr>");
+						var_dump(data);
+
+						if (!last) testII();
+					},
+					function() {
+						echo ("ERROROROROR");
+					}
+				);
+			}
+
+			//testII();
 			app.collections.subagendes.get(subagenda_id).request_all_categories({},
 				function(status, data) {
 					echo ("<br>");
@@ -163,23 +182,28 @@ $(document).ready(function() {
 					var_dump(data);
 
 					//Conseguir noticias de una categoria
-					app.collections.subagendes.get(subagenda_id).categories.get(data[1]['intIdNivell']).request_all_activitats({},
-						function(status, data, last) {
+					var testIII = function() {
+						app.collections.subagendes.get(subagenda_id).categories.get(data[1]['intIdNivell']).request_all_activitats({},
+							function(status, data, last) {
 
-							echo ("Actividades de una categoria");
-							echo ("<br>");
-							var_dump(status.toJSON());
-							//var_dump(data);
-							_.each(data, function(fitxa) {
-								echo (fitxa['strDescripcio']+", ")
-							})
-						},
+								echo ("Actividades de una categoria");
+								echo ("<br>");
+								var_dump(status.toJSON());
+								//var_dump(data);
+								_.each(data, function(fitxa) {
+									echo (fitxa['strDescripcio']+", ")
+								})
 
-						function(){
-							echo ("FAIL");
-						}
-					);
+								if (!last) testIII();
+							},
 
+							function(){
+								echo ("FAIL");
+							}
+						);
+					}
+
+					testIII();
 				},
 				function() {
 					echo("ERROORRRR");
@@ -191,7 +215,7 @@ $(document).ready(function() {
 		function (jqXHR, textStatus, errorThrown) {
 			echo("ERRORRRRRRRR");
 		}
-	);*/
+	);
 
     //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================

@@ -1,4 +1,4 @@
-#t_conf .ui-btn-active{
+#config .ui-btn-active{
 	color: black;
 	text-shadow: none;
 	font-weight: bold;
@@ -7,10 +7,10 @@
    background: -o-linear-gradient(#D9D9D9, white);
 }
 
-#t_conf .ui-radio-off{
+#config .ui-radio-off{
 	font-weight: normal;
 }
 
-#t_conf .ui-content .conf_cont{
+#config .ui-content .conf_cont{
 	padding-left: 20px;
 }

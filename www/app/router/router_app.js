@@ -23,6 +23,77 @@ app.router = Backbone.Router.extend({
 		
 		$.mobile.changePage($('#home'));
 
+		// Obtenemos las subagendas
+		var menuData;
+		
+		app.collections.subagendes.request_all({}, 
+			function(status, dataSubagencia){
+				if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
+					
+					menuData = {"diary": []};
+					
+					// Por cada subagenda...
+					_.each(dataSubagencia, function(subagenda, key){
+						echo(key, subagenda.strNivell);
+						echo("<br>");
+						var agenda = {
+							"diaryIcon": "adminis",
+							"diaryClass": "admin",
+							"diaryName": subagenda.strNivell,
+							"diaryId": subagenda.intIdNivell,
+							"cats": []
+						};
+						
+						// Obtenemos categorías
+						app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},
+							function(status, data) {
+								
+								if(status.toJSON().intCodiEstat == 0){
+									
+									// Por cada categoría
+									_.each(data, function(categoria){
+										
+										agenda.cats.push({
+											"catId": categoria.intIdNivell,
+											"catName": categoria.strNivell
+										});
+									});
+									
+									
+									menuData.diary.push(agenda);
+									
+									// Cuando hayamos completado la ultima Subagencia, generamos template
+									if(key == dataSubagencia.length-1){
+										var menuTemplate = app.views.menu;
+										var renderedTemplate = Mustache.render(menuTemplate, menuData);
+									
+										$(".left-panel").html(renderedTemplate);
+									
+										// Lo actualizamos para la página actual
+										$('#home').trigger('pagecreate');
+
+									}
+									
+								}
+							},
+							function() {
+								
+							}
+						);
+						
+						
+						
+					});
+					
+				}
+				
+				
+			},
+			function (jqXHR, textStatus, errorThrown) {
+				
+			}
+		);
+
 		// Obtenemos datos del menú (HARDCODEADO)
 		var menuData = {
 			"diary": [
@@ -48,14 +119,14 @@ app.router = Backbone.Router.extend({
 				"cats": [{"catId": "5", "catName": "Categoría 5"},{"catId": "6", "catName": "Categoría 6"}]
 			}]
 		};
-  
-		var menuTemplate = app.views.menu;
-		var renderedTemplate = Mustache.render(menuTemplate, menuData);
-
-		$(".left-panel").html(renderedTemplate);
-
-		// Lo actualizamos para la página actual
-		$('#home').trigger('pagecreate');
+		
+		// var menuTemplate = app.views.menu;
+		// var renderedTemplate = Mustache.render(menuTemplate, menuData);
+// 	
+		// $(".left-panel").html(renderedTemplate);
+// 	
+		// // Lo actualizamos para la página actual
+		// $('#home').trigger('pagecreate');
 		
 	},
 	back: function(){

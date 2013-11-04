@@ -14,8 +14,8 @@ app.controllers.category = function(cat, subcat) {
 			// var_dump(status.toJSON());
 			// //var_dump(data);
 			// _.each(data, function(fitxa) {
-				// echo (fitxa['strDescripcio']+", ")
-			// })
+				// echo (fitxa['strDescripcio']+", ");
+			// });
 		// },
 // 
 		// function(){

@@ -23,7 +23,7 @@ app.controllers.diary = function(cat) {
 	diaryHeader.find('h1').html("Listado de actividades de "+cat);
 	
 	getActivities(cat);
-		
+	
 	$.mobile.changePage($('#diary'), {changeHash:false});
 	
 	// Close panel

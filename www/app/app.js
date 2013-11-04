@@ -22,19 +22,6 @@ var app = {
 	lang: {}
 };
 
-//CONTROL DE RUTAS
-$(function(){
-	var router = new app.router();
-	Backbone.history.start();
-	
-	// Control del botón atrás
-	$('.back').click(function(e){ e.preventDefault(); router.back(); });
-	
-	//USUARIO
-	app.user = new app.models.user();
-});
-
-
 // START AFTER LOAD
 // TODO: Controlar cuando todo esta cargado para quitar la 
 
@@ -51,15 +38,6 @@ $( document ).bind("mobileinit", function() {
   	$.mobile.loader.prototype.options.theme = "a";
   	$.mobile.loader.prototype.options.html = "";
 });
-
-//PARA TODOS
-// $( document ).on("pageinit", function() {
-// 	$.mobile.ajaxEnabled = false;
-// 	$.mobile.linkBindingEnabled = false;
-// 	$.mobile.hashListeningEnabled = false;
-// 	$.mobile.pushStateEnabled = false;
-// 	$.mobile.changePage.defaults.changeHash = false;
-// });
 
 //INICIO DE LA PAGINA PRINCIPAL
 $( document ).on("pageinit", "#index", function() {
@@ -80,22 +58,90 @@ $( document ).on("pageinit", "#index", function() {
     });
 });
 
-	/*$(document).on("pagechange", function(a, b) {
-		console.log("PAGECHANGE", a,b);
-		return false;
-	});
-	
-	$( window ).on( "navigate", function( event, data ) {
-  		console.log("NAVEIGATE", data );
-	});*/
-
 
 $(document).ready(function() {
+    
+    var router = new app.router();
+	Backbone.history.start();
+	
+	// Control del botón atrás
+	$('.back').click(function(e){ e.preventDefault(); router.back(); });
     
     //SET LANG
     app.user = new app.models.user();
     app.user.set({"intIdioma": 1});
 
+
+	// MENU
+	var menuData;
+	// Obtnemos subagendas
+	app.collections.subagendes.request_all({}, 
+		function(status, dataSubagencia){
+			if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
+				
+				menuData = {"diary": []};
+				
+				// Por cada subagenda...
+				_.each(dataSubagencia, function(subagenda, key){
+					echo(key, subagenda.strNivell);
+					echo("<br>");
+					var agenda = {
+						"diaryIcon": "adminis",
+						"diaryClass": "admin",
+						"diaryName": subagenda.strNivell,
+						"diaryId": subagenda.intIdNivell,
+						"cats": []
+					};
+					
+					// Obtenemos categorías
+					app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},
+						function(status, data) {
+							
+							if(status.toJSON().intCodiEstat == 0){
+								
+								// Por cada categoría
+								_.each(data, function(categoria){
+									
+									agenda.cats.push({
+										"catId": categoria.intIdNivell,
+										"catName": categoria.strNivell
+									});
+								});
+								
+								
+								menuData.diary.push(agenda);
+								
+								// Cuando hayamos completado la ultima Subagencia, generamos template
+								if(key == dataSubagencia.length-1){
+									var menuTemplate = app.views.menu;
+									var renderedTemplate = Mustache.render(menuTemplate, menuData);
+								
+									$(".left-panel").html(renderedTemplate);
+								
+									// Lo actualizamos para la página actual
+									$('#home').trigger('pagecreate');
+
+								}
+								
+							}
+						},
+						function() {
+							
+						}
+					);
+					
+					
+					
+				});
+				
+			}
+			
+			
+		},
+		function (jqXHR, textStatus, errorThrown) {
+			
+		}
+	);
 	
     // echo(app.lang.line("AAB"));
 

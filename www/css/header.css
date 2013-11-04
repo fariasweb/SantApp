@@ -1,15 +1,15 @@
 /*color del fondo de los links del contenido*/																		
 #index .ui-content .ui-btn-inner{ background: #F5F5F5;}
 #t_gen .ui-content .ui-btn-inner{ background: white;}
-#t_detail .ui-content .ui-btn-inner{ background: #F5F5F5;}
-#t_infr .ui-content .ui-btn-inner{ background: white;}
+#activity .ui-content .ui-btn-inner{ background: #F5F5F5;}
+#equipment .ui-content .ui-btn-inner{ background: white;}
 
 /*alineacion de la cabecera*/																		
 #index .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
 #t_gen .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
-#t_detail .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
+#activity .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
 #t_conf .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
-#t_infr .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
+#equipment .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
 
 /*Icono menu*/
 /*La imagen del dibujo*/

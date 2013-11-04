@@ -167,7 +167,7 @@ as the panel before opening the panel. */
 #left-panel .ui-collapsible-set .aprin .ui-collapsible-heading .ui-btn-inner {
 	color: #0066CC;
 	height: 23px;
-	width: 180px;
+	width: 179px;
 	background: #ECECEC;
 	font-size: 15px;}
 #left-panel .aprin .ui-listview .ui-btn .ui-btn-text .ui-link-inherit{
@@ -180,7 +180,7 @@ as the panel before opening the panel. */
 	
 /*.ui-btn-text*/
 /*Color de infraestructures*/
-#left-panel .ful .infr .ui-link-inherit{color: #99CC00; background: #ECECEC;font-size: 15px;width: 180px; margin-top: -2px;}
+#left-panel .ful .infr .ui-link-inherit{color: #99CC00; background: #ECECEC;font-size: 15px;width: 180px; margin-top: -1px;}
 
 
 /*Color administracio*/

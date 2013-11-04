@@ -12,7 +12,8 @@ var app = {
 	views: {},
 	service: {},
 	user: "",
-	timer: {}
+	timer: {},
+	lang: {}
 };
 
 
@@ -80,6 +81,10 @@ $(document).ready(function() {
     app.user.set({"intIdioma": 1});
 
 
+    echo(app.lang.line("AAB"));
+
+    app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
+
     //TEST: Detalles de fitxa (Horario, Equipacion, Doc, Imagen)
 	//==================================================================
 	app.collections.agenda.reset_pags();
@@ -114,8 +119,12 @@ $(document).ready(function() {
 	    				},
 	    				function(){
 	    					echo("ERROR");
-	    				})
-	    			echo("<hr>");
+	    				});
+
+					/*app.collections.activitats.get(id).request_doc({},
+
+						app.collections.activitats.get(id).request_doc({},
+	    			echo("<hr>");*/
 	    		//});
 
 	    		//SI no es la ultima, continuamos otra vez...
@@ -126,7 +135,7 @@ $(document).ready(function() {
 	    	});
 	}
 
-	test();
+	//test();
 	//app.collections.activitats.add({"intIdFitxa": 8815})
 	
     //TEST: Subagendas

@@ -1,20 +1,20 @@
 /*Div general de contenido*/
-#t_detail .ui-content{
+#index #activity .ui-content{
 	background-color: white;
 }
 
 /*Cabecera del contenido: categoria y subcategoria si la tubeira*/
-#t_detail .ui-content .h_detail{
+#activity .ui-content .h_detail{
 	text-shadow: none;
 	border-color: white;
 	padding-top: 1%;
 }
 
-#t_detail .cat{
+#activity .cat{
 	font-size: 20px;
 	font-weight: 900;
 }
-#t_detail .subcat{
+#activity .subcat{
 	font-size: 16px;
     margin-top: -34px;
 }
@@ -22,13 +22,13 @@
 
 
 /*Lista dia, horari, preu, infr*/
-#t_detail .ui-content .ui-listview{
+#activity .ui-content .ui-listview{
 	margin-top: 20px;
 	
 }
 
 /*Elementos de la lista*/
-#t_detail .ui-content .ui-listview .ui-li-static{
+#activity .ui-content .ui-listview .ui-li-static{
 	text-shadow: none;
 	border-color: white;
 	background-color: white;
@@ -37,37 +37,37 @@
 	padding-bottom: 0;
 }
 /*Icono de la lista*/
-#t_detail .ui-listview .ui-li-icon {
+#activity .ui-listview .ui-li-icon {
 	top: 2px;
 	margin-right: 50px;
 }
 
 /*Descripcion*/
-#t_detail .ui-content .desc_detail {
+#activity .ui-content .desc_detail {
 	margin-top: 20px;
 }
 
-#t_detail .ui-content .fb{
+#activity .ui-content .fb{
 	display: inline-block;
 	vertical-align:top;
 	margin-right: 10px;
 }
-#t_detail .ui-content .tw{
+#activity .ui-content .tw{
 	display: inline-block;
 	vertical-align:top;
 }
 
-#t_detail .ui-content .share_text{
+#activity .ui-content .share_text{
 	width: 200px;
 	text-shadow: none;
 	font-size: 12px;
 }
 
-#t_detail .ui-content .content_detail{margin-left:17px; margin-right: 37px;}
-#t_detail .ui-content .content_detail .card{margin-left:-8px;}
+#activity .ui-content .contenactivity{margin-left:17px; margin-right: 37px;}
+#activity .ui-content .contenactivity .card{margin-left:-8px;}
 
 
 
-#t_detail .ui-li-has-icon .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-icon{
+#activity .ui-li-has-icon .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-icon{
 	padding-left: 32px;
 }

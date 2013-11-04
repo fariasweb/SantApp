@@ -6,6 +6,23 @@ app.controllers.category = function(cat, subcat) {
 	console.log("I am going to category...",cat, subcat);
 	$.mobile.changePage($('#category'), {changeHash:false});
 	
+	// app.collections.subagendes.get(cat).categories.get(subcat).request_all_activitats({},
+		// function(status, data, last) {
+// 
+			// echo ("Actividades de una categoria");
+			// echo ("<br>");
+			// var_dump(status.toJSON());
+			// //var_dump(data);
+			// _.each(data, function(fitxa) {
+				// echo (fitxa['strDescripcio']+", ")
+			// })
+		// },
+// 
+		// function(){
+			// echo ("FAIL");
+		// }
+	// );
+					
 	// Obtenemos datos
 	var aListData = {
 		"headerClass": "hacul",

@@ -96,59 +96,59 @@ $(document).ready(function() {
     app.user = new app.models.user();
     app.user.set({"intIdioma": 1});
 
-    echo(app.lang.line("AAB"));
+    // echo(app.lang.line("AAB"));
 
-    app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
+    // app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
 
     //TEST: Detalles de fitxa (Horario, Equipacion, Doc, Imagen)
 	//==================================================================
-	app.collections.agenda.reset_pags();
-	var test = function() {
-	    app.collections.agenda.request_today({},
-	    	function(status, data, last){
-	    		echo("<hr>");
-
-	    		//_.each(data, function(element){
-	    			//var_dump(element);
-	    			var id = data[0].intIdFitxa;
-	    			echo(id," ");
-	    			
-	    			//SCHEDULE
-					/*app.collections.activitats.get(id).request_schedule({},
-	    				function(status, data){
-	    					echo("DONE");
-
-	    					if (!last) test();
-	    				},
-	    				function(){
-	    					echo("ERROR");
-	    				})
-					*/
-
-					//DOC: request_doc
-					app.collections.activitats.get(id).request_doc({},
-	    				function(status, data){
-	    					echo("DONE");
-	    					var_dump(data);
-	    					if (!last) test();
-	    				},
-	    				function(){
-	    					echo("ERROR");
-	    				});
-
-					/*app.collections.activitats.get(id).request_doc({},
-
-						app.collections.activitats.get(id).request_doc({},
-	    			echo("<hr>");*/
-	    		//});
-
-	    		//SI no es la ultima, continuamos otra vez...
-	    		//if (!last) test();
-	    	},
-	    	function (jqXHR, textStatus, errorThrown) {
-	    		
-	    	});
-	}
+	// app.collections.agenda.reset_pags();
+	// var test = function() {
+	    // app.collections.agenda.request_today({},
+	    	// function(status, data, last){
+	    		// echo("<hr>");
+// 
+	    		// //_.each(data, function(element){
+	    			// //var_dump(element);
+	    			// var id = data[0].intIdFitxa;
+	    			// echo(id," ");
+// 	    			
+	    			// //SCHEDULE
+					// /*app.collections.activitats.get(id).request_schedule({},
+	    				// function(status, data){
+	    					// echo("DONE");
+// 
+	    					// if (!last) test();
+	    				// },
+	    				// function(){
+	    					// echo("ERROR");
+	    				// })
+					// */
+// 
+					// //DOC: request_doc
+					// app.collections.activitats.get(id).request_doc({},
+	    				// function(status, data){
+	    					// echo("DONE");
+	    					// var_dump(data);
+	    					// if (!last) test();
+	    				// },
+	    				// function(){
+	    					// echo("ERROR");
+	    				// });
+// 
+					// /*app.collections.activitats.get(id).request_doc({},
+// 
+						// app.collections.activitats.get(id).request_doc({},
+	    			// echo("<hr>");*/
+	    		// //});
+// 
+	    		// //SI no es la ultima, continuamos otra vez...
+	    		// //if (!last) test();
+	    	// },
+	    	// function (jqXHR, textStatus, errorThrown) {
+// 	    		
+	    	// });
+	// }
 
 	//test();
 	//app.collections.activitats.add({"intIdFitxa": 8815})

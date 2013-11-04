@@ -1,17 +1,21 @@
 /**
- * Equipaments collection
+ * Subagenda collection
  * 
  */
 
-app.collections.equipaments = app.collections._collection.extend({
+app.collections.subagendes = app.collections._collection.extend({
     
-    model: app.models.equipament,
+    model: app.models.subagenda,
+
+    flags: {
+        "request_all": 0
+    },
     
     initialize: function(){
-    	this.index = "intIdFitxa";
-        this.comparator = "strDescripcio"; 
+    	this.index = "intIdNivell";
+        this.comparator = "strNivell"; 
 
-        this.flags =  {
+        this.flags = {
             "request_all": 0
         }
     },
@@ -19,27 +23,24 @@ app.collections.equipaments = app.collections._collection.extend({
     request_all: function(param, success, error) {
         //Es necesario actualizar?
         if (app.timer.isUpdateHight(this.flags.request_all)) {
-
-            var t = this;
-
+            
             //Añado el parametro de idioma
             param.idioma = app.user.getLang();
             
             //No existen datos y voy a la api a por ellos
-            app.service.get("equipamentsDisponibles", "IdentificadorEquipament", param, 
+            app.service.get("tipusAgenda", "TipCatAgenda", param, 
                 function (status, data){
-
                     if (_.size(_.keys(data)) > 0) {
                         //Vacio la collecion, por que vamos ha cogerlos todos
                     	//Guardo los datos en laa collecion
-                        if (app.collections.equipaments.lenght) app.collections.equipaments.reset(); //.add(data);
-                        app.collections.equipaments.add(data);
+                        if (app.collections.subagendes.lenght) app.collections.subagendes.reset(); //.add(data);
+                        app.collections.subagendes.add(data);
 
                         //ACTUALIZO TIEMPO
-                        t.flags.request_all = app.timer.getTime();
+                        app.collections.subagendes.flags.request_all = app.timer.getTime();
                     }
 
-                    if (typeof success == "function") success(status, app.collections.equipaments.toJSON());
+                    if (typeof success == "function") success(status, app.collections.subagendes.toJSON());
 
                 },
                 function (jqXHR, textStatus, errorThrown) {
@@ -54,11 +55,11 @@ app.collections.equipaments = app.collections._collection.extend({
                 var status = new new app.models.response({                  
                     intCodiEstat: app.constants.get("SUCCESS_REQUEST"),
                     strDescripcioEstat: "Exist info",
-                    intTotalResultats: app.collections.idiomes.lenght
+                    intTotalResultats: app.collections.subagendas.lenght
                 });
                 
                 //Datos de antes
-                var data = app.collections.equipaments.toJSON();
+                var data = app.collections.subagendas.toJSON();
                 
                 success(status, data);
             }
@@ -66,4 +67,4 @@ app.collections.equipaments = app.collections._collection.extend({
     }
 });
 
-app.collections.equipaments = new app.collections.equipaments();
+app.collections.subagendes = new app.collections.subagendes();

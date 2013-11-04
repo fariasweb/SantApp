@@ -7,11 +7,6 @@ app.models.equipament = Backbone.Model.extend({
     
     idAttribute: "intIdFitxa",
     
-    flags: {
-    	"request_info": 0,
-        "request_activitats" : 0
-    },
-    
     defaults: {
         "intIdFitxa": 0,
         "strDescripcio": "",
@@ -31,7 +26,17 @@ app.models.equipament = Backbone.Model.extend({
         "strTelefonB": "",
         "strTelefonC": "",
         "strFax": "",
-        "strUrl": ""
+        "strUrl": "",
+        "exist": 1
+
+    },
+
+    initialize: function(){
+
+        this.flags = {
+            "request_info": 0,
+            "request_activitats": 0
+        }
     },
     
     
@@ -74,7 +79,7 @@ app.models.equipament = Backbone.Model.extend({
        }
     },
 
-    request_activitats: function(param, success, error) {
+    request_all_activitats: function(param, success, error) {
         if (app.timer.isUpdateMiddle(this.flags.request_info)) {
         
             //Añado el parametro de idioma

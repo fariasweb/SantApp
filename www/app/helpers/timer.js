@@ -24,7 +24,7 @@ app.timer = {
 		d.setMonth(d.getMonth() + 1);
 		d.setDate(1)
 
-		return this.date.getTime() + (30 * (86400 * 1000));
+		return this.date.getTime();
 	},
 
 	// $time is timestamps

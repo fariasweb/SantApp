@@ -18,7 +18,8 @@ var app = {
 	views: {},
 	service: {},
 	user: "",
-	timer: {}
+	timer: {},
+	lang: {}
 };
 
 //CONTROL DE RUTAS
@@ -95,23 +96,152 @@ $(document).ready(function() {
     app.user = new app.models.user();
     app.user.set({"intIdioma": 1});
 
+    echo(app.lang.line("AAB"));
+
+    app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
+
+    //TEST: Detalles de fitxa (Horario, Equipacion, Doc, Imagen)
+	//==================================================================
+	app.collections.agenda.reset_pags();
+	var test = function() {
+	    app.collections.agenda.request_today({},
+	    	function(status, data, last){
+	    		echo("<hr>");
+
+	    		//_.each(data, function(element){
+	    			//var_dump(element);
+	    			var id = data[0].intIdFitxa;
+	    			echo(id," ");
+	    			
+	    			//SCHEDULE
+					/*app.collections.activitats.get(id).request_schedule({},
+	    				function(status, data){
+	    					echo("DONE");
+
+	    					if (!last) test();
+	    				},
+	    				function(){
+	    					echo("ERROR");
+	    				})
+					*/
+
+					//DOC: request_doc
+					app.collections.activitats.get(id).request_doc({},
+	    				function(status, data){
+	    					echo("DONE");
+	    					var_dump(data);
+	    					if (!last) test();
+	    				},
+	    				function(){
+	    					echo("ERROR");
+	    				});
+
+					/*app.collections.activitats.get(id).request_doc({},
+
+						app.collections.activitats.get(id).request_doc({},
+	    			echo("<hr>");*/
+	    		//});
+
+	    		//SI no es la ultima, continuamos otra vez...
+	    		//if (!last) test();
+	    	},
+	    	function (jqXHR, textStatus, errorThrown) {
+	    		
+	    	});
+	}
+
+	//test();
+	//app.collections.activitats.add({"intIdFitxa": 8815})
+	
+    //TEST: Subagendas
+	//==================================================================
+	
+	/*app.collections.subagendes.request_all({}, 
+		function(status, data){
+			echo ("Subagenda 0");
+			echo("<br>");
+			var_dump(data[0]);
+
+			//Conseguir actividades de una subagenda:
+			//app.collections.subagendes.get(data[0]['intIdNivell']).request_all
+			
+			//Conseguir las categorias de una subagenda
+			var subagenda_id = data[0]['intIdNivell'];
+
+			app.collections.subagendes.get(subagenda_id).request_all_categories({},
+				function(status, data) {
+					echo ("<br>");
+					echo (" > Categorias de la subagenda - "+data[1]['intIdNivell']+" - "+data[1]['strNivell']+" -> ");
+					
+					var_dump(status.toJSON());
+					echo("<br>");
+					var_dump(data);
+
+					//Conseguir noticias de una categoria
+					app.collections.subagendes.get(subagenda_id).categories.get(data[1]['intIdNivell']).request_all_activitats({},
+						function(status, data, last) {
+
+							echo ("Actividades de una categoria");
+							echo ("<br>");
+							var_dump(status.toJSON());
+							//var_dump(data);
+							_.each(data, function(fitxa) {
+								echo (fitxa['strDescripcio']+", ")
+							})
+						},
+
+						function(){
+							echo ("FAIL");
+						}
+					);
+
+				},
+				function() {
+					echo("ERROORRRR");
+				}
+			);
+
+			echo("FIN");
+		},
+		function (jqXHR, textStatus, errorThrown) {
+			echo("ERRORRRRRRRR");
+		}
+	);*/
+
     //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================
-	// app.collections.agenda.reset_pags();
-	// var test = function() {
-	    // app.collections.agenda.request_today({},
-	    	// function(status, data, last){
-	    		// echo("<hr>");
-// 
-	    		// //SI no es la ultima, continuamos otra vez...
-	    		// if (!last) test();
-	    	// },
-	    	// function (jqXHR, textStatus, errorThrown) {
-// 	    		
-	    	// });
-	// }
-// 
-	// test();
+	/*app.collections.agenda.reset_pags();
+
+	var test = function() {
+	    app.collections.agenda.request_today({},
+	    	function(status, data, last){
+	    		echo("<hr>");
+	    		var_dump(status.toJSON());
+	    		echo("<hr>");
+	    		var_dump(data[0]);
+
+	    		echo("<hr>");
+	    		var id = data[0]['intIdFitxa'];
+
+	    		app.collections.activitats.get(id).request_info({},
+	    			function(status, data){
+	    				var_dump(data);
+	    			},
+	    			function() {
+	    				echo("FAIL");
+	    			}
+	    			);
+
+
+	    		//SI no es la ultima, continuamos otra vez...
+	    		//if (!last) test();
+	    	},
+	    	function (jqXHR, textStatus, errorThrown) {
+	    		
+	    	});
+	}*/
+
+	//test();
 
 	//TEST: Equipaciones + info
 	//==================================================================

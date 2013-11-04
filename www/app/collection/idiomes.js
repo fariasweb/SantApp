@@ -1,6 +1,7 @@
 /**
  * Idiomes fitxes
- * 
+ * 1 - Cat
+ * 2 - Cast
  */
 
 app.collections.idiomes = Backbone.Collection.extend({

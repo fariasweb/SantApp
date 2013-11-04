@@ -1,0 +1,10 @@
+#loading .ui-content{
+	position:absolute;
+	top:50%;
+	height:240px;
+	width: 100%;
+	margin-top:-120px;
+}
+#loading .ui-content .logo{
+	text-align: center;
+}

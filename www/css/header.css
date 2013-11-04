@@ -2,18 +2,20 @@
 #index .ui-content .ui-btn-inner{ background: #F5F5F5;}
 #t_gen .ui-content .ui-btn-inner{ background: white;}
 #t_detail .ui-content .ui-btn-inner{ background: #F5F5F5;}
+#t_infr .ui-content .ui-btn-inner{ background: white;}
 
 /*alineacion de la cabecera*/																		
-#index .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
-#t_gen .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
-#t_detail .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
-#t_conf .ui-header .ui-title{ text-align:left;margin-left: 70px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;}
+#index .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
+#t_gen .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
+#t_detail .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
+#t_conf .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
+#t_infr .ui-header .ui-title{ text-align:left;margin-left: 73px; padding-left: 12px; text-shadow: none; height: 27px; margin-top:17px; font-size: 20px;border-left: 3px solid white;}
 
 /*Icono menu*/
 /*La imagen del dibujo*/
 #index .ui-btn-icon-notext .ui-btn-inner {
     height: 100%;
-    margin-left: 0;
+    margin-left: 4px;
     margin-top: 0;
     padding: 0;
 }

@@ -26,7 +26,9 @@ app.models.equipament = Backbone.Model.extend({
         "strTelefonB": "",
         "strTelefonC": "",
         "strFax": "",
-        "strUrl": ""
+        "strUrl": "",
+        "exist": 1
+
     },
 
     initialize: function(){

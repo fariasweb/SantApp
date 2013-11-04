@@ -79,7 +79,6 @@ app.models.subagenda = Backbone.Model.extend({
     request_all_categories: function(param, success, error) {
         param.idTipusAgenda = this.get(this.idAttribute);
         this.categories.request_all(param, success, error);
-
     }
 
 });

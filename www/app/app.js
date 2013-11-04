@@ -93,7 +93,8 @@ $(document).ready(function() {
 	    			var id = data[0].intIdFitxa;
 	    			echo(id," ");
 	    			
-					app.collections.activitats.get(id).request_schedule({},
+	    			//SCHEDULE
+					/*app.collections.activitats.get(id).request_schedule({},
 	    				function(status, data){
 	    					echo("DONE");
 
@@ -102,7 +103,18 @@ $(document).ready(function() {
 	    				function(){
 	    					echo("ERROR");
 	    				})
+					*/
 
+					//DOC: request_doc
+					app.collections.activitats.get(id).request_doc({},
+	    				function(status, data){
+	    					echo("DONE");
+	    					var_dump(data);
+	    					if (!last) test();
+	    				},
+	    				function(){
+	    					echo("ERROR");
+	    				})
 	    			echo("<hr>");
 	    		//});
 
@@ -143,7 +155,7 @@ $(document).ready(function() {
 
 					//Conseguir noticias de una categoria
 					app.collections.subagendes.get(subagenda_id).categories.get(data[1]['intIdNivell']).request_all_activitats({},
-						function(status, data) {
+						function(status, data, last) {
 
 							echo ("Actividades de una categoria");
 							echo ("<br>");
@@ -175,20 +187,37 @@ $(document).ready(function() {
     //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================
 	/*app.collections.agenda.reset_pags();
+
 	var test = function() {
 	    app.collections.agenda.request_today({},
 	    	function(status, data, last){
 	    		echo("<hr>");
+	    		var_dump(status.toJSON());
+	    		echo("<hr>");
+	    		var_dump(data[0]);
+
+	    		echo("<hr>");
+	    		var id = data[0]['intIdFitxa'];
+
+	    		app.collections.activitats.get(id).request_info({},
+	    			function(status, data){
+	    				var_dump(data);
+	    			},
+	    			function() {
+	    				echo("FAIL");
+	    			}
+	    			);
+
 
 	    		//SI no es la ultima, continuamos otra vez...
-	    		if (!last) test();
+	    		//if (!last) test();
 	    	},
 	    	function (jqXHR, textStatus, errorThrown) {
 	    		
 	    	});
-	}
+	}*/
 
-	test();*/
+	//test();
 
 	//TEST: Equipaciones + info
 	//==================================================================

@@ -3,7 +3,7 @@
  * 
  */
 
-app.collections.activitats = app.collections._collection.extend({
+app.collections._activitats = app.collections._collection.extend({
     
     model: app.models.activitat,
     
@@ -13,4 +13,4 @@ app.collections.activitats = app.collections._collection.extend({
     }
 });
 
-app.collections.activitats = new app.collections.activitats();
+app.collections.activitats = new app.collections._activitats();

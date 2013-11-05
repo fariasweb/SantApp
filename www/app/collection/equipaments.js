@@ -3,7 +3,7 @@
  * 
  */
 
-app.collections.equipaments = app.collections._collection.extend({
+app.collections._equipaments = app.collections._collection.extend({
     
     model: app.models.equipament,
     
@@ -123,4 +123,4 @@ app.collections.equipaments = app.collections._collection.extend({
     }
 });
 
-app.collections.equipaments = new app.collections.equipaments();
+app.collections.equipaments = new app.collections._equipaments();

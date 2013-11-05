@@ -80,15 +80,16 @@ app.models.equipament = Backbone.Model.extend({
     },
 
     request_all_activitats: function(param, success, error) {
-        if (app.timer.isUpdateMiddle(this.flags.request_info)) {
+        //if (app.timer.isUpdateMiddle(this.flags.request_info)) {
         
             //Añado el parametro de idioma
             param.idCentre = this.get("intIdFitxa");
             param.Idioma = app.user.get("intIdioma");
+            param.data = app.timer.getDateYYYYMMDD(app.timer.getTime());
             var t = this;
             
             //No existen datos y voy a la api a por ellos
-            app.service.get("fitxesEquipamentPerId", "IdentificadorActivitat", param, 
+            app.service.get("fitxesEquipamentPerIdData", "IdentificadorActivitat", param, 
                     function (status, data){
                         //Save data in array
                         //t.set(data[0]);
@@ -99,13 +100,13 @@ app.models.equipament = Backbone.Model.extend({
                         t.flags.request_activitats = app.timer.getTime();
 
                         //Return
-                        if (typeof success == "function") success(status, data);
+                        if (typeof success == "function") success(status, data, true);
                     },
                     function (jqXHR, textStatus, errorThrown) {
                         if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
                     }
             );
-        } else {
+        /*} else {
             //Return the save date
             if (typeof success == "function") {
 
@@ -116,6 +117,6 @@ app.models.equipament = Backbone.Model.extend({
                 //Return
                 success(status, this.toJSON());
             }
-        }
+        }*/
     }
 });

@@ -12,7 +12,7 @@ var _constants = function () {
 		MAX_NEWS: 10,
 		
 		//EXIT AND ERRORS
-		SUCCESS_REQUEST: 0
+		SUCCESS_REQUEST: 0,
 		RESPONSE_NO_DATA: "No info"
 	}
 	

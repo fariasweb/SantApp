@@ -95,11 +95,26 @@ $(document).ready(function() {
 	    		var_dump(status.toJSON());
 	    		echo("<hr>");
 
-	    		_.each(data, function(element){
+	    		//_.each(data, function(element){
 	    			//var_dump(element);
-	    			var id = element.strDescripcio;
-	    			echo(id, ", ");
+	    			var id = data[3].intIdFitxa;
+	    			var desc = data[3].strDescripcio;
+	    			echo(id, ", ", desc, ", ");
 	    			
+					//Equipament
+					app.collections.activitats.get(id).request_equipament({},
+	    				function(status, data){
+
+
+	    					var_dump(data);
+	    					echo("DONE");
+
+	    					//if (!last) test();
+	    				},
+	    				function(){
+	    					echo("ERROR");
+	    				})
+
 	    			//SCHEDULE
 					/*app.collections.activitats.get(id).request_schedule({},
 	    				function(status, data){
@@ -128,7 +143,7 @@ $(document).ready(function() {
 						app.collections.activitats.get(id).request_doc({},
 	    			echo("<hr>");*/
 	    			//});
-	    		});
+	    		//});
 	    		
 	    		//SI no es la ultima, continuamos otra vez...
 	    		//if (!last) test();
@@ -145,7 +160,7 @@ $(document).ready(function() {
 	
     //TEST: Subagendas
 	//==================================================================
-	app.collections.subagendes.request_all({}, 
+	/*app.collections.subagendes.request_all({}, 
 		function(status, data){
 			echo("Subagenda 0");
 			echo("<br>");
@@ -222,7 +237,7 @@ $(document).ready(function() {
 			echo("ERRORRRRRRRR");
 		}
 	);
-
+	*/
     //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================
 	/*app.collections.agenda.reset_pags();
@@ -293,10 +308,10 @@ $(document).ready(function() {
 
 	//test_equipament();
 	//RECOGO TODAS LAS EQUPACIONES
-	//app.collections.equipaments.request_all_order({},
-		//test_equipament,
-		//function() { echo ("ERROR"); }
-	//);
+	/*app.collections.equipaments.request_all_order({},
+		test_equipament,
+		function() { echo ("ERROR"); }
+	);*/
 
 	//TEST: Idiomas
 	//==================================================================

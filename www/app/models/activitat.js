@@ -217,7 +217,6 @@ app.models.activitat = Backbone.Model.extend({
     },
 
     request_equipament: function(param, success, error) {
-        if (app.timer.isUpdateHight(this.flags.request_equipament)) {
         
             //Añado el parametro de idioma
             param.idFitxa = parseInt(this.get(this.idAttribute));
@@ -227,11 +226,19 @@ app.models.activitat = Backbone.Model.extend({
             //No existen datos y voy a la api a por ellos
             app.service.get("equipamentsFitxa", "FitxaEquipament", param, 
                     function (status, data){
+                        var_dump(status.toJSON());
+                        echo("<br>");
                         //Save data in array
                         if (status.getResults() > 0) {
 
                             //if (t.imgs.length) t.imgs.reset();
                             //t.imgs.add(element)
+                            _.each(data ,function(element, key) {
+                                data[key].link = true;
+                                if (element.intIdFitxa == t.get("intIdFitxa")) {
+                                    data[key].link = false;
+                                }
+                            });
                         }
                         
                         //Update flag
@@ -244,19 +251,5 @@ app.models.activitat = Backbone.Model.extend({
                         if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
                     }
             );
-        
-       } else {
-            //TODO
-            //Return the save date
-            if (typeof success == "function") {
-
-                //Create manual status response
-                var status =  new app.models.response(); 
-                status.setTotalResults(this.imgs.length);
-                
-                //Return
-                success(status, this.imgs.toJSON());
-            }
-       }
     }
 });

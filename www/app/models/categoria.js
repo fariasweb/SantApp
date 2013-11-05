@@ -64,7 +64,7 @@ app.models.categoria = Backbone.Model.extend({
                     //Creo la respuesta
                     var status = new app.models.response({                  
                         intCodiEstat: app.constants.get("SUCCESS_REQUEST"),
-                        strDescripcioEstat: "No info",
+                        strDescripcioEstat: app.constants.get("RESPONSE_NO_DATA"),
                         intTotalResultats: 0
                     });
                     

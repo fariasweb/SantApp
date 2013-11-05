@@ -24,5 +24,9 @@ app.models.response = Backbone.Model.extend({
 
     getResults: function() {
       return parseInt(this.get("intTotalResultats"));
+    },
+
+    isSuccess: function() {
+      return parseInt(this.get("intCodiEstat")) == app.constants.get("SUCCESS_REQUEST");
     }
 });

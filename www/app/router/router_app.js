@@ -21,7 +21,7 @@ app.router = Backbone.Router.extend({
 		  });
 		});
 		
-		$.mobile.changePage($('#home'));
+		// $.mobile.changePage($('#home'));
 		
 	},
 	back: function(){

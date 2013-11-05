@@ -27,7 +27,7 @@ app.models.equipament = Backbone.Model.extend({
         "strTelefonC": "",
         "strFax": "",
         "strUrl": "",
-        "exist": 1
+        "link": true
 
     },
 

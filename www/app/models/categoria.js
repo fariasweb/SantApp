@@ -45,6 +45,9 @@ app.models.categoria = Backbone.Model.extend({
                 function (status, data){
                     if (status.isSuccess()) {
                         t.reset_pags('request_all', status.getResults());
+
+                        if (status.getResults() == 0) t.pags['request_all']['last'] = true; 
+
                         t.request_all_activitats(param, success, error);
                     } else {
                         error();
@@ -61,7 +64,7 @@ app.models.categoria = Backbone.Model.extend({
                     //Creo la respuesta
                     var status = new app.models.response({                  
                         intCodiEstat: app.constants.get("SUCCESS_REQUEST"),
-                        strDescripcioEstat: "No info",
+                        strDescripcioEstat: app.constants.get("RESPONSE_NO_DATA"),
                         intTotalResultats: 0
                     });
                     

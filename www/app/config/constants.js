@@ -13,6 +13,7 @@ var _constants = function () {
 		
 		//EXIT AND ERRORS
 		SUCCESS_REQUEST: 0
+		RESPONSE_NO_DATA: "No info"
 	}
 	
 	return {

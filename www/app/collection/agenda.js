@@ -107,7 +107,12 @@ app.collections.agenda = app.collections._collection.extend({
                 function (status, data){
 
                     if (status.isSuccess()) {
+
                         t.reset_pags(function_name, status.getResults());
+
+                        //Hay algun dato?
+                        if (status.getResults() == 0) app.collections.agenda.pags[function_name]['last'] = true;
+
                         t._request(action, action_count ,function_name, param, success, error);
                     } else {
                         error();
@@ -124,7 +129,7 @@ app.collections.agenda = app.collections._collection.extend({
                     //Creo la respuesta
                     var status = new app.models.response({                  
                         intCodiEstat: app.constants.get("SUCCESS_REQUEST"),
-                        strDescripcioEstat: "No info",
+                        strDescripcioEstat: app.constants.get("RESPONSE_NO_DATA"),
                         intTotalResultats: 0
                     });
                     
@@ -136,7 +141,6 @@ app.collections.agenda = app.collections._collection.extend({
                 param.lastRow  = this.pags[function_name]['total'] - (this.pags[function_name]['page'] * app.constants.get("MAX_NEWS"));
                 if (param.firstRow < 0) param.firstRow = 0;
 
-                var_dump(param);
                 app.service.get(action, "FitxaActivitat", param, 
                     function (status, data){
 

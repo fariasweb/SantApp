@@ -95,6 +95,8 @@ app.models.activitat = Backbone.Model.extend({
                     function (status, data){
                         //Save data in array
                         if (status.getResults() > 0) {
+
+                            if (t.schedule.length) t.schedule.reset();
                             t.schedule.add(data);
                         }
                         

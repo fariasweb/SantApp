@@ -13,7 +13,7 @@ app.collections.categories = app.collections._collection.extend({
 
         this.flags = {
             "request_all": 0,
-        }
+        };
     },
     
     request_all: function(param, success, error) {

@@ -6,13 +6,14 @@ app.controllers.category = function(cat, subcat) {
 	console.log("I am going to category...",cat, subcat);
 	$.mobile.changePage($('#category'), {changeHash:false});
 	
+	var categoryName = app.collections.subagendes.get(cat).categories.get(subcat).get("strNivell");
 	
-					
+	app.collections.subagendes.get(cat).categories.get(subcat).reset_pags();
 	app.collections.subagendes.get(cat).categories.get(subcat).request_all_activitats({},
 		function(status, data, last) {
 			if(status.toJSON().intCodiEstat == 0){
 				
-				var aListData = {"headerClass": "hacul", "headerName": "Categoría X", "activities":[]};
+				var aListData = {"headerClass": "hacul", "headerName": categoryName, "activities":[]};
 				
 				_.each(data, function(fitxa) {
 					
@@ -50,7 +51,7 @@ app.controllers.category = function(cat, subcat) {
 		},
 
 		function(){
-			
+			alert("error");
 		}
 	);
 	

@@ -30,7 +30,7 @@ app.collections.agenda = app.collections._collection.extend({
                 "request_today": {'total': 0, 'page': 0, 'last': false},
                 "request_week": {'total': 0, 'page': 0, 'last': false},
                 "request_month": {'total': 0, 'page': 0, 'last': false}
-            }
+            };
         }
     },
 

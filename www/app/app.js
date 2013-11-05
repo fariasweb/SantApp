@@ -8,6 +8,10 @@ $.mobile.changePage.defaults.changeHash = false;
  * APP START
  * 
  * Create the principal variables to the app
+ * 
+ * app.collections.equipaments.reset_pags("request_all", app.collections.equipaments.length);
+ * 
+ * app.collections.equipaments.request_all_order({}, function, functionm);
  */
 
 var app = {
@@ -72,147 +76,325 @@ $(document).ready(function() {
     app.user.set({"intIdioma": 1});
 
 
+	// MENU
+	var menuData;
+	// Obtnemos subagendas
+	
+		
+	app.collections.subagendes.request_all({}, 
+		function(status, dataSubagencia){
+			
+			if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
+				
+				menuData = {"diary": []};
+				
+				// Por cada subagenda...
+				_.each(dataSubagencia, function(subagenda, key){
+					var agenda = {
+						"diaryIcon": "adminis",
+						"diaryClass": "admin",
+						"diaryName": subagenda.strNivell,
+						"diaryId": subagenda.intIdNivell,
+						"cats": []
+					};
+					
+					// Obtenemos categorías
+					app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},
+						function(status, data) {
+							
+							if(status.toJSON().intCodiEstat == 0){
+								
+								// Por cada categoría
+								_.each(data, function(categoria){
+									
+									agenda.cats.push({
+										"catId": categoria.intIdNivell,
+										"catName": categoria.strNivell
+									});
+								});
+								
+								
+								menuData.diary.push(agenda);
+								
+								// Cuando hayamos completado la ultima Subagencia, generamos template
+								if(key == dataSubagencia.length-1){
+									var menuTemplate = app.views.menu;
+									var renderedTemplate = Mustache.render(menuTemplate, menuData);
+								
+									$(".left-panel").html(renderedTemplate);
+								
+									// Lo actualizamos para la página actual
+									$('#home').trigger('pagecreate');
+
+								}
+								
+							}
+						},
+						function() {
+							
+						}
+					);
+					
+					
+					
+				});
+				
+			}
+			
+			
+		},
+		function (jqXHR, textStatus, errorThrown) {
+			
+		}
+	);
+	
+    // echo(app.lang.line("AAB"));
+
+    // app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
+
+    //TEST: Detalles de fitxa (Horario, Equipacion, Doc, Imagen)
+	//==================================================================
+	// app.collections.agenda.reset_pags();
+	// var test = function() {
+	    // app.collections.agenda.request_today({},
+	    	// function(status, data, last){
+	    		// echo("<hr>");
+// 
+	    		// //_.each(data, function(element){
+	    			// //var_dump(element);
+	    			// var id = data[0].intIdFitxa;
+	    			// echo(id," ");
+// 	    			
+	    			// //SCHEDULE
+					// /*app.collections.activitats.get(id).request_schedule({},
+	    				// function(status, data){
+	    					// echo("DONE");
+// 
+	    					// if (!last) test();
+	    				// },
+	    				// function(){
+	    					// echo("ERROR");
+	    				// })
+					// */
+// 
+					// //DOC: request_doc
+					// app.collections.activitats.get(id).request_doc({},
+	    				// function(status, data){
+	    					// echo("DONE");
+	    					// var_dump(data);
+	    					// if (!last) test();
+	    				// },
+	    				// function(){
+	    					// echo("ERROR");
+	    				// });
+// 
+					// /*app.collections.activitats.get(id).request_doc({},
+// 
+						// app.collections.activitats.get(id).request_doc({},
+	    			// echo("<hr>");*/
+	    		// //});
+// 
+	    		// //SI no es la ultima, continuamos otra vez...
+	    		// //if (!last) test();
+	    	// },
+	    	// function (jqXHR, textStatus, errorThrown) {
+// 	    		
+	    	// });
+	// }
+	
     //echo(app.lang.line("AAB"));
 
     //app.collections.idiomes.request_all({}, function(status, data){ var_dump(data); })
 
     //TEST: Detalles de fitxa (Horario, Equipacion, Doc, Imagen)
 	//==================================================================
-	app.collections.agenda.reset_pags();
-
-	var test = function() {
-	    app.collections.agenda.request_all({},
-	    	function(status, data, last){
-	    		var_dump(status.toJSON());
-	    		echo("<hr>");
-
-	    		_.each(data, function(element){
-	    			//var_dump(element);
-	    			var id = element.strDescripcio;
-	    			echo(id, ", ");
-	    			
-	    			//SCHEDULE
-					/*app.collections.activitats.get(id).request_schedule({},
-	    				function(status, data){
-	    					echo("DONE");
-
-	    					if (!last) test();
-	    				},
-	    				function(){
-	    					echo("ERROR");
-	    				})
-					*/
-
-					//DOC: request_doc
-					/*app.collections.activitats.get(id).request_doc({},
-	    				function(status, data){
-	    					echo("DONE");
-	    					var_dump(data);
-	    					if (!last) test();
-	    				},
-	    				function(){
-	    					echo("ERROR");
-	    				});
-					*/
-					/*app.collections.activitats.get(id).request_doc({},
-
-						app.collections.activitats.get(id).request_doc({},
-	    			echo("<hr>");*/
-	    			//});
-	    		});
-	    		
-	    		//SI no es la ultima, continuamos otra vez...
-	    		//if (!last) test();
-	    		//OR
-	    		//if (status.isSuccess() && status.getResults()) test();
-	    	},
-	    	function (jqXHR, textStatus, errorThrown) {
-	    		
-	    	});
-	}
+	// app.collections.agenda.reset_pags();
+// 
+	// var test = function() {
+	    // app.collections.agenda.request_all({},
+	    	// function(status, data, last){
+	    		// var_dump(status.toJSON());
+	    		// echo("<hr>");
+// 
+	    		// _.each(data, function(element){
+	    			// //var_dump(element);
+	    			// var id = element.strDescripcio;
+	    			// echo(id, ", ");
+// 	    			
+	    			// //SCHEDULE
+					// /*app.collections.activitats.get(id).request_schedule({},
+	    				// function(status, data){
+	    					// echo("DONE");
+// 
+	    					// if (!last) test();
+	    				// },
+	    				// function(){
+	    					// echo("ERROR");
+	    				// })
+					// */
+// 
+					// //DOC: request_doc
+					// /*app.collections.activitats.get(id).request_doc({},
+	    				// function(status, data){
+	    					// echo("DONE");
+	    					// var_dump(data);
+	    					// if (!last) test();
+	    				// },
+	    				// function(){
+	    					// echo("ERROR");
+	    				// });
+					// */
+					// /*app.collections.activitats.get(id).request_doc({},
+// 
+						// app.collections.activitats.get(id).request_doc({},
+	    			// echo("<hr>");*/
+	    			// //});
+	    		// });
+// 	    		
+	    		// //SI no es la ultima, continuamos otra vez...
+	    		// //if (!last) test();
+	    		// //OR
+	    		// //if (status.isSuccess() && status.getResults()) test();
+	    	// },
+	    	// function (jqXHR, textStatus, errorThrown) {
+// 	    		
+	    	// });
+	// }
 
 	//test();
 	//app.collections.activitats.add({"intIdFitxa": 8815})
 	
     //TEST: Subagendas
-	//==================================================================
-	app.collections.subagendes.request_all({}, 
-		function(status, data){
-			echo("Subagenda 0");
-			echo("<br>");
-			var_dump(data[0]);
-
-			//Conseguir actividades de una subagenda:
-			//app.collections.subagendes.get(data[0]['intIdNivell']).request_all
-			
-			//Conseguir las categorias de una subagenda
-			var subagenda_id = data[0]['intIdNivell'];
-
-			//Sacar actividades de una subagenda paginadas
-			var testII = function (){
-				app.collections.subagendes.get(subagenda_id).request_all_activitats({},
-					function(status, data, last) {
-						var_dump(status.toJSON());
-						echo ("<hr>");
-						var_dump(data);
-
-						if (!last) { testII(); }
-						if (status.isSuccess() && status.getResults()) testII();
-					},
-					function() {
-						echo ("ERROROROROR");
-					}
-				);
-			}
-
-			//testII();
-			
-			app.collections.subagendes.get(subagenda_id).request_all_categories({},
-				function(status, data) {
-					echo ("<br>");
-					echo (" > Categorias de la subagenda - "+data[1]['intIdNivell']+" - "+data[1]['strNivell']+" -> ");
-					
-					var_dump(status.toJSON());
-					echo("<br>");
-					//var_dump(data);
-
-					//Conseguir noticias de una categoria
-					var testIII = function() {
-						app.collections.subagendes.get(subagenda_id).categories.get(data[1]['intIdNivell']).request_all_activitats({},
-							function(status, data, last) {
-
-								echo ("Actividades de una categoria");
-								echo ("<br>");
-								var_dump(status.toJSON());
-								//var_dump(data);
-								_.each(data, function(fitxa) {
-									//echo (fitxa['strDescripcio']+", ")
-								})
-
-								if (!last) { testIII(); }
-								//else 
-								//if (status.isSuccess() && status.getResults()) testIII();
-							},
-
-							function(){
-								echo ("FAIL");
-							}
-						);
-					}
-
-					testIII();
-				},
-				function() {
-					echo("ERROORRRR");
-				}
-			);
-
-			echo("FIN");
-		},
-		function (jqXHR, textStatus, errorThrown) {
-			echo("ERRORRRRRRRR");
-		}
-	);
+	//==================================================================	
+	// app.collections.subagendes.request_all({}, 
+		// function(status, data){
+			// echo ("Subagenda 0");
+			// echo("<br>");
+			// var_dump(data[0]);
+// 
+			// //Conseguir actividades de una subagenda:
+			// //app.collections.subagendes.get(data[0]['intIdNivell']).request_all
+// 			
+			// //Conseguir las categorias de una subagenda
+			// var subagenda_id = data[0]['intIdNivell'];
+// 
+			// app.collections.subagendes.get(subagenda_id).request_all_categories({},
+				// function(status, data) {
+					// echo ("<br>");
+					// echo (" > Categorias de la subagenda - "+data[1]['intIdNivell']+" - "+data[1]['strNivell']+" -> ");
+// 					
+					// var_dump(status.toJSON());
+					// echo("<br>");
+					// var_dump(data);
+// 
+					// //Conseguir noticias de una categoria
+					// app.collections.subagendes.get(subagenda_id).categories.get(data[1]['intIdNivell']).request_all_activitats({},
+						// function(status, data, last) {
+// 
+							// echo ("Actividades de una categoria");
+							// echo ("<br>");
+							// var_dump(status.toJSON());
+							// var_dump(data);
+							// echo ("<br>");
+							// _.each(data, function(fitxa) {
+								// echo (fitxa['strDescripcio']+", ")
+							// })
+						// },
+// 
+						// function(){
+							// echo ("FAIL");
+						// }
+					// );
+// 
+				// },
+				// function() {
+					// echo("ERROORRRR");
+				// }
+			// );
+// 
+			// echo("FIN");
+		// },
+		// function (jqXHR, textStatus, errorThrown) {
+			// echo("ERRORRRRRRRR");
+		// }
+	// );
+	// app.collections.subagendes.request_all({}, 
+		// function(status, data){
+			// echo("Subagenda 0");
+			// echo("<br>");
+			// var_dump(data[0]);
+// 
+			// //Conseguir actividades de una subagenda:
+			// //app.collections.subagendes.get(data[0]['intIdNivell']).request_all
+// 			
+			// //Conseguir las categorias de una subagenda
+			// var subagenda_id = data[0]['intIdNivell'];
+// 
+			// //Sacar actividades de una subagenda paginadas
+			// var testII = function (){
+				// app.collections.subagendes.get(subagenda_id).request_all_activitats({},
+					// function(status, data, last) {
+						// var_dump(status.toJSON());
+						// echo ("<hr>");
+						// var_dump(data);
+// 
+						// if (!last) { testII(); }
+						// if (status.isSuccess() && status.getResults()) testII();
+					// },
+					// function() {
+						// echo ("ERROROROROR");
+					// }
+				// );
+			// }
+// 
+			// //testII();
+// 			
+			// app.collections.subagendes.get(subagenda_id).request_all_categories({},
+				// function(status, data) {
+					// echo ("<br>");
+					// echo (" > Categorias de la subagenda - "+data[1]['intIdNivell']+" - "+data[1]['strNivell']+" -> ");
+// 					
+					// var_dump(status.toJSON());
+					// echo("<br>");
+					// //var_dump(data);
+// 
+					// //Conseguir noticias de una categoria
+					// var testIII = function() {
+						// app.collections.subagendes.get(subagenda_id).categories.get(data[1]['intIdNivell']).request_all_activitats({},
+							// function(status, data, last) {
+// 
+								// echo ("Actividades de una categoria");
+								// echo ("<br>");
+								// var_dump(status.toJSON());
+								// //var_dump(data);
+								// _.each(data, function(fitxa) {
+									// //echo (fitxa['strDescripcio']+", ")
+								// })
+// 
+								// if (!last) { testIII(); }
+								// //else 
+								// //if (status.isSuccess() && status.getResults()) testIII();
+							// },
+// 
+							// function(){
+								// echo ("FAIL");
+							// }
+						// );
+					// }
+// 
+					// testIII();
+				// },
+				// function() {
+					// echo("ERROORRRR");
+				// }
+			// );
+// 
+			// echo("FIN");
+		// },
+		// function (jqXHR, textStatus, errorThrown) {
+			// echo("ERRORRRRRRRR");
+		// }
+	// );
 
     //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================
@@ -284,11 +466,14 @@ $(document).ready(function() {
 
 	//test_equipament();
 	//RECOGO TODAS LAS EQUPACIONES
-	//app.collections.equipaments.request_all_order({},
-		//test_equipament,
-		//function() { echo ("ERROR"); }
-	//);
-
+	try{
+	app.collections.equipaments.request_all_order({},
+		test_equipament,
+		function() { echo ("ERROR"); }
+	);
+}catch(e){
+	alert(e);
+}
 	//TEST: Idiomas
 	//==================================================================
 	/*app.service.get("idiomesFitxa", {}, 

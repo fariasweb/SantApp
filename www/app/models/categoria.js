@@ -27,7 +27,7 @@ app.models.categoria = Backbone.Model.extend({
         } else {
             this.pags = {
                 "request_all": {'total': 0, 'page': 0, 'last': false}
-            }
+            };
         }
     },
 

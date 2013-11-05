@@ -36,7 +36,7 @@ app.models.equipament = Backbone.Model.extend({
         this.flags = {
             "request_info": 0,
             "request_activitats": 0
-        }
+        };
     },
     
     

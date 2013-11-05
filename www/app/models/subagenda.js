@@ -31,18 +31,48 @@ app.models.subagenda = Backbone.Model.extend({
         } else {
             this.pags = {
                 "request_all": {'total': 0, 'page': 0, 'last': false}
-            }
+            };
         }
     },
 
-    getColor: function() {
+    getColor: function(id) {
         //Dice cual es el color de la categoria
-        return;
+        var color = "#000000";
+        switch(id){
+        	case 1433:
+        		color = "#FF6666";
+        		break;
+        	case 1443:
+        		color = "#996699";
+        		break;
+        	case 1432:
+        		color = "#FF6633";
+        		break;
+        	default:
+        		color = "#000000";
+        		break;
+        }
+        return color;
     },
 
-    getImg: function() {
+    getImg: function(id) {
         //Devuelve el nombre de la imagen asociada
-        return;
+        var path = "";
+        switch(id){
+        	case 1433:
+        		path = "administratives/32/administratives.png";
+        		break;
+        	case 1443:
+        		path = "culturals/32/culturals.png";
+        		break;
+        	case 1432:
+        		path = "esportives/32/esportives.png";
+        		break;
+        	default:
+        		path = "";
+        		break;
+        }
+        return path;
     },
 
     request_all_activitats: function(param, success, error) {

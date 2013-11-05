@@ -12,6 +12,8 @@ app.controllers.equipment = function(equipmentId) {
 	
 	clearContent();
 	
+	
+	
 	// Detalles de infraestructura | Listado de infraestructuras
 	if(equipmentId){
 		
@@ -38,7 +40,7 @@ app.controllers.equipment = function(equipmentId) {
 	
 	function getEquipment(){
 		
-		app.collections.equipaments.request_all({}, 
+		app.collections.equipaments.request_all_order({}, 
     		function(status, data){
 
 

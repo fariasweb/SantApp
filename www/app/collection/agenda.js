@@ -22,14 +22,14 @@ app.collections.agenda = app.collections._collection.extend({
     reset_pags: function(field, total) {
         if (field && total) {
 
-            this.pags[field] = {'total': total, 'page': 0};
+            this.pags[field] = {'total': total, 'page': 0, 'last': false};
         } else {
 
             this.pags = {
-                "request_all": {'total': 0, 'page': 0},
-                "request_today": {'total': 0, 'page': 0},
-                "request_week": {'total': 0, 'page': 0},
-                "request_month": {'total': 0, 'page': 0}
+                "request_all": {'total': 0, 'page': 0, 'last': false},
+                "request_today": {'total': 0, 'page': 0, 'last': false},
+                "request_week": {'total': 0, 'page': 0, 'last': false},
+                "request_month": {'total': 0, 'page': 0, 'last': false}
             }
         }
     },
@@ -99,7 +99,7 @@ app.collections.agenda = app.collections._collection.extend({
 
     _request: function(action, action_count ,function_name, param, success, error) {
 
-        if (this.pags[function_name]['total'] == 0) {
+        if (app.collections.agenda.pags[function_name]['total'] == 0) {
 
             var t = this;
 
@@ -118,31 +118,46 @@ app.collections.agenda = app.collections._collection.extend({
 
         } else {
 
-            param.firstRow = this.pags[function_name]['total'] - (((this.pags[function_name]['page'] + 1) * app.constants.get("MAX_NEWS")) - 1);
-            param.lastRow  = this.pags[function_name]['total'] - (this.pags[function_name]['page'] * app.constants.get("MAX_NEWS"));
-            if (param.firstRow < 0) param.firstRow = 0;
+            if (app.collections.agenda.pags[function_name]['last']) {
+                if (typeof success == "function") {
 
-            var_dump(param);
-            app.service.get(action, "FitxaActivitat", param, 
-                function (status, data){
-
-                    //Save in collection - si existe -> no guarda, else -> guarda
-                    if (_.size(data)) app.collections.activitats.add(data);
-
-                    //Aumentamos la paginas si no es la ultima
-                    var last = true;
-                    if (status.getStatus() == 0 && status.getResults() >= app.constants.get("MAX_NEWS")) {
-                         app.collections.agenda.pags[function_name]['page']++;
-                         last = false;
-                    }
-
-                    if (typeof success == "function") success(status, data, last);
-
-                },
-                function (jqXHR, textStatus, errorThrown) {
-                    if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
+                    //Creo la respuesta
+                    var status = new app.models.response({                  
+                        intCodiEstat: app.constants.get("SUCCESS_REQUEST"),
+                        strDescripcioEstat: "No info",
+                        intTotalResultats: 0
+                    });
+                    
+                    success(status, [], true);
                 }
-            );
+            } else {
+
+                param.firstRow = this.pags[function_name]['total'] - (((this.pags[function_name]['page'] + 1) * app.constants.get("MAX_NEWS")) - 1);
+                param.lastRow  = this.pags[function_name]['total'] - (this.pags[function_name]['page'] * app.constants.get("MAX_NEWS"));
+                if (param.firstRow < 0) param.firstRow = 0;
+
+                var_dump(param);
+                app.service.get(action, "FitxaActivitat", param, 
+                    function (status, data){
+
+                        //Save in collection - si existe -> no guarda, else -> guarda
+                        if (_.size(data)) app.collections.activitats.add(data);
+
+                        //Aumentamos la paginas si no es la ultima
+                        if (status.getStatus() == 0 && status.getResults() >= app.constants.get("MAX_NEWS")) {
+                            app.collections.agenda.pags[function_name]['page']++;
+                        } else {
+                            app.collections.agenda.pags[function_name]['last'] = true;
+                        }
+
+                        if (typeof success == "function") success(status, data, app.collections.agenda.pags[function_name]['last']);
+
+                    },
+                    function (jqXHR, textStatus, errorThrown) {
+                        if (typeof error == "function") error(jqXHR, textStatus, errorThrown);
+                    }
+                );
+            }
         }
     }
 });

@@ -131,7 +131,9 @@ $(document).ready(function() {
 	    		});
 	    		
 	    		//SI no es la ultima, continuamos otra vez...
-	    		if (!last) test();
+	    		//if (!last) test();
+	    		//OR
+	    		//if (status.isSuccess() && status.getResults()) test();
 	    	},
 	    	function (jqXHR, textStatus, errorThrown) {
 	    		
@@ -163,7 +165,8 @@ $(document).ready(function() {
 						echo ("<hr>");
 						var_dump(data);
 
-						if (!last) testII();
+						if (!last) { testII(); }
+						if (status.isSuccess() && status.getResults()) testII();
 					},
 					function() {
 						echo ("ERROROROROR");
@@ -172,6 +175,7 @@ $(document).ready(function() {
 			}
 
 			//testII();
+			
 			app.collections.subagendes.get(subagenda_id).request_all_categories({},
 				function(status, data) {
 					echo ("<br>");
@@ -179,7 +183,7 @@ $(document).ready(function() {
 					
 					var_dump(status.toJSON());
 					echo("<br>");
-					var_dump(data);
+					//var_dump(data);
 
 					//Conseguir noticias de una categoria
 					var testIII = function() {
@@ -191,10 +195,12 @@ $(document).ready(function() {
 								var_dump(status.toJSON());
 								//var_dump(data);
 								_.each(data, function(fitxa) {
-									echo (fitxa['strDescripcio']+", ")
+									//echo (fitxa['strDescripcio']+", ")
 								})
 
-								if (!last) testIII();
+								if (!last) { testIII(); }
+								//else 
+								//if (status.isSuccess() && status.getResults()) testIII();
 							},
 
 							function(){
@@ -254,16 +260,18 @@ $(document).ready(function() {
 
 	//TEST: Equipaciones + info
 	//==================================================================
-	/*for(var i = 0; i < 1; i++) {
+
+	var test_equipament = function() {
 		app.collections.equipaments.request_all({}, 
-    		function(status, data){
+    		function(status, data, last){
 
     		    //var_dump(status.toJSON());
     			var_dump(data.length);
     			_.each(data, function(element) {
-	    			echo(element.intIdFitxa+", \n");
+	    			echo(element.strDescripcio+", \n");
+	    			echo("<br>");
 
-	    			app.collections.equipaments.get(element.intIdFitxa).request_info({},
+	    			/*app.collections.equipaments.get(element.intIdFitxa).request_info({},
 	    			    function (status, data){
 	    			    	
 	    			    	var_dump(data);
@@ -271,14 +279,24 @@ $(document).ready(function() {
 	                    function (jqXHR, textStatus, errorThrown) {
 	                        echo("FAIL");
 	                    });
+	                */
     			});
+
+    			if(!last) test_equipament();
     		},
     		function(){
     		    echo("FAIL");
-    			logger.log("FAIL");
     		}
     	);
-	}*/
+		
+	}
+
+	//test_equipament();
+	//RECOGO TODAS LAS EQUPACIONES
+	//app.collections.equipaments.request_all_order({},
+		//test_equipament,
+		//function() { echo ("ERROR"); }
+	//);
 
 	//TEST: Idiomas
 	//==================================================================

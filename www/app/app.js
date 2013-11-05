@@ -1,8 +1,8 @@
-// $.mobile.ajaxEnabled = false;
-// $.mobile.linkBindingEnabled = false; 
-// $.mobile.hashListeningEnabled = false; 
-// $.mobile.pushStateEnabled = false; 
-// $.mobile.changePage.defaults.changeHash = false;
+$.mobile.ajaxEnabled = false;
+$.mobile.linkBindingEnabled = false; 
+$.mobile.hashListeningEnabled = false; 
+$.mobile.pushStateEnabled = false; 
+$.mobile.changePage.defaults.changeHash = false;
 
 /**
  * APP START
@@ -81,72 +81,72 @@ $(document).ready(function() {
 	// Obtnemos subagendas
 	
 		
-	// app.collections.subagendes.request_all({}, 
-		// function(status, dataSubagencia){
-// 			
-			// if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
-// 				
-				// menuData = {"diary": []};
-// 				
-				// // Por cada subagenda...
-				// _.each(dataSubagencia, function(subagenda, key){
-					// var agenda = {
-						// "diaryIcon": "adminis",
-						// "diaryClass": "admin",
-						// "diaryName": subagenda.strNivell,
-						// "diaryId": subagenda.intIdNivell,
-						// "cats": []
-					// };
-// 					
-					// // Obtenemos categorías
-					// app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},
-						// function(status, data) {
-// 							
-							// if(status.toJSON().intCodiEstat == 0){
-// 								
-								// // Por cada categoría
-								// _.each(data, function(categoria){
-// 									
-									// agenda.cats.push({
-										// "catId": categoria.intIdNivell,
-										// "catName": categoria.strNivell
-									// });
-								// });
-// 								
-// 								
-								// menuData.diary.push(agenda);
-// 								
-								// // Cuando hayamos completado la ultima Subagencia, generamos template
-								// if(key == dataSubagencia.length-1){
-									// var menuTemplate = app.views.menu;
-									// var renderedTemplate = Mustache.render(menuTemplate, menuData);
-// 								
-									// $(".left-panel").html(renderedTemplate);
-// 								
-									// // Lo actualizamos para la página actual
-									// $('#home').trigger('pagecreate');
-// 
-								// }
-// 								
-							// }
-						// },
-						// function() {
-// 							
-						// }
-					// );
-// 					
-// 					
-// 					
-				// });
-// 				
-			// }
-// 			
-// 			
-		// },
-		// function (jqXHR, textStatus, errorThrown) {
-// 			
-		// }
-	// );
+	app.collections.subagendes.request_all({}, 
+		function(status, dataSubagencia){
+			
+			if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
+				
+				menuData = {"diary": []};
+				
+				// Por cada subagenda...
+				_.each(dataSubagencia, function(subagenda, key){
+					var agenda = {
+						"diaryIcon": "adminis",
+						"diaryClass": "admin",
+						"diaryName": subagenda.strNivell,
+						"diaryId": subagenda.intIdNivell,
+						"cats": []
+					};
+					
+					// Obtenemos categorías
+					app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},
+						function(status, data) {
+							
+							if(status.toJSON().intCodiEstat == 0){
+								
+								// Por cada categoría
+								_.each(data, function(categoria){
+									
+									agenda.cats.push({
+										"catId": categoria.intIdNivell,
+										"catName": categoria.strNivell
+									});
+								});
+								
+								
+								menuData.diary.push(agenda);
+								
+								// Cuando hayamos completado la ultima Subagencia, generamos template
+								if(key == dataSubagencia.length-1){
+									var menuTemplate = app.views.menu;
+									var renderedTemplate = Mustache.render(menuTemplate, menuData);
+								
+									$(".left-panel").html(renderedTemplate);
+								
+									// Lo actualizamos para la página actual
+									$('#home').trigger('pagecreate');
+
+								}
+								
+							}
+						},
+						function() {
+							
+						}
+					);
+					
+					
+					
+				});
+				
+			}
+			
+			
+		},
+		function (jqXHR, textStatus, errorThrown) {
+			
+		}
+	);
 	
     // echo(app.lang.line("AAB"));
 
@@ -468,7 +468,7 @@ $(document).ready(function() {
 	//RECOGO TODAS LAS EQUPACIONES
 	try{
 	app.collections.equipaments.request_all_order({},
-		test_equipament,
+		function(){},
 		function() { echo ("ERROR"); }
 	);
 }catch(e){

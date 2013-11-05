@@ -26,8 +26,8 @@ app.collections._equipaments = app.collections._collection.extend({
         } else {
 
             this.pags = {
-                "request_all": {'total': app.collections.equipaments.length, 'page': 0, 'last': false}
-            };
+                "request_all": {'total': 0, 'page': 0, 'last': false}
+            }
         }
     },
     

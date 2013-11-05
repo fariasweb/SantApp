@@ -11,9 +11,12 @@ app.controllers.equipment = function(equipmentId) {
 		strHeader = "";
 	
 	clearContent();
-	
-	
-	
+	try{
+		alert(app.collections.equipaments.length);
+	app.collections.equipaments.reset_pags("request_all", app.collections.equipaments.length);
+	}catch(e){
+		alert(e);
+	}
 	// Detalles de infraestructura | Listado de infraestructuras
 	if(equipmentId){
 		
@@ -23,7 +26,13 @@ app.controllers.equipment = function(equipmentId) {
 	}else{
 		
 		strHeader = "Listado de Infraestructuras";
-		getEquipment();
+		try{
+			// app.collections.equipaments.request_all_order({},getEquipment,function() { echo ("ERROR"); });
+			getEquipment();
+	}catch(e){
+		alert(e);
+	}
+		
 		
 	}
 		
@@ -40,12 +49,12 @@ app.controllers.equipment = function(equipmentId) {
 	
 	function getEquipment(){
 		
-		app.collections.equipaments.request_all_order({}, 
+		app.collections.equipaments.request_all({}, 
     		function(status, data){
 
 
 				echo("<hr>");
-				if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
+				if(status.toJSON().intCodiEstat == 0){
 					
 					var aListData = {"equipments":[]};
 					

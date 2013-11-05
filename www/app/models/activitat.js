@@ -228,8 +228,8 @@ app.models.activitat = Backbone.Model.extend({
                         //Save data in array
                         if (status.getResults() > 0) {
 
-                            if (t.imgs.length) t.imgs.reset();
-                            t.imgs.add(element)
+                            //if (t.imgs.length) t.imgs.reset();
+                            //t.imgs.add(element)
                         }
                         
                         //Update flag

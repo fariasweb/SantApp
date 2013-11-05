@@ -47,12 +47,13 @@ app.service = {
 
 				//TODO: Mirar si el code no es correcto
 				//En caso de no serlo se envia a la funcion error
+				var data = {};
+				if (class_name != "") data = app.service._parseXML_toclass(class_name, jqXHR.responseXML);
+
 						
 				//Procesar los resultados y devolver
 				if (typeof success == "function") {
-    				success(app.service._last_request, 
-    				        app.service._parseXML_toclass(class_name, jqXHR.responseXML)
-    				       );
+    				success(app.service._last_request, data);
 				} else {
 				   // return app.service._parseXML_toclass(class_name, jqXHR.responseXML);
 				}		

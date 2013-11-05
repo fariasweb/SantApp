@@ -19,7 +19,7 @@ app.models.activitat = Backbone.Model.extend({
     initialize: function(){
 
         //Horario
-        //this.schedule = new app.collections.horaris();
+        this.schedule = new app.collections.horaris();
         //DocImgs
         this.docs = new app.collections.docImgs();
         this.imgs = new app.collections.docImgs();
@@ -95,7 +95,7 @@ app.models.activitat = Backbone.Model.extend({
                     function (status, data){
                         //Save data in array
                         if (status.getResults() > 0) {
-                            //t.schedule.add(data);
+                            t.schedule.add(data);
                         }
                         
                         //Update flag
@@ -228,8 +228,8 @@ app.models.activitat = Backbone.Model.extend({
                         //Save data in array
                         if (status.getResults() > 0) {
 
-                            if (t.imgs.length) t.imgs.reset();
-                            t.imgs.add(element)
+                            //if (t.imgs.length) t.imgs.reset();
+                            //t.imgs.add(element)
                         }
                         
                         //Update flag

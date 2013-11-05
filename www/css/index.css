@@ -48,7 +48,8 @@
 	margin-top: 4px;
 	margin-bottom: 4px;
 	text-shadow: none;
-	margin-left: 21px;
+	margin-left: 0px;
+	padding-left: 21px;
 	color: #3C3C3B;
 	border-bottom-color: black;
 }
@@ -68,6 +69,7 @@
 	margin-top: -12px;
 	font-size:16px;
 }
+
 #index .ui-content{
 	background-color: #D9D9D9;
 }
@@ -101,6 +103,16 @@
 	margin-left: -15px;
 	padding-left: 45%;
 	background-color: #F5F5F5;
+	cursor:pointer;
+}
+
+#index .vermas{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-left: -15px;
+	padding-left: 45%;
+	background-color: #F5F5F5;
+	cursor:pointer;
 }
 
 #t_gen .ui-content .update{

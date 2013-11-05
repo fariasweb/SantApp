@@ -130,14 +130,14 @@ $(document).ready(function() {
 	    	function (jqXHR, textStatus, errorThrown) {
 	    		
 	    	});
-	}
+	};
 
 	//test();
 	//app.collections.activitats.add({"intIdFitxa": 8815})
 	
     //TEST: Subagendas
 	//==================================================================
-	app.collections.subagendes.request_all({}, 
+	/*app.collections.subagendes.request_all({}, 
 		function(status, data){
 			echo("Subagenda 0");
 			echo("<br>");
@@ -213,7 +213,7 @@ $(document).ready(function() {
 		function (jqXHR, textStatus, errorThrown) {
 			echo("ERRORRRRRRRR");
 		}
-	);
+	);*/
 
     //TEST: Agenda por fechas request_{today, week, month, all}
 	//==================================================================
@@ -281,7 +281,7 @@ $(document).ready(function() {
     		}
     	);
 		
-	}
+	};
 
 	//test_equipament();
 	//RECOGO TODAS LAS EQUPACIONES

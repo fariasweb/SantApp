@@ -11,29 +11,20 @@ app.controllers.equipment = function(equipmentId) {
 		strHeader = "";
 	
 	clearContent();
-	try{
-		alert(app.collections.equipaments.length);
-	// app.collections.equipaments.reset_pags("request_all", app.collections.equipaments.length);
-	}catch(e){
-		alert(e);
-	}
+
 	// Detalles de infraestructura | Listado de infraestructuras
 	if(equipmentId){
-		
 		strHeader = "Infraestructura X";
 		getEquipmentById(equipmentId);
 		
 	}else{
-		
 		strHeader = "Listado de Infraestructuras";
 		try{
 			// app.collections.equipaments.request_all_order({},getEquipment,function() { echo ("ERROR"); });
 			getEquipment();
-	}catch(e){
-		alert(e);
-	}
-		
-		
+		}catch(e){
+			//alert(e);
+		}	
 	}
 		
 	equipmentHeader.find('h1').html(strHeader);
@@ -51,9 +42,7 @@ app.controllers.equipment = function(equipmentId) {
 		
 		app.collections.equipaments.request_all({}, 
     		function(status, data){
-
-				echo("<hr>");
-				if(status.toJSON().intCodiEstat == 0){
+				if(status.isSuccess()){
 					
 					var aListData = {"equipments":[]};
 					
@@ -63,23 +52,20 @@ app.controllers.equipment = function(equipmentId) {
 							"equipmentId": element.intIdFitxa,
 							"equipmentName": element.strDescripcio
 						});
-	
+						//alert(element.intIdFitxa+" - "+element.strDescripcio)
 						// Generamos template
-						var aListTemplate = app.views.equipmentList;
-						var renderedTemplate = Mustache.render(aListTemplate, aListData);
-						
-						equipmentContent.html(renderedTemplate);
-						
-						// Page create
-						equipment.trigger('pagecreate');
-	
 	    			});
+
+	    			var aListTemplate = app.views.equipmentList;
+					var renderedTemplate = Mustache.render(aListTemplate, aListData);
+					equipmentContent.html(renderedTemplate);
+					// Page create
+					//ESTO FALLA
+					$('#equipment').trigger('pagecreate');
 				}
     			
     		},
     		function(){
-    		    echo("FAIL");
-    			logger.log("FAIL");
     		}
     	);
 	}

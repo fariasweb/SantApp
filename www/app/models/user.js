@@ -29,7 +29,7 @@ app.models.user = Backbone.Model.extend({
         if (this.get("intIdioma") != 0 && this.get("created")) {
             return this.get("intIdioma");
         } else {
-            return 0;
+            return 1;
         }  
     },
 

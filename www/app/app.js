@@ -72,21 +72,19 @@ $(document).ready(function() {
 	Backbone.history.start();
 
 	//INIT DB
-	app.db.init(function(){}, function(){}); //CONTROLAR ERROR
+	//app.db.init(function(){}, function(){}); //CONTROLAR ERROR
 	
 	// Control del botón atrás
 	$('.back').click(function(e){ e.preventDefault(); router.back(); });
     
     //SET LANG
     app.user = new app.models.user();
-    //app.user.set({"intIdioma": 1});
+    app.user.set({"intIdioma": 1});
 
 
 	// MENU
 	var menuData;
 	// Obtnemos subagendas
-	
-		
 	app.collections.subagendes.request_all({}, 
 		function(status, dataSubagencia){
 			
@@ -159,6 +157,13 @@ $(document).ready(function() {
 		}
 	);
 
-
+	//Obtenemos los equipamientos
+	app.collections.equipaments.request_all_order({},
+		function(status, data){
+			//alert("TOTAL " + data.length);
+		},
+		function() {
+			//ERROR
+		})
 	//console.log("LANG", app.user.getLang());
 });

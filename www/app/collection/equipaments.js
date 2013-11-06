@@ -47,11 +47,17 @@ app.collections._equipaments = app.collections._collection.extend({
                 this.pags['request_all']['page']++;
             }
                 
+            //Creo la respuesta
+            var status = new app.models.response({                  
+                    intCodiEstat: app.constants.get("SUCCESS_REQUEST"),
+                    strDescripcioEstat: "",
+                    intTotalResultats: app.constants.get("MAX_NEWS")
+            });
 
             var data = [];
             for (i = first; i <= last; i++) data.push(this.at(i).toJSON());
 
-            if (typeof success == "function") success({}, data, this.pags['request_all']['last']);    
+            if (typeof success == "function") success(status, data, this.pags['request_all']['last']);    
         } else {
             //No hay nada
 

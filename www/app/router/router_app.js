@@ -13,9 +13,10 @@ app.router = Backbone.Router.extend({
 	initialize: function(){
 		
 		// Guardamos información de las páginas
-		history = [];
+		app.history = [];
+
 		this.listenTo(this, 'route', function (name, args) {
-		  history.push({
+		  app.history.push({
 		    name : name,
 		    args : args,
 		    fragment : Backbone.history.fragment
@@ -27,10 +28,10 @@ app.router = Backbone.Router.extend({
 	},
 	back: function(){
 		// Información de la página anterior
-		var backPage = history[history.length-2];
+		var backPage = app.history[app.history.length-2];
 		
 		// Guardamos la información de la página a la que nos moveremos en el historial
-		history.push({
+		app.history.push({
 			name : backPage.name,
 		    args : backPage.args,
 		    fragment : backPage.fragment

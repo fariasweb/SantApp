@@ -1,8 +1,8 @@
-$.mobile.ajaxEnabled = false;
-$.mobile.linkBindingEnabled = false; 
-$.mobile.hashListeningEnabled = false; 
-$.mobile.pushStateEnabled = false; 
-$.mobile.changePage.defaults.changeHash = false;
+// $.mobile.ajaxEnabled = false;
+// $.mobile.linkBindingEnabled = false; 
+// $.mobile.hashListeningEnabled = false; 
+// $.mobile.pushStateEnabled = false; 
+// $.mobile.changePage.defaults.changeHash = false;
 
 /**
  * APP START
@@ -460,7 +460,7 @@ $(document).ready(function() {
 	                */
     			});
 
-    			if(!last) test_equipament();
+    			// if(!last) test_equipament();
     		},
     		function(){
     		    echo("FAIL");
@@ -471,14 +471,14 @@ $(document).ready(function() {
 
 	//test_equipament();
 	//RECOGO TODAS LAS EQUPACIONES
-	// try{
-	// app.collections.equipaments.request_all_order({},
-		// function(){},
-		// function() { echo ("ERROR"); }
-	// );
-// }catch(e){
-	// alert(e);
-// }
+	try{
+	app.collections.equipaments.request_all_order({},
+		function(){},
+		function() { echo ("ERROR"); }
+	);
+}catch(e){
+	alert(e);
+}
 	//TEST: Idiomas
 	//==================================================================
 	/*app.service.get("idiomesFitxa", {}, 

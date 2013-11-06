@@ -37,7 +37,7 @@ app.models.subagenda = Backbone.Model.extend({
 
     getColorClass: function() {
         //Dice cual es el color de la categoria
-        var color = "#000000";
+        var color = "default";
         
         switch(this.get(this.idAttribute)){
         	case "1433":
@@ -51,6 +51,27 @@ app.models.subagenda = Backbone.Model.extend({
         		break;
         	default:
         		color = "default";
+        		break;
+        }
+        return color;
+    },
+    
+    getColorHeaderClass: function() {
+        //Dice cual es el color de la categoria
+        var color = "haprin";
+        
+        switch(this.get(this.idAttribute)){
+        	case "1433":
+        		color = "hadmin";
+        		break;
+        	case "1443":
+        		color = "hacul";
+        		break;
+        	case "1432":
+        		color = "hesportives";
+        		break;
+        	default:
+        		color = "haprin";
         		break;
         }
         return color;

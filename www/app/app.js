@@ -96,18 +96,20 @@ $(document).ready(function() {
 					var color = app.collections.subagendes.get(subagenda.intIdNivell).getColorClass(),
 						img = app.collections.subagendes.get(subagenda.intIdNivell).getImgClass();
 
-					var agenda = {
-						"diaryIcon": img,
-						"diaryClass": color,
-						"diaryName": subagenda.strNivell,
-						"diaryId": subagenda.intIdNivell,
-						"cats": []
-					};
+					
 					
 					
 					// Obtenemos categorías
 					app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},
 						function(status, data) {
+							
+							var agenda = {
+								"diaryIcon": img,
+								"diaryClass": color,
+								"diaryName": subagenda.strNivell,
+								"diaryId": subagenda.intIdNivell,
+								"cats": []
+							};
 							
 							if(status.toJSON().intCodiEstat == 0){
 								
@@ -125,6 +127,7 @@ $(document).ready(function() {
 								
 								// Cuando hayamos completado la ultima Subagencia, generamos template
 								if(key == dataSubagencia.length-1){
+									
 									var menuTemplate = app.views.menu;
 									var renderedTemplate = Mustache.render(menuTemplate, menuData);
 								

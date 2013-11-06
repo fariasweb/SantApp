@@ -71,15 +71,13 @@ app.controllers.diary = function(cat) {
 				aListData.activities.push({
 					"activityId": val.intIdFitxa,
 					"activityName": val.strDescripcio,
-					"description": val.strObservacions,
-					"activityClass": "acul",
-					"activityType": "culturals"
+					"description": val.strObservacions
 				});
 				
 			});
 			
 			// Generamos template
-			var aListTemplate = app.views.activityListIcon;
+			var aListTemplate = app.views.activityList;
 			var renderedTemplate = Mustache.render(aListTemplate, aListData);
 			
 			// Content

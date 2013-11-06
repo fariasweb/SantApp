@@ -132,7 +132,7 @@ app.views.equipmentDetail =
 	<div>\
 		<ul data-role='listview' data-icon='false' data-theme='x'>\
 			<li>\
-				<a href='#app/views/t_gen.html'>\
+				<a href='#activity_list'>\
 					<div class='ver_actividades'>\
 						<div class='ver_act_icon'>\
 							<img src='img/iconos/infraestructures/32/actividades.png'>\
@@ -145,6 +145,40 @@ app.views.equipmentDetail =
 			</li>\
 		</ul>\
 	</div>\
+</div>";
+
+app.views.activityDetail = 
+"<div class='content_detail'>\
+	<div class='h_detail'>\
+		<h5 class='acul cat'>Nom de la activitat</h5>\
+		<p class='acul subcat'>Subcategoria si existeix</p>\
+	</div>\
+	<div class='card'>\
+		<ul data-role='listview' >\
+			<li><img class='ui-li-icon' src='img/iconos/culturals/16/dia.png'> Dia: </li>\
+			<li><img class='ui-li-icon' src='img/iconos/culturals/16/hora.png'> Horari: </li>\
+			<li><img class='ui-li-icon' src='img/iconos/culturals/16/euro.png'> Preu:	</li>\
+			<li><img class='ui-li-icon' src='img/iconos/culturals/16/sitio.png'> Equipament </li>\
+		</ul>\
+	</div>\
+	<div>\
+		<p class='desc_detail'>\
+			Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.\
+		</p>\
+	</div>\
+</div>";
+
+app.views.config = 
+"<div class='conf_cont'>\
+	<h4>Idioma</h4>\
+	<form>\
+		<fieldset data-role='controlgroup' data-type='horizontal'>\
+			<input type='radio' name='radio-choice' id='radio-choice-1' value='CAT' checked='checked'/>\
+			<label for='radio-choice-1'>CAT</label>\
+			<input type='radio' name='radio-choice' id='radio-choice-2' value='ESP'/>\
+			<label for='radio-choice-2'>ESP</label>\
+		</fieldset>\
+	</form>\
 </div>";
 
 app.views.btnMore =

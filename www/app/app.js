@@ -87,12 +87,17 @@ $(document).ready(function() {
 			if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
 				
 				menuData = {"diary": []};
-				
+		
 				// Por cada subagenda...
 				_.each(dataSubagencia, function(subagenda, key){
+
+					// Obtenemos Color e Icono de la subagenda
+					var color = app.collections.subagendes.get(subagenda.intIdNivell).getColorClass(),
+						img = app.collections.subagendes.get(subagenda.intIdNivell).getImgClass();
+
 					var agenda = {
-						"diaryIcon": "adminis",
-						"diaryClass": "admin",
+						"diaryIcon": img,
+						"diaryClass": color,
 						"diaryName": subagenda.strNivell,
 						"diaryId": subagenda.intIdNivell,
 						"cats": []
@@ -462,18 +467,18 @@ $(document).ready(function() {
     		}
     	);
 		
-	}
+	};
 
 	//test_equipament();
 	//RECOGO TODAS LAS EQUPACIONES
-	try{
-	app.collections.equipaments.request_all_order({},
-		function(){},
-		function() { echo ("ERROR"); }
-	);
-}catch(e){
-	alert(e);
-}
+	// try{
+	// app.collections.equipaments.request_all_order({},
+		// function(){},
+		// function() { echo ("ERROR"); }
+	// );
+// }catch(e){
+	// alert(e);
+// }
 	//TEST: Idiomas
 	//==================================================================
 	/*app.service.get("idiomesFitxa", {}, 

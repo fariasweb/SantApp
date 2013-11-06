@@ -7,6 +7,7 @@ app.router = Backbone.Router.extend({
 		"activity/:id": "activity",
 		"diary/:cat": "diary",
 		"equipment(/:equipmentId)": "equipment",
+		"equipment_activity": "equipment_activity"
 	},
 	
 	initialize: function(){

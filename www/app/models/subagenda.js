@@ -35,44 +35,46 @@ app.models.subagenda = Backbone.Model.extend({
         }
     },
 
-    getColor: function(id) {
+    getColorClass: function() {
         //Dice cual es el color de la categoria
         var color = "#000000";
-        switch(id){
-        	case 1433:
-        		color = "#FF6666";
+        
+        switch(this.get(this.idAttribute)){
+        	case "1433":
+        		color = "admin";
         		break;
-        	case 1443:
-        		color = "#996699";
+        	case "1443":
+        		color = "acul";
         		break;
-        	case 1432:
-        		color = "#FF6633";
+        	case "1432":
+        		color = "esportives";
         		break;
         	default:
-        		color = "#000000";
+        		color = "default";
         		break;
         }
         return color;
     },
 
-    getImg: function(id) {
+    getImgClass: function() {
         //Devuelve el nombre de la imagen asociada
-        var path = "";
-        switch(id){
-        	case 1433:
-        		path = "administratives/32/administratives.png";
+        var img = "";
+        
+        switch(this.get(this.idAttribute)){
+        	case "1433":
+        		img = "adminis";
         		break;
-        	case 1443:
-        		path = "culturals/32/culturals.png";
+        	case "1443":
+        		img = "acul";
         		break;
-        	case 1432:
-        		path = "esportives/32/esportives.png";
+        	case "1432":
+        		img = "esportives";
         		break;
         	default:
-        		path = "";
+        		img = "";
         		break;
         }
-        return path;
+        return img;
     },
 
     request_all_activitats: function(param, success, error) {

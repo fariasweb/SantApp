@@ -13,6 +13,10 @@
 
 
 /*Colores para los tipos de actividades*/
+.default{
+	color: #000000;
+	text-shadow:none;
+}
 .acul{
 	color: #996699;
 	text-shadow:none;

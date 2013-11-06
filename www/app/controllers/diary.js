@@ -59,7 +59,7 @@ app.controllers.diary = function(cat) {
 	function success(status, data, last){
 		echo("<hr>");
 				
-		if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
+		if(status.getStatus() == 0 && status.getResults() > 0){
 			
 			var aListData = {"activities":[]};
 			
@@ -71,15 +71,13 @@ app.controllers.diary = function(cat) {
 				aListData.activities.push({
 					"activityId": val.intIdFitxa,
 					"activityName": val.strDescripcio,
-					"description": val.strObservacions,
-					"activityClass": "acul",
-					"activityType": "culturals"
+					"description": val.strObservacions
 				});
 				
 			});
 			
 			// Generamos template
-			var aListTemplate = app.views.activityListIcon;
+			var aListTemplate = app.views.activityList;
 			var renderedTemplate = Mustache.render(aListTemplate, aListData);
 			
 			// Content

@@ -24,7 +24,9 @@ var app = {
 	service: {},
 	user: "",
 	timer: {},
-	lang: {}
+	lang: {},
+	device: {},
+	db: {}
 };
 
 // START AFTER LOAD
@@ -68,13 +70,16 @@ $(document).ready(function() {
     
     var router = new app.router();
 	Backbone.history.start();
+
+	//INIT DB
+	app.db.init(function(){}, function(){}); //CONTROLAR ERROR
 	
 	// Control del botón atrás
 	$('.back').click(function(e){ e.preventDefault(); router.back(); });
     
     //SET LANG
     app.user = new app.models.user();
-    app.user.set({"intIdioma": 1});
+    //app.user.set({"intIdioma": 1});
 
 
 	// MENU
@@ -155,4 +160,7 @@ $(document).ready(function() {
 			
 		}
 	);
+
+
+	//console.log("LANG", app.user.getLang());
 });

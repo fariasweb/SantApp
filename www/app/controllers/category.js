@@ -47,7 +47,7 @@ app.controllers.category = function(cat, subcat) {
 	}
 	
 	function success(status, data, last){
-		if(status.toJSON().intCodiEstat == 0){
+		if(status.getStatus() == 0 && status.getResults() > 0){
 			
 			var aListData = {"headerClass": headerColorClass, "headerName": categoryName, "activities":[]};
 			

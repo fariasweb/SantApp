@@ -84,20 +84,17 @@ $(document).ready(function() {
 	app.collections.subagendes.request_all({}, 
 		function(status, dataSubagencia){
 			
-			if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
+			if(status.getStatus() == 0 && status.getResults() > 0){
 				
 				menuData = {"diary": []};
 				
 				// Por cada subagenda...
-				
+				var i = 1;
 				_.each(dataSubagencia, function(subagenda, key){
 
 					// Obtenemos Color e Icono de la subagenda
 					var color = app.collections.subagendes.get(subagenda.intIdNivell).getColorClass(),
 						img = app.collections.subagendes.get(subagenda.intIdNivell).getImgClass();
-
-					
-					
 					
 					// Obtenemos categorías
 					app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},
@@ -111,22 +108,20 @@ $(document).ready(function() {
 								"cats": []
 							};
 							
-							if(status.toJSON().intCodiEstat == 0){
+							if(status.getStatus() == 0){
 								
 								// Por cada categoría
 								_.each(data, function(categoria){
-									
 									agenda.cats.push({
 										"catId": categoria.intIdNivell,
 										"catName": categoria.strNivell
 									});
 								});
 								
-								
 								menuData.diary.push(agenda);
 								
 								// Cuando hayamos completado la ultima Subagencia, generamos template
-								if(key == dataSubagencia.length-1){
+								if(i == dataSubagencia.length){
 									
 									var menuTemplate = app.views.menu;
 									var renderedTemplate = Mustache.render(menuTemplate, menuData);
@@ -137,7 +132,7 @@ $(document).ready(function() {
 									$('#home').trigger('pagecreate');
 
 								}
-								
+								i++;
 							}
 						},
 						function() {

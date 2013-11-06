@@ -131,6 +131,8 @@ $(document).ready(function() {
 									// Lo actualizamos para la página actual
 									$('#home').trigger('pagecreate');
 
+									updateLangVars();
+
 								}
 								i++;
 							}
@@ -152,6 +154,13 @@ $(document).ready(function() {
 			
 		}
 	);
+	
+	
+	function updateLangVars(){
+		$('[class^="lang"]').on('click',function(){
+			alert("class lang founded");
+		});
+	}
 	
     // echo(app.lang.line("AAB"));
 
@@ -433,6 +442,9 @@ $(document).ready(function() {
 	    		
 	    	});
 	}*/
+
+
+	
 
 	//test();
 

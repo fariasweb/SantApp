@@ -7,9 +7,8 @@ app.lang = Backbone.Model.extend({
 
 	defaults: { 
 		"vars": {
-			"AAA": ["CAT", "CAST"], 
-			"AAB": ["CAT2", "CAST2"], 
-			"AAC": ["CAT3", "CAST3"] 
+			"lang_category_all": ["Totes", "Todas"], 
+			"lang_menu_search": ["Cerca", "Búsqueda"], 
 		}
 	},
 

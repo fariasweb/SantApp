@@ -1,6 +1,6 @@
 app.router = Backbone.Router.extend({
 	routes: {
-		// "": "home", //DEFAULT
+		"": "home", //DEFAULT
 		"home": "home",
 		"category/:cat/:subcat": "category",
 		"config": "configuration",
@@ -22,7 +22,7 @@ app.router = Backbone.Router.extend({
 		  });
 		});
 		
-		// $.mobile.changePage($('#home'));
+		$.mobile.changePage($('#home'));
 		
 	},
 	back: function(){

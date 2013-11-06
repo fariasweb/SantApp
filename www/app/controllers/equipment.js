@@ -13,7 +13,7 @@ app.controllers.equipment = function(equipmentId) {
 	clearContent();
 	try{
 		alert(app.collections.equipaments.length);
-	app.collections.equipaments.reset_pags("request_all", app.collections.equipaments.length);
+	// app.collections.equipaments.reset_pags("request_all", app.collections.equipaments.length);
 	}catch(e){
 		alert(e);
 	}
@@ -51,7 +51,6 @@ app.controllers.equipment = function(equipmentId) {
 		
 		app.collections.equipaments.request_all({}, 
     		function(status, data){
-
 
 				echo("<hr>");
 				if(status.toJSON().intCodiEstat == 0){

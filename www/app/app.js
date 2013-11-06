@@ -1,8 +1,8 @@
-// $.mobile.ajaxEnabled = false;
-// $.mobile.linkBindingEnabled = false; 
-// $.mobile.hashListeningEnabled = false; 
-// $.mobile.pushStateEnabled = false; 
-// $.mobile.changePage.defaults.changeHash = false;
+$.mobile.ajaxEnabled = false;
+$.mobile.linkBindingEnabled = false; 
+$.mobile.hashListeningEnabled = false; 
+$.mobile.pushStateEnabled = false; 
+$.mobile.changePage.defaults.changeHash = false;
 
 /**
  * APP START
@@ -87,8 +87,9 @@ $(document).ready(function() {
 			if(status.toJSON().intCodiEstat == 0 && status.toJSON().intTotalResultats > 0){
 				
 				menuData = {"diary": []};
-		
+				
 				// Por cada subagenda...
+				
 				_.each(dataSubagencia, function(subagenda, key){
 
 					// Obtenemos Color e Icono de la subagenda
@@ -102,6 +103,7 @@ $(document).ready(function() {
 						"diaryId": subagenda.intIdNivell,
 						"cats": []
 					};
+					
 					
 					// Obtenemos categorías
 					app.collections.subagendes.get(subagenda.intIdNivell).request_all_categories({},

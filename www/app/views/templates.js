@@ -4,7 +4,7 @@ app.views.menu =
     <img src='img/iconos/logo_ayu.png'>\
   </div>\
   <ul data-role='listview' class='ui-listview'>\
-    <li data-role='list-divider'>Búsqueda</li>\
+    <li data-role='list-divider' class='lang_menu_search'>Búsqueda</li>\
   </ul>\
   <div data-role='collapsible-set' data-inset='false' data-iconpos='left'>\
     <div data-role='collapsible' data-expanded-icon='aprin' data-collapsed-icon='aprin' class='aprin'>\

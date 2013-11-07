@@ -10,7 +10,7 @@ app.controllers.category = function(cat, subcat) {
 		categoryContent = category.find('[data-role=content]'),
 		diaryColorClass = app.collections.subagendes.get(cat).getColorClass(),
 		headerColorClass = app.collections.subagendes.get(cat).getColorHeaderClass(),
-		categoryName = (subcat == 0) ? "Todas": app.collections.subagendes.get(cat).categories.get(subcat).get("strNivell");
+		categoryName = (subcat == 0) ? app.lang.line("lang_category_all") : app.collections.subagendes.get(cat).categories.get(subcat).get("strNivell");
 	
 	clearContent();
 	

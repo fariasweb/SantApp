@@ -27,7 +27,7 @@ app.collections._equipaments = app.collections._collection.extend({
 
             this.pags = {
                 "request_all": {'total': 0, 'page': 0, 'last': false}
-            }
+            };
         }
     },
     

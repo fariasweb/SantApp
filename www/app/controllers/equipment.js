@@ -8,40 +8,43 @@ app.controllers.equipment = function(equipmentId) {
 	var equipment = (equipmentId) ? $('#equipment-detail') : $('#equipment'),
 		equipmentContent = equipment.find('[data-role=content]'),
 		equipmentHeader = equipment.find('[data-role=header]'),
-		strHeader = "";
+		strHeader = (equipmentId) ? app.collections.equipaments.get(equipmentId).get("strDescripcio") : "Listado de infraestructuras";
+		
+	$.mobile.changePage(equipment, {changeHash:false});
 	
 	clearContent();
 
+	// Ver más infraestructuras
+	$('#equipment .vermas').click(function(){
+		getEquipment();				
+	});
+
+	equipmentHeader.find('h1').html(strHeader);
+
 	// Detalles de infraestructura | Listado de infraestructuras
 	if(equipmentId){
-		strHeader = "Infraestructura X";
 		getEquipmentById(equipmentId);
-		
 	}else{
-		strHeader = "Listado de Infraestructuras";
-		try{
-			// app.collections.equipaments.request_all_order({},getEquipment,function() { echo ("ERROR"); });
-			getEquipment();
-		}catch(e){
-			//alert(e);
-		}	
-	}
+		// Reset
+		app.collections.equipaments.reset_pags("request_all", app.collections.equipaments.length);
 		
-	equipmentHeader.find('h1').html(strHeader);
-	
-	$.mobile.changePage(equipment, {changeHash:false});
+		// Call
+		getEquipment();
+	}
 	
 	// Close panel
 	equipment.find('.left-panel').panel('close');
 	
 	function clearContent(){
-		equipment.find('[data-role=content]').html("");
+		equipment.find('[data-role=content]').html("").append(app.views.btnMore);
 	}
 	
 	function getEquipment(){
 		
+		$('#equipment .vermas').hide();
+		
 		app.collections.equipaments.request_all({}, 
-    		function(status, data){
+    		function(status, data, last){
 				if(status.isSuccess()){
 					
 					var aListData = {"equipments":[]};
@@ -52,16 +55,24 @@ app.controllers.equipment = function(equipmentId) {
 							"equipmentId": element.intIdFitxa,
 							"equipmentName": element.strDescripcio
 						});
-						//alert(element.intIdFitxa+" - "+element.strDescripcio)
-						// Generamos template
 	    			});
-
+					
+					// Generamos template
 	    			var aListTemplate = app.views.equipmentList;
 					var renderedTemplate = Mustache.render(aListTemplate, aListData);
-					equipmentContent.html(renderedTemplate);
+					
+					// Content
+					equipmentContent.append(renderedTemplate);
+					$('#equipment .vermas').appendTo(equipmentContent);
+					
 					// Page create
-					//ESTO FALLA
-					$('#equipment').trigger('pagecreate');
+					equipment.trigger('pagecreate');
+					
+				}
+				
+				//SI no es la ultima, mostramos botón de mostrar más...
+				if (!last){
+					$('#equipment .vermas').show();
 				}
     			
     		},
@@ -86,7 +97,7 @@ app.controllers.equipment = function(equipmentId) {
 							"strDescripcioPoblacio": val.strDescripcioPoblacio,
 							"strDescripcioProvincia": val.strDescripcioProvincia,
 							"strCodiPostal": val.strCodiPostal,
-							"strNom": "Mas Fonollar",
+							"strNom": strHeader,
 							"strUrl": val.strUrl,
 							"strNomResponsable": val.strNomResponsable,
 							"strTelefonA": val.strTelefonA,

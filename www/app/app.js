@@ -161,7 +161,7 @@ $(document).ready(function() {
 	
 	function updateLangVars(){
 		$('[class^="lang"]').on('click',function(){
-			alert("class lang founded");
+			$(this).attr("class");
 		});
 	}
 	
@@ -489,6 +489,6 @@ $(document).ready(function() {
 		},
 		function() {
 			//ERROR
-		})
+		});
 	//console.log("LANG", app.user.getLang());
 });

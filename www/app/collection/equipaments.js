@@ -97,6 +97,7 @@ app.collections._equipaments = app.collections._collection.extend({
 
                         //Num_pages
                         t.reset_pags("request_all", app.collections.equipaments.length);
+                        if (status.getResults() == 0) t.pags['request_all']['last'] = true;
 
                         //ACTUALIZO TIEMPO
                         t.flags.request_all = app.timer.getTime();

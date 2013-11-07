@@ -99,7 +99,7 @@ app.collections.agenda = app.collections._collection.extend({
 
     _request: function(action, action_count ,function_name, param, success, error) {
 
-        if (app.collections.agenda.pags[function_name]['total'] == 0) {
+        if (app.collections.agenda.pags[function_name]['total'] == 0 && !app.collections.agenda.pags[function_name]['last']) {
 
             var t = this;
 

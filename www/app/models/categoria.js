@@ -39,7 +39,7 @@ app.models.categoria = Backbone.Model.extend({
 
         var t = this;
 
-        if (this.pags['request_all']['total'] == 0) {
+        if (this.pags['request_all']['total'] == 0 && !this.pags['request_all']['last']) {
 
             app.service.get("fitxesCategoriaAgendaNombreResultatsData", "", param, 
                 function (status, data){

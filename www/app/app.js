@@ -1,10 +1,10 @@
 
-$.mobile.ajaxEnabled = false;
+/*$.mobile.ajaxEnabled = false;
 $.mobile.linkBindingEnabled = false; 
 $.mobile.hashListeningEnabled = false; 
 $.mobile.pushStateEnabled = false; 
 $.mobile.changePage.defaults.changeHash = false;
-
+*/
 /**
  * APP START
  * 
@@ -68,14 +68,72 @@ $( document ).on("pageinit", "#index", function() {
 
 $(document).ready(function() {
     
-    var router = new app.router();
-	Backbone.history.start();
+    //var router = new app.router();
+	//Backbone.history.start();
 
 	//INIT DB
 	//app.db.init(function(){}, function(){}); //CONTROLAR ERROR
+	echo("A");
+
+	//PROCESO DE CARGA
+	app.user = new app.models.user();
+
+	window.localStorage.clear();
+	//app.db.clear();
+
+	var start = function() {
+		//Internet?
+		if (true) {
+
+			//Base de datos
+			app.db.init(function() {
+					//La base de datos se ha creado
+					echo("Base de datos creada - ")
+					app.user.init(	
+						function() {
+							//El usuario existe -> Tenemos idioma
+							echo("El usuari existe - ");
+
+							//SiGUIETNES PASOS
+
+						},
+						function(err) {
+							if (!err) {
+								echo ("No existe el usuari - ")
+								//No existia el usuario -> Vamos al apartod de idioma y paramos
+
+								//DEBUG
+								app.user.setLang(1, function(){
+									//Reload
+									echo ("<br>");
+									start();
+								})
+							} else {
+								//Eror
+								echo ("Usuario Init error - ");
+							}
+						}
+					);
+				},
+				function(err) {
+					//No se ha podido crear la BD - Error grave
+					echo("Base de datos ERROR - ")
+				}
+			);
+
+		} else {
+			//No hay internet!!!
+		}
+	}
+
+	start();
 	
+	//app.db.init(function() {
+	//	app.db.clear();
+	//}, function() {});
+
 	// Control del botón atrás
-	$('.back').click(function(e){ e.preventDefault(); router.back(); });
+	/*$('.back').click(function(e){ e.preventDefault(); router.back(); });
     
     //SET LANG
     app.user = new app.models.user();
@@ -451,7 +509,7 @@ $(document).ready(function() {
 	//TEST: Equipaciones + info
 	//==================================================================
 
-	var test_equipament = function() {
+	/*var test_equipament = function() {
 		app.collections.equipaments.request_all({}, 
     		function(status, data, last){
 
@@ -461,7 +519,7 @@ $(document).ready(function() {
 	    			echo(element.strDescripcio+", \n");
 	    			echo("<br>");
 
-	    			/*app.collections.equipaments.get(element.intIdFitxa).request_info({},
+	    			app.collections.equipaments.get(element.intIdFitxa).request_info({},
 	    			    function (status, data){
 	    			    	
 	    			    	var_dump(data);
@@ -469,7 +527,7 @@ $(document).ready(function() {
 	                    function (jqXHR, textStatus, errorThrown) {
 	                        echo("FAIL");
 	                    });
-	                */
+	                
     			});
 
     			// if(!last) test_equipament();
@@ -479,16 +537,17 @@ $(document).ready(function() {
     		}
     	);
 		
-	};
+	};*/
 
 	//test_equipament();
 	//RECOGO TODAS LAS EQUPACIONES
-	app.collections.equipaments.request_all_order({},
+	/*app.collections.equipaments.request_all_order({},
 		function(status, data){
 			//alert("TOTAL " + data.length);
 		},
 		function() {
 			//ERROR
-		})
+		}
+	);*/
 	//console.log("LANG", app.user.getLang());
 });

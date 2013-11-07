@@ -9,8 +9,27 @@ app.models.user = Backbone.Model.extend({
         "created": true,
     },
 
-    init: function(succes, error) {
+    init: function(success, error) {
         //Existe el usario en la BD?
+        app.db.query("SELECT * FROM user_conf",
+            function(tx, results) {
+                if (!results.rows.length) {
+                    //Crear usuario
+                    app.user.createUser(
+                        function(){
+                            //Informamos de que el usuario no existia y se ha creado
+                            error(0);
+                        },
+                        error);
+                } else {
+                    echo ("EXISTEEE :D");
+
+                    app.user.set({"created": true, "intIdioma": results.rows.item(0).lang});
+                    success();
+                }
+            },
+            error
+        );
             //No existe? Creo el usuario 
 
             //Error
@@ -22,7 +41,7 @@ app.models.user = Backbone.Model.extend({
     },
 
     createUser: function(success, error) {
-        app.db.query("INSERT INTO USER_CONF (1, 0)", success, error); 
+        app.db.query("INSERT INTO user_conf VALUES (1, 0)", success, error); 
     },
     
     getLang: function() {
@@ -33,10 +52,15 @@ app.models.user = Backbone.Model.extend({
         }  
     },
 
-    setLang: function(lang) {
+    setLang: function(lang, success, error) {
         //Guardar en base de datos
-
-        //
+        app.db.query('UPDATE user_conf SET lang = '+lang+' WHERE id = 1', 
+            function() {
+                app.user.set({"lang": lang});
+                if (typeof success == "function") success();
+            },function(){
+                if (typeof error == "function") error();
+            });
     },
 
     //Miramos si no esta iniciado

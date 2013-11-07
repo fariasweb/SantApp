@@ -68,18 +68,14 @@ $( document ).on("pageinit", "#index", function() {
 
 $(document).ready(function() {
     
-    //var router = new app.router();
-	//Backbone.history.start();
+    var router = new app.router();
+	Backbone.history.start();
 
 	//INIT DB
 	//app.db.init(function(){}, function(){}); //CONTROLAR ERROR
-	echo("A");
 
 	//PROCESO DE CARGA
-	app.user = new app.models.user();
-
-	window.localStorage.clear();
-	//app.db.clear();
+	//app.user = new app.models.user();
 
 	var start = function() {
 		//Internet?
@@ -126,14 +122,14 @@ $(document).ready(function() {
 		}
 	}
 
-	start();
+	//start();
 	
 	//app.db.init(function() {
 	//	app.db.clear();
 	//}, function() {});
 
 	// Control del botón atrás
-	/*$('.back').click(function(e){ e.preventDefault(); router.back(); });
+	$('.back').click(function(e){ e.preventDefault(); router.back(); });
     
     //SET LANG
     app.user = new app.models.user();
@@ -541,13 +537,13 @@ $(document).ready(function() {
 
 	//test_equipament();
 	//RECOGO TODAS LAS EQUPACIONES
-	/*app.collections.equipaments.request_all_order({},
+	app.collections.equipaments.request_all_order({},
 		function(status, data){
 			//alert("TOTAL " + data.length);
 		},
 		function() {
 			//ERROR
 		}
-	);*/
+	);
 	//console.log("LANG", app.user.getLang());
 });

@@ -1,10 +1,10 @@
 
-/*$.mobile.ajaxEnabled = false;
+$.mobile.ajaxEnabled = false;
 $.mobile.linkBindingEnabled = false; 
 $.mobile.hashListeningEnabled = false; 
 $.mobile.pushStateEnabled = false; 
 $.mobile.changePage.defaults.changeHash = false;
-*/
+
 /**
  * APP START
  * 
@@ -214,9 +214,19 @@ $(document).ready(function() {
 	);
 	
 	function updateLangVars(){
-		$('[class^="lang"]').on('click',function(){
-			$(this).attr("class");
+		
+		$('[class^="lang"]').each(function(key, val){
+			var element = $(this),
+				classes = $(this).attr('class').split(' ');
+				
+			$.each(classes, function(i, val){
+				
+				if(val.indexOf("lang_") >= 0){
+					element.html(app.lang.line(val));
+				}
+			});
 		});
+		
 	}
 	
     // echo(app.lang.line("AAB"));

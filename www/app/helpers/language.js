@@ -8,7 +8,9 @@ app.lang = Backbone.Model.extend({
 	defaults: { 
 		"vars": {
 			"lang_category_all": ["Totes", "Todas"], 
-			"lang_menu_search": ["Cerca", "Búsqueda"], 
+			"lang_menu_search": ["Cerca", "Búsqueda"],
+			"lang_menu_main_diary": ["Agenda principal", "Agenda principal"],
+			"lang_menu_equipment": ["Llistat de infraestructures", "Listado de infraestructuras"],
 		}
 	},
 

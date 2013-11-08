@@ -8,7 +8,7 @@ app.controllers.equipment = function(equipmentId) {
 	var equipment = (equipmentId) ? $('#equipment-detail') : $('#equipment'),
 		equipmentContent = equipment.find('[data-role=content]'),
 		equipmentHeader = equipment.find('[data-role=header]'),
-		strHeader = (equipmentId) ? app.collections.equipaments.get(equipmentId).get("strDescripcio") : "Listado de infraestructuras";
+		strHeader = (equipmentId) ? app.collections.equipaments.get(equipmentId).get("strDescripcio") : app.lang.line("lang_menu_equipment");
 		
 	$.mobile.changePage(equipment, {changeHash:false});
 	
@@ -16,7 +16,7 @@ app.controllers.equipment = function(equipmentId) {
 
 	// Ver más infraestructuras
 	$('#equipment .vermas').click(function(){
-		getEquipment();				
+		getEquipment();		
 	});
 
 	equipmentHeader.find('h1').html(strHeader);
